@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刃 パフォーマンスダッシュボード</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-card: #1a1a2e;
+      --bg-card-alt: #16213e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #9ca3af;
+      --accent-blue: #3b82f6;
+      --accent-orange: #f97316;
+      --accent-green: #22c55e;
+      --positive: #22c55e;
+      --negative: #ef4444;
+      --warning: #fbbf24;
+      --border: #2d2d44;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f0f1a 45%, #0a0f18 100%);
+      color: var(--text-primary);
+      padding: 24px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .header {
+      max-width: 1320px;
+      margin: 0 auto 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 4px; }
+    .header .updated { color: var(--text-secondary); font-size: 0.85rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(26, 26, 46, 0.96) 0%, rgba(22, 33, 62, 0.9) 100%);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card h2 { font-size: 1.15rem; margin-bottom: 18px; color: var(--text-primary); }
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .section-title-row h2 { margin-bottom: 0; }
+    .inline-link {
+      color: #bfdbfe;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .inline-link:hover { text-decoration: underline; }
+    .section-stack { display: grid; gap: 28px; }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .kpi-card {
+      border-radius: 16px;
+      padding: 22px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+    }
+    .pnl-card { background: linear-gradient(135deg, rgba(34, 197, 94, 0.28), rgba(21, 128, 61, 0.14)); }
+    .win-card { background: linear-gradient(135deg, rgba(59, 130, 246, 0.28), rgba(29, 78, 216, 0.14)); }
+    .open-card { background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(91, 33, 182, 0.12)); }
+    .capital-card { background: linear-gradient(135deg, rgba(249, 115, 22, 0.24), rgba(194, 65, 12, 0.12)); }
+    .kpi-label {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .kpi-value {
+      font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #f8fafc;
+    }
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+    .strategy-card {
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .sma-card { background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(29,78,216,0.08)); }
+    .bb-card { background: linear-gradient(135deg, rgba(249,115,22,0.18), rgba(194,65,12,0.08)); }
+    .crsi-card { background: linear-gradient(135deg, rgba(34,197,94,0.18), rgba(21,128,61,0.08)); }
+    .strategy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .strategy-name { font-weight: 700; font-size: 1.05rem; }
+    .strategy-badge { font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; }
+    .long-short { background: rgba(59,130,246,0.3); color: #93c5fd; }
+    .long-only { background: rgba(249,115,22,0.3); color: #fdba74; }
+    .strategy-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .chart-container { position: relative; height: 320px; }
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .system-card {
+      border-radius: 14px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .system-label {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+    .system-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .system-meta {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+    }
+    .regime-bull { color: var(--positive); }
+    .regime-bear { color: var(--negative); }
+    .health-ok { color: var(--positive); }
+    .health-warn { color: var(--warning); }
+    .health-fail { color: var(--negative); }
+    .watchlist-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .watchlist-column {
+      display: grid;
+      gap: 10px;
+    }
+    .watchlist-count {
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+    }
+    .watchlist-flow {
+      line-height: 2;
+    }
+    .watchlist-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.14);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      font-size: 0.82rem;
+      color: #e2e8f0;
+    }
+    .watchlist-tag-etf {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(59, 130, 246, 0.28);
+      color: #bfdbfe;
+    }
+    .watchlist-tag-futures {
+      background: rgba(168, 85, 247, 0.18);
+      border-color: rgba(168, 85, 247, 0.3);
+      color: #e9d5ff;
+    }
+    .no-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 720px; }
+    th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); }
+    th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; }
+    td:first-child, th:first-child { text-align: left; }
+    tfoot td {
+      border-top: 2px solid var(--border);
+      border-bottom: none;
+      font-weight: 700;
+    }
+    .positive { color: var(--positive); }
+    .negative { color: var(--negative); }
+    .buy-side { color: var(--accent-blue); font-weight: 600; }
+    .sell-side { color: var(--accent-orange); font-weight: 600; }
+    .total-row { font-weight: 700; border-top: 2px solid var(--border); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .table-note {
+      margin-top: 12px;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+    }
+    @media (max-width: 768px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .system-grid { grid-template-columns: 1fr 1fr; }
+      .strategy-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .watchlist-section { grid-template-columns: 1fr; }
+      body { padding: 12px; }
+      .card { padding: 18px; }
+    }
+    @media (max-width: 520px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .system-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>刃 パフォーマンスダッシュボード</h1>
+    <div class="updated">最終更新: 2026-04-16 23:08 JST <a class="inline-link" href="strategies.html">戦略詳細 →</a></div>
+  </div>
+
+  <div class="grid">
+    <div class="kpi-grid">
+      <div class="kpi-card pnl-card">
+        <div class="kpi-label">確定損益</div>
+        <div class="kpi-value positive">$867.20</div>
+      </div>
+      <div class="kpi-card win-card">
+        <div class="kpi-label">勝率</div>
+        <div class="kpi-value">60.0%</div>
+      </div>
+      <div class="kpi-card open-card">
+        <div class="kpi-label">保有ポジション</div>
+        <div class="kpi-value">3</div>
+      </div>
+      <div class="kpi-card capital-card">
+        <div class="kpi-label">投入資本</div>
+        <div class="kpi-value">$52,544.26 / ¥0</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>システム状態</h2>
+      <div class="system-grid">
+        <div class="system-card">
+          <div class="system-label">レジーム</div>
+          <div class="system-value regime-bull">ブル・低ボラ</div>
+          <div class="system-meta">SPY: 699.94 / VIX: 18.17</div>
+        </div>
+        <div class="system-card">
+          <div class="system-label">ヘルスチェック</div>
+          <div class="system-value health-ok">OK 20 / WARN 0 / FAIL 0</div>
+          <div class="system-meta">最終チェック: 2026-04-16 09:00 JST</div>
+        </div>
+        <div class="system-card">
+          <div class="system-label">LLM精度</div>
+          <div class="system-value">データ不足</div>
+          <div class="system-meta">GO: データ不足 / NOGO: データ不足 / 評価件数: 0</div>
+        </div>
+        <div class="system-card">
+          <div class="system-label">最終スキャン</div>
+          <div class="system-value">US: 2026-04-16 04:58 JST</div>
+          <div class="system-meta">JP: 2026-04-16 16:00 JST</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title-row">
+      <h2>戦略</h2>
+      <a class="inline-link" href="strategies.html">詳細 →</a>
+    </div>
+      <div class="strategy-grid"><div class="strategy-card sma-card">
+      <div class="strategy-header">
+        <span class="strategy-name">SMAクロス</span>
+        <span class="strategy-badge long-short">ロング・ショート</span>
+      </div>
+      <div class="strategy-stats">
+        <div>取引数: 0</div>
+        <div>勝率: 0.0%</div>
+        <div class="positive">損益: $0.00</div>
+      </div>
+    </div><div class="strategy-card bb-card">
+      <div class="strategy-header">
+        <span class="strategy-name">BB平均回帰</span>
+        <span class="strategy-badge long-only">ロングオンリー</span>
+      </div>
+      <div class="strategy-stats">
+        <div>取引数: 5</div>
+        <div>勝率: 60.0%</div>
+        <div class="positive">損益: $867.20</div>
+      </div>
+    </div><div class="strategy-card crsi-card">
+      <div class="strategy-header">
+        <span class="strategy-name">ConnorsRSI平均回帰</span>
+        <span class="strategy-badge long-only">ロングオンリー</span>
+      </div>
+      <div class="strategy-stats">
+        <div>取引数: 0</div>
+        <div>勝率: 0.0%</div>
+        <div class="positive">損益: $0.00</div>
+      </div>
+    </div></div>
+    </div>
+
+    <div class="card">
+      <h2>監視銘柄一覧</h2>
+      <div class="watchlist-section">
+        <div class="watchlist-column">
+          <div class="system-label">米国</div>
+          <div class="watchlist-count">個別株 111銘柄</div>
+          <div class="watchlist-flow"><span class="watchlist-tag">AAPL</span>, <span class="watchlist-tag">ABBV</span>, <span class="watchlist-tag">ABT</span>, <span class="watchlist-tag">ACN</span>, <span class="watchlist-tag">ADBE</span>, <span class="watchlist-tag">AMAT</span>, <span class="watchlist-tag">AMD</span>, <span class="watchlist-tag">AMGN</span>, <span class="watchlist-tag">AMT</span>, <span class="watchlist-tag">AMZN</span>, <span class="watchlist-tag">AVGO</span>, <span class="watchlist-tag">AXP</span>, <span class="watchlist-tag">BA</span>, <span class="watchlist-tag">BAC</span>, <span class="watchlist-tag">BK</span>, <span class="watchlist-tag">BKNG</span>, <span class="watchlist-tag">BLK</span>, <span class="watchlist-tag">BMY</span>, <span class="watchlist-tag">BRK-B</span>, <span class="watchlist-tag">C</span>, <span class="watchlist-tag">CAT</span>, <span class="watchlist-tag">CL</span>, <span class="watchlist-tag">CMCSA</span>, <span class="watchlist-tag">COF</span>, <span class="watchlist-tag">COP</span>, <span class="watchlist-tag">COST</span>, <span class="watchlist-tag">CRM</span>, <span class="watchlist-tag">CSCO</span>, <span class="watchlist-tag">CVS</span>, <span class="watchlist-tag">CVX</span>, <span class="watchlist-tag">DE</span>, <span class="watchlist-tag">DHR</span>, <span class="watchlist-tag">DIS</span>, <span class="watchlist-tag">DUK</span>, <span class="watchlist-tag">EMR</span>, <span class="watchlist-tag">FDX</span>, <span class="watchlist-tag">GD</span>, <span class="watchlist-tag">GE</span>, <span class="watchlist-tag">GEV</span>, <span class="watchlist-tag">GILD</span>, <span class="watchlist-tag">GM</span>, <span class="watchlist-tag">GOOG</span>, <span class="watchlist-tag">GOOGL</span>, <span class="watchlist-tag">GS</span>, <span class="watchlist-tag">HD</span>, <span class="watchlist-tag">HON</span>, <span class="watchlist-tag">IBM</span>, <span class="watchlist-tag">INTC</span>, <span class="watchlist-tag">INTU</span>, <span class="watchlist-tag">ISRG</span>, <span class="watchlist-tag">JNJ</span>, <span class="watchlist-tag">JPM</span>, <span class="watchlist-tag">KO</span>, <span class="watchlist-tag">LIN</span>, <span class="watchlist-tag">LLY</span>, <span class="watchlist-tag">LMT</span>, <span class="watchlist-tag">LOW</span>, <span class="watchlist-tag">LRCX</span>, <span class="watchlist-tag">MA</span>, <span class="watchlist-tag">MCD</span>, <span class="watchlist-tag">MDLZ</span>, <span class="watchlist-tag">MDT</span>, <span class="watchlist-tag">META</span>, <span class="watchlist-tag">MMM</span>, <span class="watchlist-tag">MO</span>, <span class="watchlist-tag">MRK</span>, <span class="watchlist-tag">MS</span>, <span class="watchlist-tag">MSFT</span>, <span class="watchlist-tag">MU</span>, <span class="watchlist-tag">NEE</span>, <span class="watchlist-tag">NFLX</span>, <span class="watchlist-tag">NKE</span>, <span class="watchlist-tag">NOW</span>, <span class="watchlist-tag">NVDA</span>, <span class="watchlist-tag">ORCL</span>, <span class="watchlist-tag">PEP</span>, <span class="watchlist-tag">PFE</span>, <span class="watchlist-tag">PG</span>, <span class="watchlist-tag">PLTR</span>, <span class="watchlist-tag">PM</span>, <span class="watchlist-tag">QCOM</span>, <span class="watchlist-tag">RTX</span>, <span class="watchlist-tag">SBUX</span>, <span class="watchlist-tag">SCHW</span>, <span class="watchlist-tag">SO</span>, <span class="watchlist-tag">SPG</span>, <span class="watchlist-tag">T</span>, <span class="watchlist-tag">TMO</span>, <span class="watchlist-tag">TMUS</span>, <span class="watchlist-tag">TSLA</span>, <span class="watchlist-tag">TXN</span>, <span class="watchlist-tag">UBER</span>, <span class="watchlist-tag">UNH</span>, <span class="watchlist-tag">UNP</span>, <span class="watchlist-tag">UPS</span>, <span class="watchlist-tag">USB</span>, <span class="watchlist-tag">V</span>, <span class="watchlist-tag">VZ</span>, <span class="watchlist-tag">WFC</span>, <span class="watchlist-tag">WMT</span>, <span class="watchlist-tag">XOM</span>, <span class="watchlist-tag">SNDK</span>, <span class="watchlist-tag">COHR</span>, <span class="watchlist-tag">LITE</span>, <span class="watchlist-tag">MRVL</span>, <span class="watchlist-tag">MTSI</span>, <span class="watchlist-tag">ARM</span>, <span class="watchlist-tag">IONQ</span>, <span class="watchlist-tag">QBTS</span>, <span class="watchlist-tag">RKLB</span>, <span class="watchlist-tag">ASTS</span></div>
+          <div class="watchlist-count">ETF 20銘柄</div>
+          <div class="watchlist-flow"><span class="watchlist-tag watchlist-tag-etf">XLK</span>, <span class="watchlist-tag watchlist-tag-etf">XLF</span>, <span class="watchlist-tag watchlist-tag-etf">XLE</span>, <span class="watchlist-tag watchlist-tag-etf">XLV</span>, <span class="watchlist-tag watchlist-tag-etf">XLU</span>, <span class="watchlist-tag watchlist-tag-etf">TLT</span>, <span class="watchlist-tag watchlist-tag-etf">HYG</span>, <span class="watchlist-tag watchlist-tag-etf">IEF</span>, <span class="watchlist-tag watchlist-tag-etf">GLD</span>, <span class="watchlist-tag watchlist-tag-etf">SLV</span>, <span class="watchlist-tag watchlist-tag-etf">USO</span>, <span class="watchlist-tag watchlist-tag-etf">EEM</span>, <span class="watchlist-tag watchlist-tag-etf">EFA</span>, <span class="watchlist-tag watchlist-tag-etf">SOXX</span>, <span class="watchlist-tag watchlist-tag-etf">EWJ</span>, <span class="watchlist-tag watchlist-tag-etf">EWY</span>, <span class="watchlist-tag watchlist-tag-etf">EWT</span>, <span class="watchlist-tag watchlist-tag-etf">IWM</span>, <span class="watchlist-tag watchlist-tag-etf">VNQ</span>, <span class="watchlist-tag watchlist-tag-etf">QQQ</span></div>
+        </div>
+        <div class="watchlist-column">
+          <div class="system-label">日本</div>
+          <div class="watchlist-count">日本株 50銘柄</div>
+          <div class="watchlist-flow"><span class="watchlist-tag">7203</span>, <span class="watchlist-tag">8306</span>, <span class="watchlist-tag">6758</span>, <span class="watchlist-tag">9984</span>, <span class="watchlist-tag">6861</span>, <span class="watchlist-tag">8035</span>, <span class="watchlist-tag">6501</span>, <span class="watchlist-tag">7741</span>, <span class="watchlist-tag">9433</span>, <span class="watchlist-tag">6902</span>, <span class="watchlist-tag">4063</span>, <span class="watchlist-tag">8766</span>, <span class="watchlist-tag">7267</span>, <span class="watchlist-tag">4502</span>, <span class="watchlist-tag">9432</span>, <span class="watchlist-tag">6098</span>, <span class="watchlist-tag">8001</span>, <span class="watchlist-tag">6367</span>, <span class="watchlist-tag">7974</span>, <span class="watchlist-tag">8058</span>, <span class="watchlist-tag">4568</span>, <span class="watchlist-tag">6954</span>, <span class="watchlist-tag">3382</span>, <span class="watchlist-tag">8411</span>, <span class="watchlist-tag">9983</span>, <span class="watchlist-tag">6273</span>, <span class="watchlist-tag">4661</span>, <span class="watchlist-tag">7751</span>, <span class="watchlist-tag">2914</span>, <span class="watchlist-tag">8316</span>, <span class="watchlist-tag">6594</span>, <span class="watchlist-tag">6971</span>, <span class="watchlist-tag">4519</span>, <span class="watchlist-tag">7269</span>, <span class="watchlist-tag">6857</span>, <span class="watchlist-tag">3407</span>, <span class="watchlist-tag">4543</span>, <span class="watchlist-tag">6762</span>, <span class="watchlist-tag">9613</span>, <span class="watchlist-tag">8031</span>, <span class="watchlist-tag">7832</span>, <span class="watchlist-tag">6503</span>, <span class="watchlist-tag">4151</span>, <span class="watchlist-tag">6526</span>, <span class="watchlist-tag">7733</span>, <span class="watchlist-tag">2801</span>, <span class="watchlist-tag">5401</span>, <span class="watchlist-tag">4901</span>, <span class="watchlist-tag">9843</span>, <span class="watchlist-tag">6988</span></div>
+          <div class="watchlist-count">先物設定</div>
+          <div class="watchlist-flow"><span class="watchlist-tag watchlist-tag-futures">NK225micro / 無効</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>累計損益（戦略別）</h2>
+      <div class='chart-container'><canvas id='cumPnlChart'></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2>日次損益（戦略別）</h2>
+      <div class='chart-container'><canvas id='dailyPnlChart'></canvas></div>
+    </div>
+
+    <div class="card">
+      <h2>戦略別統計</h2>
+      <div class="table-wrap"><table>
+        <thead><tr>
+          <th>戦略</th><th>取引数</th><th>勝率</th><th>総損益</th>
+          <th>平均損益</th><th>最大利益</th><th>最大損失</th><th>平均保有</th>
+        </tr></thead>
+        <tbody><tr>
+          <td>BB平均回帰</td>
+          <td>5</td>
+          <td>60.0%</td>
+          <td class="positive">$867.20</td>
+          <td class="positive">$173.44</td>
+          <td class="positive">$539.34</td>
+          <td class="negative">$-178.87</td>
+          <td>3.8日</td>
+        </tr><tr class="total-row">
+          <td>合計</td>
+          <td>5</td>
+          <td>-</td>
+          <td class="positive">$867.20</td>
+          <td>-</td><td>-</td><td>-</td><td>-</td>
+        </tr></tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h2>決済トレード詳細</h2>
+      <div class="table-wrap"><table>
+          <thead><tr>
+            <th>銘柄</th><th>戦略</th><th>エントリー日</th><th>エグジット日</th>
+            <th>買値</th><th>売値</th><th>数量</th><th>損益</th><th>保有日数</th>
+          </tr></thead>
+          <tbody><tr>
+          <td>PLTR</td>
+          <td>BB平均回帰</td>
+          <td>2026-04-11</td>
+          <td>2026-04-15</td>
+          <td>$130.49</td>
+          <td>$135.70</td>
+          <td>62</td>
+          <td class="positive">$323.02</td>
+          <td>4日</td>
+        </tr><tr>
+          <td>NOW</td>
+          <td>BB平均回帰</td>
+          <td>2026-04-13</td>
+          <td>2026-04-14</td>
+          <td>$83.00</td>
+          <td>$89.06</td>
+          <td>89</td>
+          <td class="positive">$539.34</td>
+          <td>1日</td>
+        </tr><tr>
+          <td>ACN</td>
+          <td>BB平均回帰</td>
+          <td>2026-04-09</td>
+          <td>2026-04-14</td>
+          <td>$187.51</td>
+          <td>$191.95</td>
+          <td>65</td>
+          <td class="positive">$288.60</td>
+          <td>5日</td>
+        </tr><tr>
+          <td>INTU</td>
+          <td>BB平均回帰</td>
+          <td>2026-04-09</td>
+          <td>2026-04-14</td>
+          <td>$376.60</td>
+          <td>$369.44</td>
+          <td>25</td>
+          <td class="negative">-$178.87</td>
+          <td>5日</td>
+        </tr><tr>
+          <td>NKE</td>
+          <td>BB平均回帰</td>
+          <td>2026-04-04</td>
+          <td>2026-04-08</td>
+          <td>$44.19</td>
+          <td>$43.62</td>
+          <td>184</td>
+          <td class="negative">-$104.88</td>
+          <td>4日</td>
+        </tr></tbody>
+        </table></div>
+    </div>
+
+    <div class="card">
+      <h2>シグナル検出数（日別・戦略別）</h2>
+      <div class='chart-container'><canvas id='signalChart'></canvas></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h2>オープンポジション</h2>
+        <div class="table-wrap"><table>
+          <thead><tr>
+            <th>銘柄</th><th>戦略</th><th>方向</th><th>エントリー日</th>
+            <th>価格</th><th>数量</th><th>投入額</th><th>保有日数</th>
+          </tr></thead>
+          <tbody><tr>
+          <td>EPAM</td>
+          <td>BB平均回帰</td>
+          <td class="buy-side">ロング</td>
+          <td>2026-04-13</td>
+          <td>$122.47</td>
+          <td>80</td>
+          <td>$9,797.60</td>
+          <td>3日</td>
+        </tr><tr>
+          <td>T</td>
+          <td>BB平均回帰</td>
+          <td class="buy-side">ロング</td>
+          <td>2026-04-14</td>
+          <td>$25.61</td>
+          <td>754</td>
+          <td>$19,309.94</td>
+          <td>2日</td>
+        </tr><tr>
+          <td>VZ</td>
+          <td>BB平均回帰</td>
+          <td class="buy-side">ロング</td>
+          <td>2026-04-14</td>
+          <td>$45.42</td>
+          <td>516</td>
+          <td>$23,436.72</td>
+          <td>2日</td>
+        </tr></tbody>
+          <tfoot><tr>
+            <td colspan="6">合計投入資本</td>
+            <td>$52,544.26 / ¥0</td>
+            <td>-</td>
+          </tr></tfoot>
+        </table>
+        <div class="table-note">未実現損益は市場データが必要なため、取引時間中のみ表示されます</div></div>
+      </div>
+
+      <div class="card">
+        <h2>直近の発注</h2>
+        <div class="table-wrap"><table>
+          <thead><tr>
+            <th>日時</th><th>銘柄</th><th>銘柄名</th><th>方向</th><th>数量</th><th>価格</th><th>状態</th>
+          </tr></thead>
+          <tbody><tr>
+          <td>2026-04-16 08:49</td>
+          <td>PFE</td>
+          <td>Pfizer</td>
+          <td class="buy-side">BUY</td>
+          <td>844</td>
+          <td>$27.19</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-15 09:41</td>
+          <td>PLTR</td>
+          <td>Palantir</td>
+          <td class="sell-side">SELL</td>
+          <td>62</td>
+          <td>$135.70</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-15 09:38</td>
+          <td>ORCL</td>
+          <td>Oracle</td>
+          <td class="buy-side">BUY</td>
+          <td>63</td>
+          <td>$163.00</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-14 09:42</td>
+          <td>VZ</td>
+          <td>Verizon</td>
+          <td class="buy-side">BUY</td>
+          <td>516</td>
+          <td>$45.42</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-14 09:41</td>
+          <td>T</td>
+          <td>AT&T</td>
+          <td class="buy-side">BUY</td>
+          <td>754</td>
+          <td>$25.61</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-14 09:39</td>
+          <td>NOW</td>
+          <td>ServiceNow</td>
+          <td class="sell-side">SELL</td>
+          <td>88</td>
+          <td>$89.06</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-14 09:37</td>
+          <td>INTU</td>
+          <td>Intuit</td>
+          <td class="sell-side">SELL</td>
+          <td>24</td>
+          <td>$369.44</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-14 09:36</td>
+          <td>ACN</td>
+          <td>Accenture</td>
+          <td class="sell-side">SELL</td>
+          <td>61</td>
+          <td>$191.95</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-13 09:39</td>
+          <td>NOW</td>
+          <td>ServiceNow</td>
+          <td class="buy-side">BUY</td>
+          <td>89</td>
+          <td>$83.00</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-13 09:37</td>
+          <td>EPAM</td>
+          <td>EPAM Systems</td>
+          <td class="buy-side">BUY</td>
+          <td>80</td>
+          <td>$122.47</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-13 09:36</td>
+          <td>AKAM</td>
+          <td>Akamai</td>
+          <td class="sell-side">SELL</td>
+          <td>81</td>
+          <td>$91.35</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-10 15:56</td>
+          <td>PLTR</td>
+          <td>Palantir</td>
+          <td class="buy-side">BUY</td>
+          <td>62</td>
+          <td>$130.49</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 15:56</td>
+          <td>MDT</td>
+          <td>Medtronic</td>
+          <td class="buy-side">BUY</td>
+          <td>275</td>
+          <td>$88.65</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 09:36</td>
+          <td>INTU</td>
+          <td>Intuit</td>
+          <td class="buy-side">BUY</td>
+          <td>25</td>
+          <td>$376.60</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 09:35</td>
+          <td>ACN</td>
+          <td>Accenture</td>
+          <td class="buy-side">BUY</td>
+          <td>65</td>
+          <td>$187.51</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 08:07</td>
+          <td>PFE</td>
+          <td>Pfizer</td>
+          <td class="buy-side">BUY</td>
+          <td>781</td>
+          <td>$27.47</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 08:06</td>
+          <td>PFE</td>
+          <td>Pfizer</td>
+          <td class="buy-side">BUY</td>
+          <td>781</td>
+          <td>$27.47</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 08:05</td>
+          <td>PFE</td>
+          <td>Pfizer</td>
+          <td class="buy-side">BUY</td>
+          <td>781</td>
+          <td>$27.47</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 06:31</td>
+          <td>AAPL</td>
+          <td>Apple</td>
+          <td class="buy-side">BUY</td>
+          <td>80</td>
+          <td>$258.90</td>
+          <td class="positive">成功</td>
+        </tr><tr>
+          <td>2026-04-09 05:08</td>
+          <td>PFE</td>
+          <td>Pfizer</td>
+          <td class="buy-side">BUY</td>
+          <td>781</td>
+          <td>$27.47</td>
+          <td class="positive">成功</td>
+        </tr></tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    Chart.defaults.color = '#9ca3af';
+    Chart.defaults.borderColor = '#2d2d44';
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+    const tooltipStyle = {
+      backgroundColor: '#1a1a2e',
+      titleColor: '#e0e0e0',
+      bodyColor: '#e0e0e0',
+      borderColor: '#2d2d44',
+      borderWidth: 1,
+      padding: 10,
+      cornerRadius: 8,
+    };
+
+    new Chart(document.getElementById('cumPnlChart'), {
+      type: 'line',
+      data: {
+        labels: ["2026-04-08", "2026-04-14", "2026-04-14", "2026-04-14", "2026-04-15"],
+        datasets: [{
+          label: 'BB平均回帰',
+          data: [-104.87994384765625, 183.72021484375, 4.845245361328125, 544.1850280761719, 867.2044982910156],
+          borderColor: 'rgba(249, 115, 22, 1)',
+          backgroundColor: 'rgba(249, 115, 22, 0.15)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 3,
+        },{
+          label: '合計',
+          data: [-104.87994384765625, 183.72021484375, 4.845245361328125, 544.1850280761719, 867.2044982910156],
+          borderColor: 'rgba(156, 163, 175, 1)',
+          backgroundColor: 'rgba(156, 163, 175, 0.15)',
+          fill: false,
+          tension: 0.3,
+          borderDash: [5, 5],
+          pointRadius: 2,
+        },]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: tooltipStyle,
+          legend: { position: 'top' },
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: {
+            grid: { color: '#2d2d44' },
+            ticks: { callback: v => '$' + v.toLocaleString() }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('dailyPnlChart'), {
+      type: 'bar',
+      data: {
+        labels: ["2026-04-08", "2026-04-14", "2026-04-15"],
+        datasets: [{
+          label: 'BB平均回帰',
+          data: [-104.87994384765625, 649.0649719238281, 323.01947021484375],
+          backgroundColor: 'rgba(249, 115, 22, 1)',
+          borderRadius: 4,
+        },]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: tooltipStyle,
+          legend: { position: 'top' },
+        },
+        scales: {
+          x: { stacked: true, grid: { display: false } },
+          y: {
+            stacked: true,
+            grid: { color: '#2d2d44' },
+            ticks: { callback: v => '$' + v.toLocaleString() }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('signalChart'), {
+      type: 'line',
+      data: {
+        labels: ["2026-04-07", "2026-04-09", "2026-04-13", "2026-04-15"],
+        datasets: [{
+          label: 'SMAクロス',
+          data: [1, 87, 1, 2],
+          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.15)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 3,
+        },]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: tooltipStyle,
+          legend: { position: 'top' },
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: {
+            grid: { color: '#2d2d44' },
+            beginAtZero: true,
+            ticks: { stepSize: 1 }
+          }
+        }
+      }
+    });
+
+  </script>
+</body>
+</html>

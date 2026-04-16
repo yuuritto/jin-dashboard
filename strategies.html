@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刃 戦略詳細</title>
+  <style>
+    :root {
+      --bg-primary: #0f0f1a;
+      --bg-card: #1a1a2e;
+      --bg-card-alt: #16213e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #9ca3af;
+      --accent-blue: #3b82f6;
+      --accent-orange: #f97316;
+      --accent-green: #22c55e;
+      --positive: #22c55e;
+      --negative: #ef4444;
+      --warning: #fbbf24;
+      --border: #2d2d44;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f0f1a 45%, #0a0f18 100%);
+      color: var(--text-primary);
+      padding: 24px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .header {
+      max-width: 1320px;
+      margin: 0 auto 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .header h1 { font-size: 1.8rem; margin-bottom: 4px; }
+    .header .updated { color: var(--text-secondary); font-size: 0.85rem; }
+    .back-link, .inline-link {
+      color: #bfdbfe;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .back-link:hover, .inline-link:hover { text-decoration: underline; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(26, 26, 46, 0.96) 0%, rgba(22, 33, 62, 0.9) 100%);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card h2 { font-size: 1.25rem; color: var(--text-primary); }
+    .section-title-row, .strategy-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sma-card { background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(29,78,216,0.08)); }
+    .bb-card { background: linear-gradient(135deg, rgba(249,115,22,0.18), rgba(194,65,12,0.08)); }
+    .crsi-card { background: linear-gradient(135deg, rgba(34,197,94,0.18), rgba(21,128,61,0.08)); }
+    .strategy-kicker {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+    .strategy-badge { font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; }
+    .long-short { background: rgba(59,130,246,0.3); color: #93c5fd; }
+    .long-only { background: rgba(249,115,22,0.3); color: #fdba74; }
+    .strategy-description {
+      margin-top: 16px;
+      color: #e2e8f0;
+      font-size: 1rem;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .detail-block {
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .detail-block-full { grid-column: 1 / -1; }
+    .detail-block h3 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .detail-block ul {
+      padding-left: 18px;
+      color: #dbe4f0;
+      display: grid;
+      gap: 8px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 280px; }
+    .param-table th, .param-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .param-table th {
+      color: var(--text-secondary);
+      font-weight: 500;
+      width: 42%;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .metric-card {
+      border-radius: 14px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .metric-label {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .metric-note {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .glossary-item {
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .glossary-item h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .glossary-item p {
+      color: #dbe4f0;
+      font-size: 0.94rem;
+    }
+    @media (max-width: 900px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .glossary-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      .card { padding: 18px; }
+    }
+    @media (max-width: 520px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .header { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>刃 戦略詳細</h1>
+      <div class="updated">最終更新: 2026-04-16 23:08 JST</div>
+    </div>
+    <a class="back-link" href="index.html">← ダッシュボードに戻る</a>
+  </div>
+  <div class="grid">
+    <section class="card strategy-detail-card sma-card">
+      <div class="strategy-detail-header">
+        <div>
+          <div class="strategy-kicker">短期線と長期線の交差でトレンド転換を捉える</div>
+          <h2>戦略1: SMAクロス</h2>
+        </div>
+        <span class="strategy-badge long-short">ロング・ショート</span>
+      </div>
+      <p class="strategy-description">短期の移動平均線(5日)が長期(20日)を上に突き抜けたら買い、下に突き抜けたら空売り。トレンドの転換点を捉える戦略</p>
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h3>エントリー条件</h3>
+          <ul><li>BUY: SMA(5) が SMA(20) を上抜け（ゴールデンクロス）</li><li>SELL: SMA(5) が SMA(20) を下抜け（デッドクロス）</li><li>RSI(14) が30〜70の範囲</li><li>出来高が20日平均の1.5倍以上</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>エグジット条件</h3>
+          <ul><li>反対シグナル検出時</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>主要パラメータ</h3>
+          <div class="table-wrap">
+            <table class="param-table">
+              <tbody><tr><th>sma_fast</th><td>5</td></tr><tr><th>sma_slow</th><td>20</td></tr><tr><th>rsi_period</th><td>14</td></tr><tr><th>volume_multiplier</th><td>1.5</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h3>レジームルール</h3>
+          <ul><li>ベア相場のBUYはブロック</li><li>高ボラ時はサイズを0.5倍に縮小</li></ul>
+        </div>
+        
+      </div>
+    </section><section class="card strategy-detail-card bb-card">
+      <div class="strategy-detail-header">
+        <div>
+          <div class="strategy-kicker">行き過ぎた下落から平均回帰を狙う</div>
+          <h2>戦略2: BB平均回帰</h2>
+        </div>
+        <span class="strategy-badge long-only">ロングオンリー</span>
+      </div>
+      <p class="strategy-description">株価がボリンジャーバンドの下限を大きく突き抜けて売られすぎ状態になった時に買い、平均に戻る動きで利益を取る戦略</p>
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h3>エントリー条件</h3>
+          <ul><li>株価がBB下限(20日,2.5σ)を下回る</li><li>RSI(2) < 20</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>エグジット条件</h3>
+          <ul><li>SMA(3)を上抜け</li><li>10日経過（タイムストップ）</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>主要パラメータ</h3>
+          <div class="table-wrap">
+            <table class="param-table">
+              <tbody><tr><th>bb_length</th><td>20</td></tr><tr><th>bb_std</th><td>2.5</td></tr><tr><th>bb_rsi_period</th><td>2</td></tr><tr><th>bb_rsi_entry</th><td>20</td></tr><tr><th>bb_exit_sma</th><td>3</td></tr><tr><th>bb_max_hold_days</th><td>10</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h3>レジームルール</h3>
+          <ul><li>VIX高ではサイズ拡大(1.25x)</li><li>パニック(VIX≥40)では停止</li></ul>
+        </div>
+        <div class="detail-block detail-block-full">
+          <h3>バックテスト結果</h3>
+          <div class="metrics-grid">
+              <div class="metric-card"><div class="metric-label">Sortino</div><div class="metric-value">2.05</div><div class="metric-note">2以上で優秀</div></div>
+              <div class="metric-card"><div class="metric-label">最大DD</div><div class="metric-value">17%%</div><div class="metric-note">小さいほど安全</div></div>
+              <div class="metric-card"><div class="metric-label">PF</div><div class="metric-value">1.83</div><div class="metric-note">1.5以上で合格</div></div>
+              <div class="metric-card"><div class="metric-label">勝率</div><div class="metric-value">68%%</div><div class="metric-note">高いほど安定</div></div>
+            </div>
+        </div>
+      </div>
+    </section><section class="card strategy-detail-card crsi-card">
+      <div class="strategy-detail-header">
+        <div>
+          <div class="strategy-kicker">極端な売られすぎからの反発を上昇トレンド銘柄だけで狙う</div>
+          <h2>戦略3: ConnorsRSI平均回帰</h2>
+        </div>
+        <span class="strategy-badge long-only">ロングオンリー</span>
+      </div>
+      <p class="strategy-description">3つの指標(RSI・連続上下・リターン順位)を合成したConnorsRSIが極端に低い（=極度の売られすぎ）時に買い、反発で利益を取る戦略。長期上昇トレンドの銘柄のみ対象</p>
+      <div class="detail-grid">
+        <div class="detail-block">
+          <h3>エントリー条件</h3>
+          <ul><li>CRSI(3,2,100) < 5</li><li>株価 > SMA(200)（長期トレンドフィルタ）</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>エグジット条件</h3>
+          <ul><li>RSI(3) > 70</li><li>SMA(5)上抜け</li><li>10日経過</li></ul>
+        </div>
+        <div class="detail-block">
+          <h3>主要パラメータ</h3>
+          <div class="table-wrap">
+            <table class="param-table">
+              <tbody><tr><th>crsi_rsi_period</th><td>3</td></tr><tr><th>crsi_streak_period</th><td>2</td></tr><tr><th>crsi_pctrank_period</th><td>100</td></tr><tr><th>crsi_entry</th><td>5</td></tr><tr><th>crsi_exit_rsi</th><td>70</td></tr><tr><th>crsi_exit_sma</th><td>5</td></tr><tr><th>crsi_max_hold_days</th><td>10</td></tr><tr><th>crsi_trend_sma</th><td>200</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h3>レジームルール</h3>
+          <ul><li>VIX高ではサイズ拡大(1.25x)</li><li>パニック(VIX≥40)では停止</li></ul>
+        </div>
+        <div class="detail-block detail-block-full">
+          <h3>バックテスト結果</h3>
+          <div class="metrics-grid">
+              <div class="metric-card"><div class="metric-label">Sortino</div><div class="metric-value">2.75</div><div class="metric-note">2以上で優秀</div></div>
+              <div class="metric-card"><div class="metric-label">最大DD</div><div class="metric-value">14%%</div><div class="metric-note">小さいほど安全</div></div>
+              <div class="metric-card"><div class="metric-label">PF</div><div class="metric-value">2.21</div><div class="metric-note">1.5以上で合格</div></div>
+              <div class="metric-card"><div class="metric-label">勝率</div><div class="metric-value">68%%</div><div class="metric-note">高いほど安定</div></div>
+            </div>
+        </div>
+      </div>
+    </section>
+    <section class="card">
+      <div class="section-title-row">
+        <h2>用語解説</h2>
+      </div>
+      <div class="glossary-grid">
+        <div class="glossary-item"><h3>移動平均線</h3><p>過去N日間の平均株価。短期線が長期線を超えると上昇トレンド開始のサイン</p></div>
+        <div class="glossary-item"><h3>RSI</h3><p>0〜100の数値で、低いほど売られすぎ。20以下は極端な売られすぎ</p></div>
+        <div class="glossary-item"><h3>ボリンジャーバンド</h3><p>株価の統計的な上限・下限ライン。この外に出ると「行き過ぎ」のサイン</p></div>
+        <div class="glossary-item"><h3>ConnorsRSI</h3><p>通常のRSI + 連続上下日数 + リターン順位の3つを平均した総合的な売られすぎ指標</p></div>
+        <div class="glossary-item"><h3>Sortino</h3><p>リスクに対するリターンの効率。2以上で優秀</p></div>
+        <div class="glossary-item"><h3>最大DD</h3><p>最大ドローダウン。ピークからの最大下落幅。小さいほど安全</p></div>
+        <div class="glossary-item"><h3>PF</h3><p>プロフィットファクター。総利益÷総損失。1.5以上で合格</p></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
