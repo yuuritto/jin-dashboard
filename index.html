@@ -251,7 +251,7 @@
 <body>
   <div class="header">
     <h1>刃 パフォーマンスダッシュボード</h1>
-    <div class="updated">最終更新: 2026-04-17 05:10 JST <a class="inline-link" href="strategies.html">戦略詳細 →</a></div>
+    <div class="updated">最終更新: 2026-04-18 05:10 JST <a class="inline-link" href="strategies.html">戦略詳細 →</a></div>
   </div>
 
   <div class="grid">
@@ -279,12 +279,12 @@
         <div class="system-card">
           <div class="system-label">レジーム</div>
           <div class="system-value regime-bull">ブル・低ボラ</div>
-          <div class="system-meta">SPY: 699.94 / VIX: 18.17</div>
+          <div class="system-meta">SPY: 58475.90 / VIX: 17.94</div>
         </div>
         <div class="system-card">
           <div class="system-label">ヘルスチェック</div>
           <div class="system-value health-ok">OK 20 / WARN 0 / FAIL 0</div>
-          <div class="system-meta">最終チェック: 2026-04-16 09:00 JST</div>
+          <div class="system-meta">最終チェック: 2026-04-17 09:00 JST</div>
         </div>
         <div class="system-card">
           <div class="system-label">LLM精度</div>
@@ -293,8 +293,8 @@
         </div>
         <div class="system-card">
           <div class="system-label">最終スキャン</div>
-          <div class="system-value">US: 2026-04-16 04:58 JST</div>
-          <div class="system-meta">JP: 2026-04-16 16:00 JST</div>
+          <div class="system-value">US: 2026-04-17 07:03 JST</div>
+          <div class="system-meta">JP: 2026-04-17 16:00 JST</div>
         </div>
       </div>
     </div>
@@ -474,7 +474,7 @@
           <td>$122.47</td>
           <td>80</td>
           <td>$9,797.60</td>
-          <td>3日</td>
+          <td>4日</td>
         </tr><tr>
           <td>T</td>
           <td>BB平均回帰</td>
@@ -483,7 +483,7 @@
           <td>$25.61</td>
           <td>754</td>
           <td>$19,309.94</td>
-          <td>2日</td>
+          <td>3日</td>
         </tr><tr>
           <td>VZ</td>
           <td>BB平均回帰</td>
@@ -492,7 +492,7 @@
           <td>$45.42</td>
           <td>516</td>
           <td>$23,436.72</td>
-          <td>2日</td>
+          <td>3日</td>
         </tr></tbody>
           <tfoot><tr>
             <td colspan="6">合計投入資本</td>
@@ -510,6 +510,14 @@
             <th>日時</th><th>銘柄</th><th>銘柄名</th><th>方向</th><th>数量</th><th>価格</th><th>状態</th>
           </tr></thead>
           <tbody><tr>
+          <td>2026-04-17 10:40</td>
+          <td>QBTS</td>
+          <td>D-Wave Quantum</td>
+          <td class="buy-side">BUY</td>
+          <td>338</td>
+          <td>$20.81</td>
+          <td class="positive">成功</td>
+        </tr><tr>
           <td>2026-04-16 08:49</td>
           <td>PFE</td>
           <td>Pfizer</td>
@@ -661,14 +669,6 @@
           <td>80</td>
           <td>$258.90</td>
           <td class="positive">成功</td>
-        </tr><tr>
-          <td>2026-04-09 05:08</td>
-          <td>PFE</td>
-          <td>Pfizer</td>
-          <td class="buy-side">BUY</td>
-          <td>781</td>
-          <td>$27.47</td>
-          <td class="positive">成功</td>
         </tr></tbody>
         </table></div>
       </div>
@@ -763,10 +763,10 @@
     new Chart(document.getElementById('signalChart'), {
       type: 'line',
       data: {
-        labels: ["2026-04-07", "2026-04-09", "2026-04-13", "2026-04-15"],
+        labels: ["2026-04-07", "2026-04-09", "2026-04-13", "2026-04-15", "2026-04-16"],
         datasets: [{
           label: 'SMAクロス',
-          data: [1, 87, 1, 2],
+          data: [1, 87, 1, 2, 1],
           borderColor: 'rgba(59, 130, 246, 1)',
           backgroundColor: 'rgba(59, 130, 246, 0.15)',
           fill: true,
