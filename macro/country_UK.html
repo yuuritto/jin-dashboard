@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>英国 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>英国</h1>
+        <div class="subtitle">country:UK / slightly_bullish / confidence 0.55</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>EWU（英国株ETF）は2026年4月25日時点で$46.80と、MA50（$46.71）およびMA200（$43.20）双方を上回っており、中長期的な上昇トレンドが継続している。RSI14は49.6とほぼ中立水準にあり、顕著な上昇モメンタムは見られない。配当利回りは3.64%、TTM P/Eは18.68と先進国市場として妥当な水準。米国マクロ環境はGDP前期比年率+0.48%と極めて弱い成長、CPI前年比+3.32%と高インフレが続いており、DXYは98.80と相対的にドル安。市場センチメントではVIX19.3と比較的落ち着いているが、SKEWは139.6と尾部リスクへの警戒が高まっている。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 強い中長期上昇トレンドが継続 / data: {&#x27;price&#x27;: 46.8, &#x27;ma200&#x27;: 43.2, &#x27;ma200_premium_pct&#x27;: 8.33} / evidence: 現在価格がMA200を約8.3%上回っており、中長期の買い継続優位を示す。MA50との乖離も小さく、短期調整後も支持線として機能しやすい構造にある。</li><li>claim: 高配当利回りが下値を支える / data: {&#x27;div_yield&#x27;: 3.64, &#x27;pe_ttm&#x27;: 18.683521} / evidence: 3.64%の配当利回りは長期国債利回りと競合できる水準であり、インカム需要による押し目買いが継続的に期待できる。TTM P/Eも18.7と過熱感がない。</li><li>claim: ドル安がUSD建てリターンを押し上げる / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.80と相対的に弱いドル環境は、USD建てで評価されるEWUの実質リターンを押し上げる追い風として機能している。</li><li>claim: 市場ストレスは管理可能な水準にある / data: {&#x27;vix&#x27;: 19.31, &#x27;vix9d&#x27;: 18.04, &#x27;vix3m&#x27;: 21.48} / evidence: VIX19.3は20を下回っており、システミックなパニック状態ではない。VIX9D（18.0）がVIX3M（21.5）より低く、近接タームの相対的安定を示している。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 米国GDP成長率の極端な低迷がグローバル逆風 / data: {&#x27;gdp_qoq_annualized&#x27;: 0.482} / evidence: 直近四半期の米国GDP前期比年率成長率は+0.48%と景気後退の瀬戸際水準。英国はグローバル景気減速の影響を受けやすく、輸出や企業収益に下押し圧力がかかる。</li><li>claim: 高インフレが金融緩和余地を制約する / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64, &#x27;us10y&#x27;: 4.34} / evidence: 米CPI前年比+3.32%は目標水準を依然上回っており、Fed・BOEともに積極緩和への転換が困難。政策金利（3.64%）と10年債利回り（4.34%）の高止まりが株式バリュエーションに上値圧力をかける。</li><li>claim: SKEWの高水準が尾部リスクへの警戒を示す / data: {&#x27;skew&#x27;: 139.59, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: SKEWが139.6と高水準を推移しており、オプション市場参加者が左テールリスクをヘッジしている。プット/コール比率（総合0.95）もヘッジ需要の高さを裏付ける。</li><li>claim: RSIがモメンタムの欠如を示す / data: {&#x27;rsi14&#x27;: 49.58, &#x27;atr14_pct&#x27;: 1.458} / evidence: RSI14が49.6と中立水準に留まっており、強い上昇継続を示すモメンタムが見られない。ATR14が1.46%と適度な変動性があるなかで方向性が定まらず、追随買いが入りにくい状況にある。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>英国株（EWU）はMA200を8%超上回る技術的優位と3.64%の高配当利回りが下値をサポートしており、中期的な強気基調は維持されている。一方、米国GDP成長率が0.48%年率と極めて弱く、CPI3.32%が緩和サイクルを制約するグローバルマクロ逆風が根強い。SKEW139.6が示す尾部リスク警戒とRSI50付近のモメンタム不足が上値追いに慎重さを促す。ドル安（DXY98.8）のテールウィンドを加味しても積極的な強気には至らず、現時点では「わずかに強気（slightly_bullish）」と判断する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米国・英国GDPが2四半期連続マイナスとなり景気後退入りが確認された場合</li><li>英国BOEが予想外の利上げを実施し市場の緩和期待が反転した場合</li><li>DXYが反発（105超）しUSD建てEWUの為替逆風が顕在化した場合</li><li>VIXが30を超えるリスクオフ局面に移行し英国株が売られ先になった場合</li><li>地政学リスク（欧州エネルギー危機・英国貿易摩擦）が急激に悪化した場合</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>英国BOEが利下げを加速し金融緩和サイクルが明確化した場合</li><li>米国GDP成長率が反発しグローバルリスクオンが再点火した場合</li><li>DXYがさらに下落しUSD建て英国株の相対的魅力が増大した場合</li><li>英国企業の増配・自社株買い拡大により配当利回りがさらに上昇した場合</li><li>EWU ETF資産残高（$3,324M）が顕著に増加し需給改善が確認された場合</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="英国株（EWU）はMA200を8%超上回る技術的優位と3.64%の高配当利回りが下値をサポートしており、中期的な強気基調は維持されている。一方、米国GDP成長率が0.48%年率と極めて弱く、CPI3.32%が緩和サイクルを制約するグローバルマクロ逆風が根強い。SKEW139.6が示す尾部リスク警戒とRSI50付近のモメンタム不足が上値追いに慎重さを促す。ドル安（DXY98.8）のテールウィンドを加味しても積極的な強気には至らず、現時点では「わずかに強気（slightly_bullish）」と判断する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.55</div><div class="timeline-summary">英国株（EWU）はMA200を8%超上回る技術的優位と3.64%の高配当利回りが下値をサポートしており、中期的な強気基調は維持されている。一方、米国GDP成長率が0.48%年率と極めて弱く、CPI3.32%が緩和サイクルを制約するグローバル...</div></div><div class="timeline-row" title="テクニカル面では価格がMA50・MA200を明確に上回り、RSI61.6と適度な強気モメンタムを持つ。配当利回り3.64%とDXY98.05のドル安環境は英国株に追い風。一方でSKEW141.9の高水準とVIX3M21.24が示す中期ボラ上昇リスク、PER18.9倍の相対的割高感、MA200から11.4%の乖離による平均回帰リスクが存在する。FREDデータが全滅しており英国固有のマクロ環境（BOEレート、英国GDP・CPI等）を直接確認できないため信頼度に構造的制約がある。強気トレンドが現時点では優勢であるが中期的な不確実性が高く、「やや強気（slightly_bullish）」が妥当な判断である。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.50</div><div class="timeline-summary">テクニカル面では価格がMA50・MA200を明確に上回り、RSI61.6と適度な強気モメンタムを持つ。配当利回り3.64%とDXY98.05のドル安環境は英国株に追い風。一方でSKEW141.9の高水準とVIX3M21.24が示す中期ボラ上...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

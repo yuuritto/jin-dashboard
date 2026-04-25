@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>金融 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>金融</h1>
+        <div class="subtitle">sector_us:XLF / slightly_bullish / confidence 0.55</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>XLFは現在51.80ドルで取引されており、50日移動平均線（50.58ドル）を約2.4%上回る一方、200日移動平均線（52.30ドル）はわずかに下回っている。RSI14は57.6と中程度のモメンタムを示し、過熱感はない。10年-2年イールドスプレッドは0.53%とプラスに転換しており、銀行のネット金利マージン（NIM）改善に直結する環境となっている。しかし、GDP前期比年率成長率は0.48%と極めて低水準で、CPI前年比は3.32%と高止まりしており、Fedの利下げ余地を制約している。失業率は4.3%まで上昇し、SKEW指数は139.59と高く、インフォームドプレイヤーによる下方ヘッジが示唆される。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: イールドカーブのプラス化が銀行のNIM改善を直接支援 / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: 10年-2年スプレッドが0.53%とプラスに転換しており、短期調達・長期貸出モデルを持つ銀行のネット金利マージンが構造的に改善しやすい環境にある。スプレッドがマイナスだった逆イールド期と比較して、金融セクターの収益環境は明確に改善している。</li><li>claim: 50日移動平均線超えとRSI中域が短期モメンタムの強さを示す / data: {&#x27;price&#x27;: 51.8, &#x27;ma50&#x27;: 50.58, &#x27;rsi14&#x27;: 57.6} / evidence: XLFの現在値51.80ドルは50日移動平均線50.58ドルを約2.4%上回っており、短期トレンドが強気に転換していることを示す。RSI14も57.6と中立水準より強く、かつ70を超えないため過熱感なく上昇余地が残っている。</li><li>claim: 適度なバリュエーションが下値を支持 / data: {&#x27;pe_ttm&#x27;: 17.34, &#x27;div_yield&#x27;: 1.6} / evidence: XLFのPER（TTM）は17.34倍と金融セクターとして過度に割高ではない水準にある。配当利回り1.6%を確保しており、長期保有の下値支持として機能しやすく、バリュー志向の資金流入が期待できる。</li><li>claim: 親セクター（米国）のやや強気バイアスとETF規模が資金流入を支援 / data: {&#x27;related_macro_current_score&#x27;: 1, &#x27;primary_etf_total_assets_usdm&#x27;: 47790.94} / evidence: 親セクター「米国（country:US）」の現在判断はslightly_bullish（スコア+1）であり、XLFはこの上昇相場の恩恵を受けやすいポジションにある。XLFのETF総資産は477億ドルを超える大規模なファンドであり、機関投資家の持続的な資金配分が見込まれる。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 200日移動平均線を依然下回り、長期トレンドは弱含み / data: {&#x27;price&#x27;: 51.8, &#x27;ma200&#x27;: 52.3} / evidence: XLFの現在値51.80ドルは200日移動平均線52.30ドルをわずかに下回っており、長期的な下降トレンドから完全に脱却していない。200日線は強力な抵抗帯として機能しやすく、この水準を明確に上抜けない限り上値は重い。</li><li>claim: GDP成長率0.48%という極低水準が信用リスクの増大を招く / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48, &#x27;unrate&#x27;: 4.3} / evidence: GDP前期比年率成長率がわずか0.48%という経済失速局面では、企業・個人の債務返済能力が低下し、銀行の不良債権増加リスクが高まる。失業率も4.3%まで上昇しており、消費者ローンや住宅ローンポートフォリオへのストレス増大が懸念される。</li><li>claim: 高インフレがFedの利下げを制約し、与信コストの増大圧力を持続させる / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比3.32%はFedの目標2%を大幅に上回っており、利下げサイクルへの転換を阻んでいる。高金利の長期化は中小企業向け融資や変動金利ローンへのストレスを継続させ、金融機関の信用コスト上昇につながる。</li><li>claim: SKEW高値とプットコール比率がスマートマネーの下方ヘッジを警告 / data: {&#x27;skew&#x27;: 139.59, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: SKEW指数が139.59と高水準にあり、オプション市場の洗練された投資家が尾部リスクを積極的にヘッジしていることを示す。プットコール比率（総合）も0.95と防衛的な水準にあり、下落シナリオへの警戒が根強いことが確認される。</li><li>claim: DXY安による国際収益の目減りとグローバル資本フローへの逆風 / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.80と相対的に弱い水準にあり、ドル安は大手米銀の海外事業収益の本国送金価値を目減りさせる。ドル安が継続する場合、グローバル投資家の米金融株への資本配分が抑制されるリスクがある。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>XLF（米国金融セクター）は、短期テクニカルの強さと構造的マクロリスクが拮抗する局面にある。プラスのイールドスプレッド（0.53%）は銀行のNIM改善に直結し、50日移動平均線超えとRSI57.6のモメンタム、17.3倍の適度なバリュエーション、親セクターのやや強気バイアスが強気論拠を形成している。一方、200日移動平均線を下回る長期的な弱含み、GDP成長率0.48%が示す信用リスクの高まり、CPI3.32%によるFedの手詰まり、SKEW139.59の警告シグナルは下方リスクとして無視できない。経済失速の本格化が確認されれば金融株への打撃は甚大になりうるが、現時点ではイールドカーブ改善と短期モメンタムが支配的であることから「やや強気（slightly_bullish）」と判断する。ただし、GDP・信用指標の悪化加速に対する警戒は継続して維持する必要がある。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>GDP成長率のさらなる悪化または景気後退入りによる不良債権急増と信用コスト急騰</li><li>CPI再加速によるFedの追加利上げと長短スプレッドの再逆転によるNIM圧迫</li><li>失業率の急上昇（5%超）による消費者ローン・住宅ローンの大規模劣化</li><li>SKEW高値が示す尾部リスクの現実化によるリスクオフが金融株を直撃</li><li>規制強化（バーゼルIII最終化の厳格化、自己資本比率引き上げ）による配当・自社株買い余力の縮小</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>インフレ鈍化によるFedの利下げ開始とイールドカーブのさらなるスティープ化</li><li>GDP成長率の回復（1.5%超）による信用環境の改善と貸出需要増加</li><li>大手銀行の予想を上回る決算発表（NIM拡大・NPL低位安定の確認）</li><li>XLFが200日移動平均線（52.30ドル）を明確に上抜け、テクニカルシグナルが転換</li><li>規制緩和（バーゼルIII最終化の軟化等）による自社株買い・増配余力の拡大</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="XLF（米国金融セクター）は、短期テクニカルの強さと構造的マクロリスクが拮抗する局面にある。プラスのイールドスプレッド（0.53%）は銀行のNIM改善に直結し、50日移動平均線超えとRSI57.6のモメンタム、17.3倍の適度なバリュエーション、親セクターのやや強気バイアスが強気論拠を形成している。一方、200日移動平均線を下回る長期的な弱含み、GDP成長率0.48%が示す信用リスクの高まり、CPI3.32%によるFedの手詰まり、SKEW139.59の警告シグナルは下方リスクとして無視できない。経済失速の本格化が確認されれば金融株への打撃は甚大になりうるが、現時点ではイールドカーブ改善と短期モメンタムが支配的であることから「やや強気（slightly_bullish）」と判断する。ただし、GDP・信用指標の悪化加速に対する警戒は継続して維持する必要がある。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.55</div><div class="timeline-summary">XLF（米国金融セクター）は、短期テクニカルの強さと構造的マクロリスクが拮抗する局面にある。プラスのイールドスプレッド（0.53%）は銀行のNIM改善に直結し、50日移動平均線超えとRSI57.6のモメンタム、17.3倍の適度なバリュエーシ...</div></div><div class="timeline-row" title="XLF金融セクターは技術的に強気構造を維持しており、価格がMA50・MA200双方を上回り、RSI14も67.62と力強い勢いを示している。PER TTM17.76は適正水準で、約478億ドルの大規模ETF資産と親指標（米国市場、略強気）のサポートも追い風だ。一方、RSI67.62が過買い圏（70）に接近し、VIXコンタンゴ（スポット18.87→3m先物21.24、差+2.37）とSKEW141.90が機関投資家のテールリスクヘッジを示唆しており、put_call_ratio_total0.95も防御的センチメントを反映している。最大の懸念は金融セクターにとって最重要な金利・イールドカーブ・CPI・雇用データがFREDエラーによりすべて欠損している点であり、銀行収益・信用コスト・貸出環境の方向感を評価できない。テクニカル優位性と適正バリュエーションを根拠にブル寄りとしつつ、重大なデータ欠損と過買い接近・中期不確実性上昇を踏まえ「やや強気（slightly_bullish）」が適切と判断する。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bullish / conf 0.45</div><div class="timeline-summary">XLF金融セクターは技術的に強気構造を維持しており、価格がMA50・MA200双方を上回り、RSI14も67.62と力強い勢いを示している。PER TTM17.76は適正水準で、約478億ドルの大規模ETF資産と親指標（米国市場、略強気）の...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-05-22", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-10-19", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2028-04-21", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

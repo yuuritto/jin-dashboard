@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>マクロ判断ダッシュボード</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 28px 20px 40px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 22px; }
+    h1 { margin: 0; font-size: 28px; font-weight: 700; }
+    h2 { margin: 0 0 16px; font-size: 20px; }
+    h3 { margin: 16px 0 10px; font-size: 15px; color: var(--muted); }
+    a { color: var(--accent); }
+    .updated { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .cell { min-height: 86px; border-radius: 8px; padding: 10px; color: #06121f; border: 1px solid rgba(255,255,255,0.16); }
+    .cell.missing { background: #4b5563; color: #f3f4f6; }
+    .target-name { font-weight: 700; font-size: 13px; }
+    .target-link { color: inherit; text-decoration: none; }
+    .target-link:hover { text-decoration: underline; }
+    .target-id { font-size: 11px; opacity: 0.78; overflow-wrap: anywhere; }
+    .meta { margin-top: 8px; font-size: 12px; font-weight: 650; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; }
+    .table th { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .placeholder { color: var(--muted); padding: 14px 0; }
+    .status-row { display: grid; grid-template-columns: 110px 70px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .status-name { font-weight: 700; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--panel-soft); color: var(--text); font-size: 12px; }
+    footer { margin-top: 24px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>マクロ判断ダッシュボード</h1>
+      <div class="updated">更新: 2026-04-25 12:40 JST</div>
+    </header>
+    <section class="card"><h2>ヒートマップ</h2>
+<h3>market</h3>
+<div class="category-grid">
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/market_global_risk.html" class="target-link">Global Risk レジーム (on/off)</a></div><div class="target-id">market:global_risk</div><div class="meta">slightly_bullish / conf 0.50</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/market_global_equity.html" class="target-link">世界株式</a></div><div class="target-id">market:global_equity</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/market_global_bond.html" class="target-link">世界債券</a></div><div class="target-id">market:global_bond</div><div class="meta">slightly_bullish / conf 0.32</div></div>
+</div>
+<h3>country</h3>
+<div class="category-grid">
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_US.html" class="target-link">米国</a></div><div class="target-id">country:US</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_JP.html" class="target-link">日本</a></div><div class="target-id">country:JP</div><div class="meta">slightly_bullish / conf 0.40</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_EU.html" class="target-link">欧州</a></div><div class="target-id">country:EU</div><div class="meta">slightly_bullish / conf 0.52</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_UK.html" class="target-link">英国</a></div><div class="target-id">country:UK</div><div class="meta">slightly_bullish / conf 0.50</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_CN.html" class="target-link">中国</a></div><div class="target-id">country:CN</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_IN.html" class="target-link">インド</a></div><div class="target-id">country:IN</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/country_EM.html" class="target-link">新興国合計</a></div><div class="target-id">country:EM</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+</div>
+<h3>asset</h3>
+<div class="category-grid">
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_us_equity.html" class="target-link">米国株</a></div><div class="target-id">asset:us_equity</div><div class="meta">slightly_bullish / conf 0.50</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_jp_equity.html" class="target-link">日本株</a></div><div class="target-id">asset:jp_equity</div><div class="meta">slightly_bullish / conf 0.48</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_ust_short.html" class="target-link">米国債 (短期)</a></div><div class="target-id">asset:ust_short</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_ust_long.html" class="target-link">米国債 (長期)</a></div><div class="target-id">asset:ust_long</div><div class="meta">slightly_bullish / conf 0.37</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_corporate_bond.html" class="target-link">社債 (投資適格+ハイイールド)</a></div><div class="target-id">asset:corporate_bond</div><div class="meta">slightly_bullish / conf 0.38</div></div>
+<div class="cell" style="background:#22c55e"><div class="target-name"><a href="macro/asset_gold.html" class="target-link">金</a></div><div class="target-id">asset:gold</div><div class="meta">bullish / conf 0.55</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_crude_oil.html" class="target-link">原油</a></div><div class="target-id">asset:crude_oil</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_industrial_metals.html" class="target-link">産業金属</a></div><div class="target-id">asset:industrial_metals</div><div class="meta">slightly_bullish / conf 0.46</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_agriculture.html" class="target-link">農産物</a></div><div class="target-id">asset:agriculture</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+<div class="cell" style="background:#dc2626"><div class="target-name"><a href="macro/asset_usd.html" class="target-link">米ドル</a></div><div class="target-id">asset:usd</div><div class="meta">bearish / conf 0.50</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/asset_jpy.html" class="target-link">日本円 (対ドル)</a></div><div class="target-id">asset:jpy</div><div class="meta">slightly_bearish / conf 0.38</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_eur.html" class="target-link">ユーロ (対ドル)</a></div><div class="target-id">asset:eur</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_cny.html" class="target-link">人民元 (対ドル)</a></div><div class="target-id">asset:cny</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/asset_crypto.html" class="target-link">暗号資産</a></div><div class="target-id">asset:crypto</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+</div>
+<h3>sector_us</h3>
+<div class="category-grid">
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLK.html" class="target-link">情報技術</a></div><div class="target-id">sector_us:XLK</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLF.html" class="target-link">金融</a></div><div class="target-id">sector_us:XLF</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_us_XLE.html" class="target-link">エネルギー</a></div><div class="target-id">sector_us:XLE</div><div class="meta">slightly_bearish / conf 0.42</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_us_XLV.html" class="target-link">ヘルスケア</a></div><div class="target-id">sector_us:XLV</div><div class="meta">slightly_bearish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLI.html" class="target-link">資本財</a></div><div class="target-id">sector_us:XLI</div><div class="meta">slightly_bullish / conf 0.47</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLY.html" class="target-link">一般消費財</a></div><div class="target-id">sector_us:XLY</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#9ca3af"><div class="target-name"><a href="macro/sector_us_XLP.html" class="target-link">生活必需品</a></div><div class="target-id">sector_us:XLP</div><div class="meta">neutral / conf 0.40</div></div>
+<div class="cell" style="background:#9ca3af"><div class="target-name"><a href="macro/sector_us_XLU.html" class="target-link">公益事業</a></div><div class="target-id">sector_us:XLU</div><div class="meta">neutral / conf 0.38</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLB.html" class="target-link">素材</a></div><div class="target-id">sector_us:XLB</div><div class="meta">slightly_bullish / conf 0.43</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLRE.html" class="target-link">不動産</a></div><div class="target-id">sector_us:XLRE</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_us_XLC.html" class="target-link">コミュニケーション・サービス</a></div><div class="target-id">sector_us:XLC</div><div class="meta">slightly_bullish / conf 0.48</div></div>
+</div>
+<h3>sector_jp</h3>
+<div class="category-grid">
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_01.html" class="target-link">食品</a></div><div class="target-id">sector_jp:01</div><div class="meta">slightly_bullish / conf 0.40</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_02.html" class="target-link">エネルギー資源</a></div><div class="target-id">sector_jp:02</div><div class="meta">slightly_bearish / conf 0.40</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_03.html" class="target-link">建設・資材</a></div><div class="target-id">sector_jp:03</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_04.html" class="target-link">素材・化学</a></div><div class="target-id">sector_jp:04</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_05.html" class="target-link">医薬品</a></div><div class="target-id">sector_jp:05</div><div class="meta">slightly_bearish / conf 0.40</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_06.html" class="target-link">自動車・輸送機</a></div><div class="target-id">sector_jp:06</div><div class="meta">slightly_bearish / conf 0.38</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_07.html" class="target-link">鉄鋼・非鉄</a></div><div class="target-id">sector_jp:07</div><div class="meta">slightly_bullish / conf 0.37</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_08.html" class="target-link">機械</a></div><div class="target-id">sector_jp:08</div><div class="meta">slightly_bearish / conf 0.40</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_09.html" class="target-link">電機・精密</a></div><div class="target-id">sector_jp:09</div><div class="meta">slightly_bullish / conf 0.50</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_10.html" class="target-link">情報通信・サービスその他</a></div><div class="target-id">sector_jp:10</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_11.html" class="target-link">電力・ガス</a></div><div class="target-id">sector_jp:11</div><div class="meta">slightly_bearish / conf 0.38</div></div>
+<div class="cell" style="background:#fca5a5"><div class="target-name"><a href="macro/sector_jp_12.html" class="target-link">運輸・物流</a></div><div class="target-id">sector_jp:12</div><div class="meta">slightly_bearish / conf 0.42</div></div>
+<div class="cell" style="background:#9ca3af"><div class="target-name"><a href="macro/sector_jp_13.html" class="target-link">商社・卸売</a></div><div class="target-id">sector_jp:13</div><div class="meta">neutral / conf 0.22</div></div>
+<div class="cell" style="background:#9ca3af"><div class="target-name"><a href="macro/sector_jp_14.html" class="target-link">小売</a></div><div class="target-id">sector_jp:14</div><div class="meta">neutral / conf 0.40</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_15.html" class="target-link">銀行</a></div><div class="target-id">sector_jp:15</div><div class="meta">slightly_bullish / conf 0.45</div></div>
+<div class="cell" style="background:#86efac"><div class="target-name"><a href="macro/sector_jp_16.html" class="target-link">金融 (除く銀行)</a></div><div class="target-id">sector_jp:16</div><div class="meta">slightly_bullish / conf 0.42</div></div>
+<div class="cell" style="background:#9ca3af"><div class="target-name"><a href="macro/sector_jp_17.html" class="target-link">不動産</a></div><div class="target-id">sector_jp:17</div><div class="meta">neutral / conf 0.38</div></div>
+</div>
+<h3>currency</h3>
+<div class="placeholder">対象なし</div>
+<h3>theme</h3>
+<div class="category-grid">
+<div class="cell missing"><div class="target-name"><a href="macro/theme_ai_general.html" class="target-link">AI 全般</a></div><div class="target-id">theme:ai_general</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_memory.html" class="target-link">メモリ (HBM/DRAM/NAND)</a></div><div class="target-id">theme:memory</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_gpu_ai_accelerator.html" class="target-link">GPU・AI アクセラレータ</a></div><div class="target-id">theme:gpu_ai_accelerator</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_data_center.html" class="target-link">データセンター</a></div><div class="target-id">theme:data_center</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_quantum_computing.html" class="target-link">量子コンピューティング</a></div><div class="target-id">theme:quantum_computing</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_space.html" class="target-link">宇宙</a></div><div class="target-id">theme:space</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_robotics.html" class="target-link">ロボット</a></div><div class="target-id">theme:robotics</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_cybersecurity.html" class="target-link">サイバーセキュリティ</a></div><div class="target-id">theme:cybersecurity</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_decarbonization.html" class="target-link">脱炭素</a></div><div class="target-id">theme:decarbonization</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_renewable_energy.html" class="target-link">再生可能エネルギー</a></div><div class="target-id">theme:renewable_energy</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_nuclear.html" class="target-link">原発</a></div><div class="target-id">theme:nuclear</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_ev.html" class="target-link">EV (電気自動車)</a></div><div class="target-id">theme:ev</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_hydrogen.html" class="target-link">水素</a></div><div class="target-id">theme:hydrogen</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_glp1_obesity.html" class="target-link">肥満薬 (GLP-1)</a></div><div class="target-id">theme:glp1_obesity</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_gene_cell_therapy.html" class="target-link">遺伝子・細胞治療</a></div><div class="target-id">theme:gene_cell_therapy</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_india.html" class="target-link">インド (投資フロー)</a></div><div class="target-id">theme:india</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_defense.html" class="target-link">防衛</a></div><div class="target-id">theme:defense</div><div class="meta">未判定</div></div>
+<div class="cell missing"><div class="target-name"><a href="macro/theme_reshoring.html" class="target-link">リショアリング (半導体・製造回帰)</a></div><div class="target-id">theme:reshoring</div><div class="meta">未判定</div></div>
+</div>
+</section>
+<section class="card"><h2>今週の変化点</h2><div class="placeholder">今週の大きな変化点はありません</div></section>
+<section class="card"><h2>テーマライフサイクル</h2><div class="status-row"><div class="status-name">emerging</div><div><span class="pill">18</span></div><div>AI 全般, EV (電気自動車), GPU・AI アクセラレータ, インド (投資フロー), サイバーセキュリティ, データセンター, メモリ (HBM/DRAM/NAND), リショアリング (半導体・製造回帰), ロボット, 再生可能エネルギー, 原発, 宇宙, 水素, 肥満薬 (GLP-1), 脱炭素, 遺伝子・細胞治療, 量子コンピューティング, 防衛</div></div><div class="status-row"><div class="status-name">trending</div><div><span class="pill">0</span></div><div>-</div></div><div class="status-row"><div class="status-name">active</div><div><span class="pill">0</span></div><div>-</div></div><div class="status-row"><div class="status-name">cooling</div><div><span class="pill">0</span></div><div>-</div></div><div class="status-row"><div class="status-name">archived</div><div><span class="pill">0</span></div><div>-</div></div></section>
+<section class="card"><h2>精度ハイライト</h2><div class="placeholder">精度データは 2026-W21 以降蓄積開始</div></section>
+    <footer><a href="./performance-dashboard.html">performance-dashboard.html を開く</a></footer>
+  </main>
+</body>
+</html>

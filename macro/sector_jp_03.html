@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>建設・資材 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>建設・資材</h1>
+        <div class="subtitle">sector_jp:03 / slightly_bearish / confidence 0.52</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>建設・資材セクター(1619.T)の現在値46,830円はMA200(41,611円)を約12.5%上回り長期上昇トレンドを維持しているが、MA50(48,307円)を約3.1%下回り短期的な下落圧力が存在する。RSI14は45.65と中立水準を下回り、短期モメンタムは弱い。米国マクロ面ではGDP前期比年率0.48%という事実上のゼロ成長とCPI3.32%高止まりによりFRBの緩和余地が制約されている。親カテゴリ「日本」の総合判断はやや強気(score +1、confidence 0.62)であり、DXY98.80という弱ドル環境は日本資産に中立からやや有利に作用する。VIX3m(21.48)がVIX(19.31)を上回るコンタンゴ構造とSKEW139.59の高水準が市場のテールリスクへの警戒を映し出している。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 長期トレンドは依然として上昇基調にあり、押し目買い水準に位置する / data: {&#x27;price&#x27;: 46830.0, &#x27;ma200&#x27;: 41611.396279296874} / evidence: 現在値46,830円はMA200(41,611円)を約12.5%上回っており、長期的な上昇サイクルが崩れていない。短期的な調整はMA200を基準とした構造的な押し目買い機会とも解釈できる。</li><li>claim: PERと配当利回りのバリュエーションが相対的に魅力的で下値を支える / data: {&#x27;pe_ttm&#x27;: 15.337661, &#x27;div_yield&#x27;: 2.19} / evidence: PER15.34倍は景気循環セクターとして過熱感のない水準にあり、配当利回り2.19%が投資家のインカム需要を捉えてバリュエーション面での下値サポートを形成している。</li><li>claim: 弱ドル環境が輸入原材料コスト低減を通じてマージン改善に寄与しうる / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXY98.80という弱ドルは円高方向に作用し、鉄鋼・非鉄金属などの輸入原材料コストを低下させ、建設会社の粗利益率改善につながりうる。</li><li>claim: 親カテゴリ「日本」のやや強気判断がセクターの追い風となる / data: {&#x27;related_macro_score&#x27;: 1, &#x27;related_macro_confidence&#x27;: 0.62} / evidence: 日本マクロの総合判断はやや強気(score +1、confidence 0.62)であり、日経平均がMA50・MA200双方を上回る強さを維持している。国内景気の底堅さは建設需要に正の連鎖をもたらす。</li><li>claim: 米国利回り曲線の正常化は金融環境の安定を示唆する / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us10y&#x27;: 4.34, &#x27;us2y&#x27;: 3.83} / evidence: 10年-2年スプレッド+0.53%は正常なスティープカーブを示し、景気後退局面特有の逆イールドが解消されている。クレジット環境の安定化が建設向け融資コストの急騰を抑制しうる。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 短期テクニカルが弱気シグナルを点灯しており、モメンタムが失速している / data: {&#x27;price&#x27;: 46830.0, &#x27;ma50&#x27;: 48307.0, &#x27;rsi14&#x27;: 45.652335396587894} / evidence: 価格46,830円はMA50(48,307円)を3.1%下回り、RSI14が45.65と50を割り込んでいる。短期的な売り圧力が継続しており、MA50回復には明確なカタリストが必要な状態にある。</li><li>claim: 米国GDPの事実上ゼロ成長が景気循環セクターへのダウンサイドリスクを高める / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;unrate&#x27;: 4.3} / evidence: 米国GDP前期比年率0.48%は事実上の停滞であり、米国景気失速は輸出関連を通じて日本経済全体に波及しうる。建設・資材は景気循環性が高く需要減速の影響を受けやすい。</li><li>claim: 米国CPI高止まりがFRBの緩和余地を制約し、資金調達コスト上昇圧力が持続する / data: {&#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比3.32%はFRBターゲット2%を大幅に超過しており、利下げ転換が遅れることでグローバルな資金調達コストが高止まりし、建設プロジェクトへの融資環境の改善が遅延する。</li><li>claim: 高SKEWとVIXコンタンゴがテールリスクへの市場の深刻な警戒を示す / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;vix&#x27;: 19.309999465942383, &#x27;vix3m&#x27;: 21.479999542236328, &#x27;vix9d&#x27;: 18.040000915527344} / evidence: SKEW139.59は左裾リスクへの強い需要を示し、VIX9d(18.04)→VIX(19.31)→VIX3m(21.48)のコンタンゴ構造は中期的なボラティリティ上昇を価格に織り込んでいる。リスクオフ局面では流動性が限られる建設セクターETFが大きく売られやすい。</li><li>claim: 消費者信頼感の低水準がグローバル内需の先行き不安を映し出している / data: {&#x27;aaii_bull_pct&#x27;: 53.3, &#x27;put_call_ratio_total&#x27;: 0.95, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: UMCSENTが53.3という低水準に留まっており、株式プット・コール比率0.95(トータル)は市場参加者が相応のヘッジを積んでいることを示す。内需の悪化は建設資材の輸出需要を間接的に圧迫しうる。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>建設・資材セクターは長期的にMA200を12.5%上回る上昇トレンドを維持し、PE15.3倍・配当2.19%という合理的なバリュエーションと弱ドル環境が構造的サポートを提供している。しかし短期的にはMA50割れ・RSI45.65と明確な調整局面にあり、米国GDP年率0.48%という事実上のゼロ成長とCPI3.32%高止まりによるFRB緩和制約がグローバル景気の下方リスクを高めている。SKEW139.6とVIXコンタンゴは市場がテールリスクを強く警戒していることを示しており、流動性が限定的な国内セクターETFとして売りが集中しやすい環境にある。親カテゴリ「日本」のやや強気判断が中期的な下値サポート材料となるものの、現時点では短期モメンタムの悪化と米国マクロの不確実性が優勢と判断し、「やや弱気」を採用する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米国GDPがさらに悪化し景気後退が確認された場合、グローバルリスクオフが加速し国内建設セクターへの資金流出が急速に進む</li><li>日本銀行が予想を超える利上げを実施した場合、建設プロジェクトの融資コストが上昇し住宅・商業建設需要が萎縮する</li><li>SKEW高止まりからテールイベント(地政学リスク・金融機関ストレスなど)が顕在化しVIXが30超に急騰した場合、セクター売りが連鎖する</li><li>鉄鋼・非鉄金属などの原材料コストが急騰し建設会社のマージンが圧縮されることで業績下方修正が相次ぐ</li><li>政府の公共事業予算が財政規律引き締めにより大幅削減される場合、国内建設需要の主要な柱が失われる</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>日本政府による大型インフラ投資・防災・国土強靭化の追加予算措置が発表された場合、建設需要が一段と拡大する</li><li>FRBが予想より早期に利下げに転じた場合、グローバルなリスクオン環境が醸成され建設・資材セクターへの資金流入が加速する</li><li>価格がMA50(48,307円)を明確に上抜けた場合、テクニカル買いが加速し短期モメンタムが反転する</li><li>DXYがさらに低下し輸入原材料コストが一段と低下することで建設会社の粗利益率が改善する</li><li>国内建設先行指標(建設許可件数・公共投資受注額)が予想を上回る場合、業績見通しの上方修正観測が高まる</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="建設・資材セクターは長期的にMA200を12.5%上回る上昇トレンドを維持し、PE15.3倍・配当2.19%という合理的なバリュエーションと弱ドル環境が構造的サポートを提供している。しかし短期的にはMA50割れ・RSI45.65と明確な調整局面にあり、米国GDP年率0.48%という事実上のゼロ成長とCPI3.32%高止まりによるFRB緩和制約がグローバル景気の下方リスクを高めている。SKEW139.6とVIXコンタンゴは市場がテールリスクを強く警戒していることを示しており、流動性が限定的な国内セクターETFとして売りが集中しやすい環境にある。親カテゴリ「日本」のやや強気判断が中期的な下値サポート材料となるものの、現時点では短期モメンタムの悪化と米国マクロの不確実性が優勢と判断し、「やや弱気」を採用する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bearish / conf 0.52</div><div class="timeline-summary">建設・資材セクターは長期的にMA200を12.5%上回る上昇トレンドを維持し、PE15.3倍・配当2.19%という合理的なバリュエーションと弱ドル環境が構造的サポートを提供している。しかし短期的にはMA50割れ・RSI45.65と明確な調整...</div></div><div class="timeline-row" title="建設・資材セクターは長期（200日MA比+14.8%）では上昇トレンドを維持しているものの、短期（50日MA比-2.1%）では調整局面にある。RSI50付近の中立的モメンタム、PER15.56倍・配当2.19%のバリュエーション妥当性、親国日本の「やや強気」環境、プット・コール比率の強気バイアスはBull側の論拠となる。一方、SKEW141.90の高水準、VIXコンタンゴ、DXY98.05のドル安、ATR2.14%のボラティリティはBear側の懸念を高める。FREDデータ全欠損により米国マクロ環境が直接確認できず判断の信頼度は限定的である。総合すると、長期トレンドの健在性と妥当なバリュエーションが短期調整リスクをやや上回り、「やや強気（slightly_bullish）」と評価する。ただしテールリスク警戒が極めて強い局面であり、リスク管理を優先すべきである。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">建設・資材セクターは長期（200日MA比+14.8%）では上昇トレンドを維持しているものの、短期（50日MA比-2.1%）では調整局面にある。RSI50付近の中立的モメンタム、PER15.56倍・配当2.19%のバリュエーション妥当性、親国...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": 1}, {"time": "2026-04-25", "value": -1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-05-22", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-10-19", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2028-04-21", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-05-25", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2027-04-25", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

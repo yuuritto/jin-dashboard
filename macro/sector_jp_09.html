@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>電機・精密 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>電機・精密</h1>
+        <div class="subtitle">sector_jp:09 / slightly_bullish / confidence 0.55</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>電機・精密セクター(1625.T)は現在56,450で推移し、MA50(52,424)を7.7%、MA200(47,141)を19.7%上回っている。RSI14は64.5と強い上昇トレンドを示しているが過熱域(70)手前に位置する。PER TTMは29.0と高水準で、配当利回りは0.82%に留まる。DXY98.8の弱ドル環境は円高圧力となり、輸出依存度の高い同セクターの円換算収益に逆風をもたらす。米国GDPの前期比年率0.48%というほぼゼロ成長は電子機器需要の下押し要因であり、CPI3.32%高止まりがFRBの緩和余地を制約している。VIXコンタンゴ構造(VIX9d:18.0 &lt; VIX:19.3 &lt; VIX3m:21.5)とSKEW139.6は機関投資家の中期的テールリスク警戒を示している。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 強いテクニカルトレンドが上昇継続を支持する / data: {&#x27;price&#x27;: 56450.0, &#x27;ma50&#x27;: 52424.0, &#x27;ma200&#x27;: 47141.8484375, &#x27;rsi14&#x27;: 64.52539995944564} / evidence: 価格はMA50を7.7%、MA200を19.7%上回っており、中長期トレンドは明確に上向き。RSI14は64.5と力強い勢いを維持しつつ過熱シグナル(70)には達しておらず、追加上昇余地がある。</li><li>claim: 親セクター(日本全体)の強気判断がセクター全体を下支えする / data: {&#x27;related_macro_score&#x27;: 1, &#x27;related_macro_confidence&#x27;: 0.62} / evidence: 日本全体マクロ判断はスコア+1・信頼度0.62の「やや強気」であり、日経平均もMA50/MA200を大幅に上回るトレンド継続中。電機・精密はこの上昇相場の恩恵を受けやすいポジションにある。</li><li>claim: 正常な米国利回り曲線が短期的リセッションリスクを否定する / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: US10Y-US2Yスプレッドが+0.53%と正の傾きを維持しており、逆イールドによるリセッション警報は発生していない。これはリスク資産の短期的な支持材料となる。</li><li>claim: 株式オプション市場の過度な悲観ポジション不在が下落圧力を限定する / data: {&#x27;put_call_ratio_equity&#x27;: 0.65, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: 株式P/Cレシオが0.65と低水準にあり、極端な弱気ヘッジへの傾斜は見られない。過度な売り越しポジションが積み上がっていないため、需給面での急落トリガーは限定的。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 弱ドル(円高圧力)が輸出依存型電機企業の収益を圧迫する / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXY98.8は相対的な弱ドル水準であり、円高方向の圧力が輸出比率の高いソニー・日立・キヤノン等の海外収益を円換算時に目減りさせる。電機・精密セクターは国内売上比率が低く、為替感応度が高い。</li><li>claim: 米国GDPのほぼゼロ成長が電子機器需要の下押し圧力となる / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;unrate&#x27;: 4.3} / evidence: 米国GDP前期比年率成長率が0.48%と事実上ゼロ成長であり、米国消費者の電子機器・精密機器への支出余力が低下している。米国は電機・精密セクターの主要輸出先であり、需要減速は業績悪化に直結する。</li><li>claim: 高PERとFRB緩和制約の組み合わせがバリュエーションリスクを高める / data: {&#x27;pe_ttm&#x27;: 29.010742, &#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64} / evidence: PER TTM29.0は日本株全体の平均PERを上回る高水準。CPI3.32%の高止まりによりFRBの利下げ余地が制約され、高PER株のディスカウントレート低下期待が剥落するリスクがある。フォワードPERデータが欠損しているため将来収益の視界も不明瞭。</li><li>claim: 高SKEWとVIXコンタンゴ構造が機関投資家の中期リスク回避姿勢を示す / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;vix&#x27;: 19.309999465942383, &#x27;vix9d&#x27;: 18.040000915527344, &#x27;vix3m&#x27;: 21.479999542236328} / evidence: SKEW139.6はテールリスクへの高い警戒感を示し、VIXコンタンゴ(VIX9d18.0 &lt; VIX3m21.5)は中期的なボラティリティ上昇への備えを示している。機関投資家がリスクオフに傾く環境では、高PER・高ベータの電機セクターは特に売られやすい。</li><li>claim: ATR高水準とRSI過熱域接近が短期調整リスクを示す / data: {&#x27;atr14_pct&#x27;: 2.0790436103641263, &#x27;rsi14&#x27;: 64.52539995944564} / evidence: ATR14が価格の2.08%と日々の値幅が大きく、短期的な価格変動リスクが高い。RSI14が64.5と70の過熱閾値に接近しており、利確売りによる一時的な押し目形成のリスクが高まっている。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>テクニカル面では電機・精密セクターは明確な上昇トレンド下にあり、MA50/MA200を大幅に上回るモメンタムと親セクター(日本全体)の「やや強気」判断が短期的なサポートを提供している。株式P/Cレシオ0.65も過度な弱気ポジションの不在を示す。一方で、DXY98.8の弱ドル環境は輸出依存型の電機企業にとって円高という根本的な収益逆風をもたらしており、米国GDP年率0.48%のほぼゼロ成長は最大市場である米国での需要減速リスクを高めている。PER29.0の高バリュエーションはCPI3.32%高止まりによるFRB緩和制約と組み合わさり、割高感を際立たせる。SKEW139.6とVIXコンタンゴは機関投資家の中期リスク回避シグナルであり、テクニカルの勢いが失速した際の下落幅拡大リスクを示唆する。総合的には、テクニカルモメンタムが短期的な「やや強気」を支持するものの、円高・低成長・高バリュエーションという構造的逆風が中期見通しを曇らせており、強い上方確信は持ちにくい状況である。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>円急騰(USD/JPY大幅下落)による主要輸出企業の業績下方修正と株価急落</li><li>米国リセッション入り確定による電子機器・精密機器の需要急減</li><li>CPI再加速によるFRBタカ派転換と高PER株への売り圧力増大</li><li>SKEW高水準下でのブラックスワン的イベント発生による市場全体のリスクオフ</li><li>RSIが70超の過熱域に突入後、短期的な大幅調整(10%以上の押し目)の発生</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>ドル反発(DXY105以上回復)による円安転換と輸出企業の業績上方修正ラッシュ</li><li>AI・次世代半導体・ロボティクス関連需要の急拡大による電機セクターの収益加速</li><li>米国GDP成長率の回復と軟着陸確認によるリスクオン環境の醸成</li><li>FRBの利下げ再開による高PER株のバリュエーション正当化と資金流入</li><li>VIX低下・SKEW正常化による市場リスク選好改善と電機セクターへの機関資金流入</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面では電機・精密セクターは明確な上昇トレンド下にあり、MA50/MA200を大幅に上回るモメンタムと親セクター(日本全体)の「やや強気」判断が短期的なサポートを提供している。株式P/Cレシオ0.65も過度な弱気ポジションの不在を示す。一方で、DXY98.8の弱ドル環境は輸出依存型の電機企業にとって円高という根本的な収益逆風をもたらしており、米国GDP年率0.48%のほぼゼロ成長は最大市場である米国での需要減速リスクを高めている。PER29.0の高バリュエーションはCPI3.32%高止まりによるFRB緩和制約と組み合わさり、割高感を際立たせる。SKEW139.6とVIXコンタンゴは機関投資家の中期リスク回避シグナルであり、テクニカルの勢いが失速した際の下落幅拡大リスクを示唆する。総合的には、テクニカルモメンタムが短期的な「やや強気」を支持するものの、円高・低成長・高バリュエーションという構造的逆風が中期見通しを曇らせており、強い上方確信は持ちにくい状況である。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.55</div><div class="timeline-summary">テクニカル面では電機・精密セクターは明確な上昇トレンド下にあり、MA50/MA200を大幅に上回るモメンタムと親セクター(日本全体)の「やや強気」判断が短期的なサポートを提供している。株式P/Cレシオ0.65も過度な弱気ポジションの不在を示...</div></div><div class="timeline-row" title="テクニカル面では電機・精密セクターが主要移動平均を明確に上回り、RSIも65台と上昇モメンタムが継続している。ETF資産規模（84億ドル超）は機関投資家の安定した参加を示し、親指数である日本株もslightly_bullishと評価されている。一方でDXY98.05の弱ドル環境は輸出依存度の高い同セクターに対して円高という形で直接的な業績圧力をかける重要なリスクである。SKEW141.90とVIX3mコンタンゴは市場参加者の強いテールリスク警戒を示しており、MA200からの+20.6%乖離は平均回帰リスクを高めている。PER29倍の高バリュエーションもダウンサイドを拡大しうる。FREDやAAIIデータの大半が欠損しているため判断の信頼性は限定的だが、入手可能な指標を総合すると上昇トレンドの優位性が維持されており、現状は「やや強気（slightly_bullish）」と評価する。ただし円高進行やSKEW高止まりが継続する場合には評価を引き下げる可能性がある。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bullish / conf 0.50</div><div class="timeline-summary">テクニカル面では電機・精密セクターが主要移動平均を明確に上回り、RSIも65台と上昇モメンタムが継続している。ETF資産規模（84億ドル超）は機関投資家の安定した参加を示し、親指数である日本株もslightly_bullishと評価されてい...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-05-22", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-10-19", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2028-04-21", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": -1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 0}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

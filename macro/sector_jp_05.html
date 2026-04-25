@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>医薬品 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>医薬品</h1>
+        <div class="subtitle">sector_jp:05 / slightly_bearish / confidence 0.58</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>日経医薬品セクター(1621.T)は現在30,910円で推移し、MA50(32,475)を約4.8%下回る一方、MA200(28,911)を約6.9%上回っている。RSI14は38.4と弱含みで過売圏(30)に接近しており、ATR14は2.45%と中程度の変動率を示す。バリュエーションはPER(TTM)23.7倍・配当利回り1.66%であり、米10年債利回り4.34%との利回り格差は縮小している。米国マクロ環境はGDP前期比年率0.48%と事実上ゼロ成長に近く、CPI3.32%の高止まりがFRB緩和の制約となっている。DXY98.8の弱ドルが輸出系製薬の円換算収益を押し上げる一方、SKEW139.6・VIXコンタンゴ構造(VIX3m21.5&gt;VIX9d18.0)が中期的なテールリスクを示唆している。親カテゴリの日本株マクロは「やや強気」(スコア+1、信頼度0.62)と評価されている。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: MA200を上回る構造的下値支持が維持されている / data: {&#x27;price&#x27;: 30910.0, &#x27;ma200&#x27;: 28911.2, &#x27;ma200_upside_pct&#x27;: 6.9} / evidence: 現在値30,910はMA200(28,911)を約6.9%上回っており、長期トレンドの上昇基盤が損なわれていない。短期下落は調整局面であり、構造的な崩壊には至っていない。</li><li>claim: 弱ドル環境が日本製薬企業の海外収益を押し上げる / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXY98.8は相対的に弱い水準にあり、米国や欧州で大規模売上を持つ日本大手製薬企業(武田、アステラス等)は円換算収益の拡大が期待される。為替追い風はセクター全体のEPS押し上げ要因となる。</li><li>claim: 景気減速局面における防御的セクターとしての相対優位性 / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;unrate&#x27;: 4.3} / evidence: 米国GDP前期比年率0.48%と事実上ゼロ成長が確認されており、景気鈍化局面では医薬品・ヘルスケアのような需要の価格非弾力的なセクターが景気敏感株に対して相対的にアウトパフォームする傾向がある。</li><li>claim: RSI過売圏接近による短期テクニカルリバウンド余地 / data: {&#x27;rsi14&#x27;: 38.438398826273925} / evidence: RSI14が38.4と40を下回り過売圏(30以下)に近接している。売られ過ぎサインが点灯しやすい水準にあり、ショートカバーや押し目買いが入りやすい環境が醸成されつつある。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: MA50を明確に下回る短中期の下落モメンタム継続 / data: {&#x27;price&#x27;: 30910.0, &#x27;ma50&#x27;: 32475.4, &#x27;ma50_gap_pct&#x27;: -4.8} / evidence: 価格(30,910)はMA50(32,475)を約4.8%下回っており、中期トレンドは下向き。MA50への回帰には相当の買い圧力が必要であり、現状のRSI水準ではモメンタム改善の証拠がない。</li><li>claim: 高PERと低配当利回りが高金利環境下でバリュエーション割高感を生む / data: {&#x27;pe_ttm&#x27;: 23.723541, &#x27;div_yield&#x27;: 1.66, &#x27;us10y&#x27;: 4.34} / evidence: PER(TTM)23.7倍は防御セクターとしては高水準であり、米10年債利回り4.34%に対して配当利回り1.66%では株式リスクプレミアムが著しく圧縮されている。金利低下が起きない限りバリュエーション拡張は困難。</li><li>claim: 高SKEW・VIXコンタンゴ構造がテールリスクの高まりを示唆 / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;vix3m&#x27;: 21.479999542236328, &#x27;vix9d&#x27;: 18.040000915527344, &#x27;vix&#x27;: 19.309999465942383} / evidence: SKEW139.6は市場参加者が大幅下落の尾部リスクを強く警戒していることを示し、VIX3m(21.5)&gt;VIX9d(18.0)のコンタンゴ構造は中期的不確実性を反映している。リスクオフ急転時には防御セクターも無差別に売られるリスクがある。</li><li>claim: インフレ高止まりとFRB緩和制約による割引率の高止まりリスク / data: {&#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64, &#x27;us2y&#x27;: 3.83} / evidence: CPI前年比3.32%は目標2%を大幅上回り、FF金利3.64%・2年債利回り3.83%の水準はFRBの利下げ余地を制限している。高金利環境の長期化はパイプライン投資価値の現在価値を継続的に圧縮する。</li><li>claim: 消費者センチメント低迷が米国薬価・医療費交渉圧力の強化を示唆 / data: {&#x27;aaii_bull_pct&#x27;: 53.3} / evidence: ミシガン大消費者信頼感指数53.3は典型レンジ(50-110)の下限付近に位置しており、消費者・有権者の経済不安が高い。政治的圧力を受けた薬価規制強化・IRA拡張リスクが日本製薬の米国売上に下方圧力をかけうる。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>日本医薬品セクターはMA50を約5%下回り、RSI38台と短中期のモメンタムが明確に弱い局面にある。米国GDP前期比年率0.48%という極弱成長は景気防衛銘柄への相対優位性を与え、DXY98.8の弱ドルは輸出系製薬企業の収益押し上げ要因として機能する。一方で、PER23.7倍・配当利回り1.66%という組み合わせは米10年債4.34%と比較して割高感が拭えず、CPI3.32%高止まりとFF金利3.64%が示す高割引率環境は継続中だ。SKEW139.6とVIXコンタンゴ構造はテールリスクへの警戒を示しており、リスクオフ転換時には防御的性格も守りきれないリスクがある。RSIの過売圏接近とMA200維持は下値余力の縮小を示唆するが、MA50回帰・モメンタム改善の証拠がなく、米国マクロの不確実性も高いことから、現段階では「やや弱気」と判断する。6ヵ月以上の時間軸では景気減速の進行と潜在的な利下げ転換が防御的セクターを再評価させる可能性があり、中期的にはニュートラルへの回帰を見込む。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>MA200(28,911)を下方ブレイクした場合、構造的な下落トレンドへ移行し大幅下落が加速するリスク</li><li>米国CPI再加速によるFRB利上げ再開と長期金利上昇、高PER医薬品バリュエーションへの直撃</li><li>IRA(インフレ抑制法)の薬価交渉対象拡大・規制強化による日本大手製薬の米国売上圧迫</li><li>SKEW139.6が示すテールリスクが現実化し、VIX30超のリスクオフ局面で全セクター無差別売りが発生するシナリオ</li><li>円高(DXY90台前半以下)への急速な進行による輸出系製薬企業の為替追い風剥落</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>MA50(32,475)を出来高増加を伴って明確に上抜けることでモメンタム転換と買い戻しが加速</li><li>FRBの利下げ示唆・実施による割引率低下とパイプライン価値再評価によるバリュエーション拡大</li><li>主要製薬のFDA/PMDA大型承認または好決算・上方修正によるセクターセンチメント改善</li><li>米国景気後退確認による景気敏感株からヘルスケア・医薬品への本格的な防御ローテーション</li><li>DXY90台前半への一段の弱ドル進行による日本製薬の海外収益換算益の大幅増加</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="日本医薬品セクターはMA50を約5%下回り、RSI38台と短中期のモメンタムが明確に弱い局面にある。米国GDP前期比年率0.48%という極弱成長は景気防衛銘柄への相対優位性を与え、DXY98.8の弱ドルは輸出系製薬企業の収益押し上げ要因として機能する。一方で、PER23.7倍・配当利回り1.66%という組み合わせは米10年債4.34%と比較して割高感が拭えず、CPI3.32%高止まりとFF金利3.64%が示す高割引率環境は継続中だ。SKEW139.6とVIXコンタンゴ構造はテールリスクへの警戒を示しており、リスクオフ転換時には防御的性格も守りきれないリスクがある。RSIの過売圏接近とMA200維持は下値余力の縮小を示唆するが、MA50回帰・モメンタム改善の証拠がなく、米国マクロの不確実性も高いことから、現段階では「やや弱気」と判断する。6ヵ月以上の時間軸では景気減速の進行と潜在的な利下げ転換が防御的セクターを再評価させる可能性があり、中期的にはニュートラルへの回帰を見込む。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bearish / conf 0.58</div><div class="timeline-summary">日本医薬品セクターはMA50を約5%下回り、RSI38台と短中期のモメンタムが明確に弱い局面にある。米国GDP前期比年率0.48%という極弱成長は景気防衛銘柄への相対優位性を与え、DXY98.8の弱ドルは輸出系製薬企業の収益押し上げ要因とし...</div></div><div class="timeline-row" title="医薬品セクターは200日移動平均を約10.7%上回る長期的な上昇基調を維持しているが、50日移動平均を下回りRSI43.85と短期モメンタムが弱含みにある。SKEW指数141.90の高水準はオプション市場の尾部リスク警戒を示しており、VIX3mのコンタンゴ構造も先行きの不確実性を示唆する。ディフェンシブセクターとして相対的な底堅さは期待できるが、円高（DXY=98.05）環境は海外収益比率の高い大手製薬企業にとって実質的な収益圧迫要因となる。PER24.48倍はバリュエーション面での上値の重さを示す。FRED APIエラーにより米金利・CPI・GDP等の主要マクロ指標が全て欠損しており判断の確信度は低いが、入手可能な指標を総合すると短期的なモメンタムの弱さとテールリスク環境が支配的であり、現状は「やや弱気（slightly_bearish）」と評価する。親市場の「やや強気」判断が下支えとなるため、強気への急転換は限定的と見る。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bearish / conf 0.40</div><div class="timeline-summary">医薬品セクターは200日移動平均を約10.7%上回る長期的な上昇基調を維持しているが、50日移動平均を下回りRSI43.85と短期モメンタムが弱含みにある。SKEW指数141.90の高水準はオプション市場の尾部リスク警戒を示しており、VIX...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": -1}, {"time": "2026-04-25", "value": -1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": -1}, {"time": "2026-05-22", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": -1}, {"time": "2026-10-19", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": -1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": -1}, {"time": "2028-04-21", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-05-25", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2027-04-25", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

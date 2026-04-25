@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ユーロ (対ドル) 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>ユーロ (対ドル)</h1>
+        <div class="subtitle">asset:eur / slightly_bullish / confidence 0.52</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>EUR/USDは1.1726で推移しており、50日移動平均(1.1659)および200日移動平均(1.1676)をともに上回り、短期的な上昇モメンタムが維持されている。RSI14は54.1と中立よりやや強気水準にあり、過熱感は見られない。DXYは98.80と100の心理的節目を下回り、ドル安地合いが継続している。米国GDP前期比年率は0.48%と事実上の停滞域に落ち込んでいる一方、CPIは前年比3.32%と依然FedターゲットをAY超えており、スタグフレーション的環境が示唆される。米10年金利は4.34%を維持しており、日米欧の金利差がユーロ上値を抑制する構造も残存している。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 短期テクニカルはゴールデンクロス構造を維持し、上昇モメンタムが続いている / data: {&#x27;price&#x27;: 1.1726, &#x27;ma50&#x27;: 1.1659, &#x27;ma200&#x27;: 1.1676, &#x27;rsi14&#x27;: 54.13} / evidence: EUR/USD価格が50日MAおよび200日MAをともに上回っており、RSIも50超を維持。トレンドフォロー勢の追随買いを示唆する構造となっている。</li><li>claim: 米国GDPの極端な低成長がFed利下げ観測を高め、ドル安圧力となる / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48} / evidence: 直近四半期の年率GDP成長率は0.48%と景気停滞域に接近しており、Fed がタカ派姿勢を維持しにくくなる。利下げ期待の前倒しはドル安・ユーロ高要因。</li><li>claim: DXYが100を下回る水準で推移しており、構造的ドル安がユーロを支持している / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.80と心理的節目の100を割り込んでいることは、主要通貨全般に対するドル弱体化を意味し、EUR/USDの上昇を地合い面で後押しする。</li><li>claim: 米失業率の上昇が労働市場の軟化を示し、Fedの引き締め余地を狭める / data: {&#x27;unrate&#x27;: 4.3} / evidence: 失業率4.3%は完全雇用水準を超えており、Fed が追加利上げに踏み切りにくい環境を形成。金利上昇によるドル支持力が低下する方向性を示す。</li><li>claim: 近接VIXが落ち着いており、リスクオン継続による高ベータ通貨（ユーロ含む）への資金流入が期待できる / data: {&#x27;vix&#x27;: 19.31, &#x27;vix9d&#x27;: 18.04} / evidence: VIX9dが18.04とVIX(19.31)を下回り、足元の短期リスクは落ち着いている。リスク選好環境ではドルへのフライト・トゥ・セーフティが後退し、ユーロに有利。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 米CPI高止まりがFedの早期利下げを阻み、高金利によるドル支持が続く / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比3.32%はFedの2%目標を大幅に上回る水準であり、インフレ再燃リスクを考慮すれば Fed は利下げを急げない。米金利高止まりはドルの基礎的需要を下支えする。</li><li>claim: 米10年金利4.34%が示す高い実質利回りはドルへの資金引力を維持する / data: {&#x27;us10y&#x27;: 4.34, &#x27;us2y&#x27;: 3.83, &#x27;yield_spread_10_2&#x27;: 0.53} / evidence: 米10年債利回り4.34%はECBの政策金利を上回る水準にあり、キャリートレード観点ではドル建て資産の相対優位が継続。EUR/USD上値を抑制する構造的要因となる。</li><li>claim: SKEW指数の高水準がテールリスク懸念を示し、リスクオフ時のドル急騰リスクを示唆する / data: {&#x27;skew&#x27;: 139.59, &#x27;vix3m&#x27;: 21.48} / evidence: SKEW指数が139.59と高水準にあり、市場参加者が左テール（急落）に対してヘッジを積んでいることを示す。リスクオフ時にはドル急騰・ユーロ急落が生じやすい。</li><li>claim: ミシガン大消費者信頼感の低迷がユーロ圏経済にも波及するグローバル需要減退リスクを示す / data: {&#x27;aaii_bull_pct_as_umcsent&#x27;: 53.3} / evidence: aaii_sourceがumcsent（ミシガン大指数）であり、実測値53.3は典型レンジ(50-110)の下限付近で消費者心理が極めて悲観的。グローバル景気鈍化懸念はユーロ圏輸出にも影響し得る。</li><li>claim: プット/コール比率が相対的に高く、市場参加者の下方リスクヘッジが拡大している / data: {&#x27;put_call_ratio_total&#x27;: 0.95, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: プット/コール比率(総合)は0.95と0.65(株式のみ)を大きく上回っており、株式以外のオプション市場でヘッジ需要が高い。不確実性上昇局面ではドル選好が高まりやすい。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>EUR/USDは価格が50日・200日MAをともに上抜けており、DXYの100割れと米GDP急減速がドル安方向の地合いを形成している点でBull優位の状況にある。一方で、CPI3.32%高止まりと米10年金利4.34%が示すドルの利回り優位は構造的に残存しており、SKEW高水準がテールリスクの存在を示唆する。スタグフレーション的な米国マクロ環境はFedの手を縛り、急速な利下げを困難にするが、それ自体が成長懸念によるドル売りとインフレ懸念によるドル買いの相殺をもたらす。総合評価として、テクニカルの上昇モメンタムとDXY軟調を重視し、現状はslightly_bullishと判断するが、先行き不透明感から確信度は中程度にとどめる。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米CPIが再加速しFedが利上げ再開に転じた場合、USD急騰によりEUR/USDは急落する</li><li>ユーロ圏の景気後退やECBの予想外の大幅追加利下げが実施された場合、ユーロ安圧力が急増する</li><li>SKEW高水準が示すテールリスクイベント（地政学・金融システム不安）顕在化でリスクオフのドル急騰が発生する</li><li>米財政赤字拡大懸念や国債格下げで米長期金利が大幅上昇した場合、キャリー優位がドルに回帰する</li><li>VIX3m(21.48)が示す中期的リスク懸念が現実化し、グローバル株安→ドル買いのフローが発生する</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>米GDPのさらなる悪化または雇用統計の大幅下振れでFedの早期利下げ観測が強まりドル安が加速する</li><li>DXYが97を下回り構造的ドル安トレンドが確認された場合、EUR/USDの上昇モメンタムが強化される</li><li>ユーロ圏PMIや輸出データの回復がユーロ圏経済の底堅さを示し、ECBの追加緩和観測を後退させる</li><li>米CPIの顕著な低下でFedが利下げを前倒し、日米欧の金利差縮小が円・ユーロに有利に働く</li><li>地政学リスクの緩和やリスク選好改善でグローバル資金がドルから高ベータ通貨（ユーロ含む）にリバランスされる</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="EUR/USDは価格が50日・200日MAをともに上抜けており、DXYの100割れと米GDP急減速がドル安方向の地合いを形成している点でBull優位の状況にある。一方で、CPI3.32%高止まりと米10年金利4.34%が示すドルの利回り優位は構造的に残存しており、SKEW高水準がテールリスクの存在を示唆する。スタグフレーション的な米国マクロ環境はFedの手を縛り、急速な利下げを困難にするが、それ自体が成長懸念によるドル売りとインフレ懸念によるドル買いの相殺をもたらす。総合評価として、テクニカルの上昇モメンタムとDXY軟調を重視し、現状はslightly_bullishと判断するが、先行き不透明感から確信度は中程度にとどめる。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.52</div><div class="timeline-summary">EUR/USDは価格が50日・200日MAをともに上抜けており、DXYの100割れと米GDP急減速がドル安方向の地合いを形成している点でBull優位の状況にある。一方で、CPI3.32%高止まりと米10年金利4.34%が示すドルの利回り優位...</div></div><div class="timeline-row" title="テクニカル面では価格がMA50・MA200をともに上回り、RSI14(59.26)は強気ゾーンにあるものの過熱していない。DXY(98.05)の低水準もユーロ高を支持する。一方、SKEW(141.90)の高水準とput_call_ratio_total(0.95)はオプション市場での警戒感を示し、VIX3m(21.24)とVIX(18.87)の乖離は中期不確実性の高さを示唆する。FREDのAPIエラーにより金利・CPI・雇用・GDPなど主要ファンダメンタルデータが全欠損しており、金融政策格差(Fed/ECB)や景気サイクルに基づく評価が一切できない。現時点では技術的優位を重視しつつもデータ制約を大きく割り引き、スコアを+1(slightly_bullish)と判断する。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">テクニカル面では価格がMA50・MA200をともに上回り、RSI14(59.26)は強気ゾーンにあるものの過熱していない。DXY(98.05)の低水準もユーロ高を支持する。一方、SKEW(141.90)の高水準とput_call_ratio...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 0}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

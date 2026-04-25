@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>暗号資産 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>暗号資産</h1>
+        <div class="subtitle">asset:crypto / slightly_bullish / confidence 0.50</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>BTCは2026年4月25日時点で78,269ドルで推移しており、50日移動平均線（71,020ドル）を約10.2%上回るが200日移動平均線（85,660ドル）は約8.6%下回る位置にある。RSI14は65.5と強いモメンタムを示しつつも過熱圏には達していない。マクロ面ではGDP前期比年率成長率が0.48%と景気後退寸前の極めて弱い水準にとどまり、CPI前年比3.32%と依然インフレが粘着的でFFレートは3.64%に維持されている。DXYは98.80と相対的な低水準で推移しており、リスク資産への追い風となりうる。VIX19.31は市場が過度な恐怖状態にない一方、SKEW指数139.59はテールリスクへの警戒の高まりを示している。なおAAII感情調査データは取得失敗（403エラー）のため、投資家センチメント面の評価はVIX・プットコール比率・SKEW側で補完する。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 価格が50日移動平均線を上回り短期トレンドは上昇中 / data: {&#x27;price&#x27;: 78268.953125, &#x27;ma50&#x27;: 71019.86015625} / evidence: 現値78,269ドルは50日MA71,020ドルを約10.2%上回っており、短期的なモメンタムが強いことを示す。移動平均線のゴールデンクロス的位置関係は短期継続上昇の可能性を示唆する。</li><li>claim: RSIが65.5と強い勢いを示しながら過熱圏には未達 / data: {&#x27;rsi14&#x27;: 65.49370004585606} / evidence: RSI14が65.5は上昇モメンタムを確認しつつ、70以上の過熱圏には達していないため、追加上昇余地が残存することを示唆する。</li><li>claim: ドル安が暗号資産への資金流入を後押し / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXYが98.80と過去高水準から大幅低下しており、ドル安局面は米ドル建て資産への代替需要としてBTCに有利に働く傾向がある。</li><li>claim: イールドカーブが正常化し金融ひっ迫懸念が後退 / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: 10年-2年スプレッドが+0.53%と正転しており、長短金利逆転による信用収縮シグナルが解消されつつある。</li><li>claim: VIXが低水準でリスクオフの急激な巻き戻しリスクが限定的 / data: {&#x27;vix&#x27;: 19.309999465942383, &#x27;vix9d&#x27;: 18.040000915527344, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: VIXは19.31、VIX9dは18.04と短期恐怖指数がニュートラルゾーンに位置しており、パニック的売り圧力が顕在化していない。エクイティプットコール比率も0.65と比較的落ち着いている。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 200日移動平均線を下回り長期トレンドはまだ弱気 / data: {&#x27;price&#x27;: 78268.953125, &#x27;ma200&#x27;: 85659.59162109374} / evidence: 現値78,269ドルは200日MA85,660ドルを約8.6%下回っており、長期的な下降トレンドからの完全回復には至っていない。200日MAは依然として上値抵抗として機能する。</li><li>claim: GDP成長率が年率0.48%と景気後退寸前の極めて弱い水準 / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;unrate&#x27;: 4.3} / evidence: 直近四半期の年率成長率はわずか0.48%であり、景気後退入りリスクが高まった場合にリスク資産全般への売り圧力が強まる可能性がある。失業率4.3%の上昇とも整合的で経済の減速が鮮明。</li><li>claim: インフレが3.32%と依然FRBターゲットを大きく上回り利下げ余地を制約 / data: {&#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比3.32%はFRB目標2%を1.3ポイント超過しており、FFレート3.64%の高止まりが続くことで流動性緩和の恩恵が得られにくい環境が継続する。</li><li>claim: SKEW指数の高水準がテールリスクへの警戒を示す / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: SKEW指数が139.59と高水準にあり、オプション市場参加者が大幅下落シナリオに備えたプロテクションを積んでいることを示す。トータルプットコール比率も0.95と比較的高く、ヘッジ需要が強い。</li><li>claim: VIX3mがVIX9dを大幅に上回るターム構造が中期不安を示唆 / data: {&#x27;vix9d&#x27;: 18.040000915527344, &#x27;vix3m&#x27;: 21.479999542236328} / evidence: VIX9d18.04に対しVIX3m21.48と中期ボラティリティが高く、短期は落ち着いているものの3ヶ月以内のイベントリスクに対する警戒が根強いことを示す。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>短期的には50日MAを上回る価格位置とRSI65.5のモメンタム、DXY低下がBTCに有利に働いており、やや強気の地合いが続く可能性がある。一方、200日MAを下回る長期トレンド、GDP成長率0.48%という景気後退寸前の弱さ、CPI3.32%によるFRBの利下げ制約、SKEW139.59が示すテールリスク警戒は下押し圧力として機能する。VIX3mとVIX9dのスプレッドが示す中期不安も無視できない。両面を総合すると現時点では短期モメンタムが優位だが中長期の経済悪化リスクが上値を抑える構図となっており、やや強気（slightly_bullish）と判断する。AAIIデータ欠損により投資家センチメントの完全把握が困難なため、確信度はやや抑制する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>GDP成長率がマイナスに転落し景気後退が確認された場合、リスクオフ売りが加速する</li><li>CPI再上昇によりFRBが利上げを再開した場合、流動性引き締めが暗号資産に打撃を与える</li><li>規制当局による暗号資産取引への大規模制限・禁止措置が主要国で実施される</li><li>200日移動平均線（85,660ドル）への再接近に失敗し下降トレンドが再加速する</li><li>地政学リスクや金融システムストレスが顕在化しVIXが30超へ急上昇する</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>FRBが利下げサイクルを加速させ実質金利が低下し流動性環境が改善する</li><li>機関投資家のBTCスポットETF経由の大規模資金流入が継続・拡大する</li><li>価格が200日移動平均線（85,660ドル）を明確に上抜けし長期トレンド転換を確認する</li><li>米国GDP成長率が回復し景気後退懸念が後退することでリスク選好が改善する</li><li>ミシガン大消費者信頼感指数（現在53.3）が大幅改善しリスク資産への資金回帰が起きる</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="短期的には50日MAを上回る価格位置とRSI65.5のモメンタム、DXY低下がBTCに有利に働いており、やや強気の地合いが続く可能性がある。一方、200日MAを下回る長期トレンド、GDP成長率0.48%という景気後退寸前の弱さ、CPI3.32%によるFRBの利下げ制約、SKEW139.59が示すテールリスク警戒は下押し圧力として機能する。VIX3mとVIX9dのスプレッドが示す中期不安も無視できない。両面を総合すると現時点では短期モメンタムが優位だが中長期の経済悪化リスクが上値を抑える構図となっており、やや強気（slightly_bullish）と判断する。AAIIデータ欠損により投資家センチメントの完全把握が困難なため、確信度はやや抑制する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.50</div><div class="timeline-summary">短期的には50日MAを上回る価格位置とRSI65.5のモメンタム、DXY低下がBTCに有利に働いており、やや強気の地合いが続く可能性がある。一方、200日MAを下回る長期トレンド、GDP成長率0.48%という景気後退寸前の弱さ、CPI3.3...</div></div><div class="timeline-row" title="BTCは中期的には50日移動平均線を上回るモメンタム回復局面にあり、弱いドル環境とVIXの低位安定がリスク資産に追い風を提供している。RSI61台は過熱感なく追加上昇の技術的余地を残す。一方で、200日移動平均線（86,107ドル）までの11%超の乖離は強力な上値抵抗として機能する可能性が高く、高いSKEWとVIXのコンタンゴはテールリスクへの警戒を示す。FRED・AAIIデータが全欠損しており、金利・景気・投資家センチメントの定量評価が不可能なため、判断の信頼度は大幅に割り引く必要がある。総じて、利用可能なテクニカルおよびセンチメントデータを加重すると『やや強気（slightly_bullish）』と評価するが、データ欠損リスクを加味し自信度は低めに設定する。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">BTCは中期的には50日移動平均線を上回るモメンタム回復局面にあり、弱いドル環境とVIXの低位安定がリスク資産に追い風を提供している。RSI61台は過熱感なく追加上昇の技術的余地を残す。一方で、200日移動平均線（86,107ドル）までの1...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>中国</h1>
+        <div class="subtitle">country:CN / slightly_bearish / confidence 0.52</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>MCHIは2026年4月25日時点で57.27ドルと、MA50（57.93）およびMA200（60.43）の双方を下回り、中短期・長期ともに下降トレンドにある。RSI14は47.44と中立をやや下回り、ATR14%は1.60%と中程度の変動率を示す。バリュエーションはPE TTM 12.97倍と割安水準にあり、配当利回りは2.27%。米国GDP前期比年率は0.48%と極めて弱い成長に留まる一方、CPI前年比3.32%が利下げ余地を制約している。DXYは98.80と比較的ドル安水準にあり新興国資産への追い風となっているが、SKEW指数139.59はテールリスクへの警戒感が高いことを示す。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 割安なバリュエーションが長期的な下値支持を提供 / data: {&#x27;pe_ttm&#x27;: 12.968039, &#x27;div_yield&#x27;: 2.27} / evidence: PE TTM 12.97倍は新興国株式として相対的に低く、長期的な平均回帰の余地を示す。配当利回り2.27%が一定のインカムサポートを提供し、下落リスクを緩和する。</li><li>claim: ドル安が新興国資産への資金流入を促す追い風 / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXY 98.80は過去の高水準から大幅に下落しており、ドル建て以外の資産への資金流入を促しやすい環境にある。中国株ETFにとって相対的な競争力向上につながる。</li><li>claim: 短期市場恐怖が限定的でパニック的売りではなく秩序ある調整局面 / data: {&#x27;vix9d&#x27;: 18.040000915527344, &#x27;vix&#x27;: 19.309999465942383, &#x27;vix3m&#x27;: 21.479999542236328} / evidence: VIX9dが18.04とVIX3m（21.48）を下回り、VIXも19.31と極端な恐怖水準ではない。短期的にはリスクオンへの転換余地が残されている。</li><li>claim: 米国成長鈍化がFRB利下げ圧力を高め、中長期的なEM流入を促進 / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;fed_funds&#x27;: 3.64} / evidence: 米GDP前期比年率0.48%という極めて弱い数字はFRBへの利下げ圧力を高め、中長期的に新興国資産への資金シフトを促進する可能性がある。現行FF金利3.64%から引き下げ余地が存在する。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 価格がMA50・MA200の双方を下回り、テクニカルトレンドは明確に下降 / data: {&#x27;price&#x27;: 57.27000045776367, &#x27;ma50&#x27;: 57.93040000915527, &#x27;ma200&#x27;: 60.4272412109375} / evidence: MCHIの現値57.27はMA50（57.93）とMA200（60.43）の両方を下回っており、中短期・長期ともに下降トレンドにある。テクニカル投資家の売り圧力が継続しやすく、移動平均が抵抗線として機能する。</li><li>claim: 米国消費者信頼感の著しい低下が輸出需要リスクを高める / data: {&#x27;aaii_bull_pct&#x27;: 53.3} / evidence: ミシガン大学消費者信頼感指数が53.3と歴史的低水準圏にあり、米国内需の弱体化が中国からの輸入減少につながるリスクがある。中国輸出企業の収益圧迫要因となりうる。</li><li>claim: テールリスクへの警戒感が高水準で下方リスクの非対称性を示す / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: SKEW指数が139.59と高水準にあり、市場参加者がブラックスワン型急落に対するヘッジを積極的に構築していることを示す。プット/コール比（全体）0.95も防御的姿勢を示す。</li><li>claim: 米国インフレ高止まりがFRBの大幅利下げを制約し、リスク資産への圧力継続 / data: {&#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64, &#x27;us10y&#x27;: 4.34} / evidence: CPI前年比3.32%はFRBの目標（2%）を大幅に上回っており、FF金利3.64%でも実質金利は低い。大幅な利下げによる流動性供給の期待は持ちにくく、新興国株式のバリュエーション倍率拡大は困難。</li><li>claim: ETF資産規模が米国全体に対して極めて小さく、機関投資家の中国株コミットメントが低い / data: {&#x27;primary_etf_total_assets_usdm&#x27;: 6613.231616, &#x27;fred_etf_total_usdm&#x27;: 13373188.0} / evidence: MCHIの主要ETF総資産は約66億ドル（6,613百万ドル）に留まり、米ETF市場全体（約1,337万百万ドル＝約13.4兆ドル）に対して極めて微小なシェア。機関投資家の中国株アロケーションが低水準を示し、需給面での上昇圧力が限られる。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>MCHIはMA50・MA200双方を下回るテクニカル弱含みの中にあり、RSI47.44と中立を下回る。PE TTM 12.97倍という割安バリュエーションと2.27%の配当利回りが下値を支えるが、価格トレンドは下降中。米国GDP年率0.48%の極度な弱さは将来的なFRB利下げ期待を高めるが、CPI3.32%の高止まりがその余地を制約する。DXY98.80のドル安はEM追い風となるものの、SKEW139.59のテールリスク警戒とミシガン大学消費者信頼感53.3の低水準が需要不安と市場の不確実性を示す。テクニカル・マクロ環境ともに圧力が続く一方、バリュエーション面の支えがあるため、総合的にやや弱気（slightly_bearish）と判断する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米中貿易摩擦の再激化・新たな関税賦課による中国輸出企業の収益悪化と株価圧迫</li><li>中国不動産セクターの信用危機が金融システム全体に波及し、経済成長率が大幅に下振れ</li><li>米国インフレ再加速によりFRBが利上げ再開し、新興国資産から資金が大規模流出</li><li>台湾海峡・南シナ海における地政学的緊張の急上昇による外国投資家のリスク回避</li><li>DXYの急反騰（ドル高への転換）による新興国通貨安と資本流出の加速</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>中国政府による大規模財政・金融刺激策の発表（インフラ投資拡大・消費促進策・不動産支援）</li><li>米国GDPの低迷を受けたFRBの利下げ加速によるグローバルリスクオン転換と新興国資金流入</li><li>米中貿易協議の進展・関税緩和による中国輸出回復と企業業績改善期待</li><li>中国不動産セクターの底打ち確認と住宅販売・価格の安定化による金融システム不安の解消</li><li>MCHIがMA50（57.93）を明確に上抜けし、テクニカル投資家の買い転換による需給改善</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="MCHIはMA50・MA200双方を下回るテクニカル弱含みの中にあり、RSI47.44と中立を下回る。PE TTM 12.97倍という割安バリュエーションと2.27%の配当利回りが下値を支えるが、価格トレンドは下降中。米国GDP年率0.48%の極度な弱さは将来的なFRB利下げ期待を高めるが、CPI3.32%の高止まりがその余地を制約する。DXY98.80のドル安はEM追い風となるものの、SKEW139.59のテールリスク警戒とミシガン大学消費者信頼感53.3の低水準が需要不安と市場の不確実性を示す。テクニカル・マクロ環境ともに圧力が続く一方、バリュエーション面の支えがあるため、総合的にやや弱気（slightly_bearish）と判断する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bearish / conf 0.52</div><div class="timeline-summary">MCHIはMA50・MA200双方を下回るテクニカル弱含みの中にあり、RSI47.44と中立を下回る。PE TTM 12.97倍という割安バリュエーションと2.27%の配当利回りが下値を支えるが、価格トレンドは下降中。米国GDP年率0.48...</div></div><div class="timeline-row" title="MCHIは50日MAを上抜けてRSI64と短期モメンタムが上向きであり、PER13.19倍の割安感とDXY98台のドル安も追い風となっている。一方で200日MAを下回る中期トレンドの弱さ、SKEW141.9の高いテールリスク警戒、VIX3m&gt;VIXのタームストラクチャー、インデックス系ヘッジの集中、そして米国マクロ指標の全欠損という重大な情報制約がある。利用可能なデータの範囲ではバリュエーションと短期モメンタムの強気材料がやや優勢であるが、データ欠損の大きさと中期テクニカルの弱さを踏まえ、慎重に「やや強気」とする。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">MCHIは50日MAを上抜けてRSI64と短期モメンタムが上向きであり、PER13.19倍の割安感とDXY98台のドル安も追い風となっている。一方で200日MAを下回る中期トレンドの弱さ、SKEW141.9の高いテールリスク警戒、VIX3m...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": -1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-05-25", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2027-04-25", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

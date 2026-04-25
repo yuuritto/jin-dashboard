@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>金 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>金</h1>
+        <div class="subtitle">asset:gold / slightly_bullish / confidence 0.58</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>金(GLD)の現在価格は431.04ドルで、50日移動平均(448.02ドル)を約3.8%下回る一方、200日移動平均(388.00ドル)は約11%上回っており、長期トレンドは維持されている。RSI14は46.03と中立水準をやや下回り、短期モメンタムは弱含みである。マクロ環境では、CPI前年比3.32%がFRB目標2%を大幅に上回る一方、GDP前期比年率成長率は0.48%と極めて低水準で、スタグフレーション的様相を呈している。ドル指数(DXY)は98.80と相対的に低水準で推移し、金価格の下支え要因となっている。GLDのETF運用資産残高は約1,551億ドルと大規模であり、機関投資家の厚い金需要が確認できる。VIX3M(21.48)がVIX(19.31)を上回り、SKEW指数も139.59と高水準で、市場は中期的なテールリスクへの警戒を維持している。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: インフレ高止まりがインフレヘッジとしての金需要を強く下支えする / data: {&#x27;cpi_yoy&#x27;: 3.3202, &#x27;fed_funds&#x27;: 3.64, &#x27;実質金利概算_pct&#x27;: 0.32} / evidence: CPI前年比3.32%はFRB目標2%を1.32%上回っており、FF金利(3.64%)との差は0.32%と実質金利はほぼゼロ水準。実質金利の低さは無利子資産である金の保有コストを大幅に引き下げ、インフレヘッジ需要を維持する。</li><li>claim: 極めて低いGDP成長率がスタグフレーション懸念を高め、金のセーフヘイブン需要を増加させる / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704, &#x27;cpi_yoy&#x27;: 3.3202} / evidence: GDP前期比年率成長率0.48%は景気後退ギリギリの水準で、インフレとの共存はスタグフレーション的環境を示唆する。歴史的にスタグフレーション局面では金が相対的に高いリターンを示してきた。</li><li>claim: 弱いドル指数(DXY)が金価格の上昇を支持する / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXY98.80は心理的節目の100を下回っており、ドル安傾向が継続している。ドルと金の歴史的逆相関から、ドル安局面では金の実質的な購買力・魅力が向上する。</li><li>claim: 200日移動平均を大幅に上回る長期上昇トレンドが構造的強気を示す / data: {&#x27;price&#x27;: 431.0400085449219, &#x27;ma200&#x27;: 388.0038502502441, &#x27;ma200乖離率_pct&#x27;: 11.1} / evidence: 現価格431.04ドルは200日移動平均388.00ドルを約11.1%上回っており、長期的な上昇トレンドが維持されている。長期移動平均の大幅上回りは機関投資家を含む長期保有者の強固なポジションを示唆する。</li><li>claim: 高いSKEW指数と大規模ETF残高がテールリスクヘッジとしての旺盛な需要を裏付ける / data: {&#x27;skew&#x27;: 139.58999633789062, &#x27;primary_etf_total_assets_usdm&#x27;: 155110.817792} / evidence: SKEW指数139.59は市場参加者がオプション市場でテールリスクを強く警戒していることを示す。GLDのETF残高約1,551億ドルという大規模な水準は機関投資家による長期的・構造的な金保有の厚みを確認させる。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 50日移動平均を下回る短期モメンタムの悪化が続落リスクを示す / data: {&#x27;price&#x27;: 431.0400085449219, &#x27;ma50&#x27;: 448.0162005615234, &#x27;ma50乖離率_pct&#x27;: -3.8} / evidence: 現価格431.04ドルは50日移動平均448.02ドルを約3.8%下回っており、短期的な売り優勢の状態が継続している。50日移動平均割れはトレンドフォロワーや短期トレーダーの売り圧力を誘発しやすく、下値余地が残る。</li><li>claim: RSI14が中立水準を割り込み、上昇モメンタムの喪失を示唆する / data: {&#x27;rsi14&#x27;: 46.032068868192916} / evidence: RSI14の46.03は中立の50を下回り、売り手が優勢な局面への移行を示す。過売り水準(30)には達していないため反発の即時性は低く、底値確認までさらに時間を要する可能性がある。</li><li>claim: FF金利3.64%の高水準が無利子資産である金の保有機会コストを押し上げる / data: {&#x27;fed_funds&#x27;: 3.64, &#x27;us2y&#x27;: 3.83} / evidence: FF金利3.64%および2年国債利回り3.83%は歴史的に見て相対的に高い水準を維持している。利息を生まない金は、キャッシュや短期国債と比較したときの相対的な魅力が低下し、資金シフトの圧力にさらされている。</li><li>claim: イールドカーブの正常化がリスクオン環境への移行とセーフヘイブン需要の後退を示唆する / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: 10年-2年スプレッドが0.53%のプラス圏に回帰しており、正常な順イールドカーブは景気回復期待の反映である。リスクオン環境への転換は株式など収益性資産への資金シフトを促し、金の相対的魅力を低下させうる。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>テクニカル面では50日移動平均割れ・RSI46という短期的な弱さが明確だが、200日移動平均を11%上回る長期トレンドは維持されている。ファンダメンタルズ面ではCPI3.32%の高止まり・GDP年率0.48%の極低成長・DXY98.80の弱ドルという3要素がスタグフレーション的環境を形成しており、これは歴史的に金に有利な局面と一致する。実質金利はほぼゼロ(0.32%)で保有機会コストは低く、GLDのETF残高1,551億ドルは機関投資家の構造的需要の厚みを示す。短期モメンタムの弱さを踏まえ現状はslightly_bullishとするが、スタグフレーション懸念の持続と利下げ期待の高まりにより中長期(6m-1y)でbullishへの移行を想定する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>FRBの利上げ再開またはインフレの急低下による実質金利の大幅上昇(実質金利が1%超となる場合)</li><li>DXY100超えへの急反発が継続し、ドル高トレンドが定着した場合</li><li>GDP成長率の急回復(年率2%超)によるリスクオン転換とセーフヘイブン需要の急減退</li><li>中央銀行(新興国含む)による大規模金売却や主要ゴールドETFからの大幅資金流出</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>CPI再加速(4%超)によるスタグフレーション懸念の本格化とインフレヘッジ需要の急増</li><li>FRBの利下げ開始または利下げ幅拡大による実質金利のさらなる低下</li><li>地政学的リスク(中東・東アジア)の高まりによるリスクオフ・セーフヘイブン需要の急増</li><li>DXY95割れの定着による構造的ドル安トレンドの強化</li><li>失業率上昇(5%超)を伴う景気後退入りによるFRB緩和加速期待の台頭</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面では50日移動平均割れ・RSI46という短期的な弱さが明確だが、200日移動平均を11%上回る長期トレンドは維持されている。ファンダメンタルズ面ではCPI3.32%の高止まり・GDP年率0.48%の極低成長・DXY98.80の弱ドルという3要素がスタグフレーション的環境を形成しており、これは歴史的に金に有利な局面と一致する。実質金利はほぼゼロ(0.32%)で保有機会コストは低く、GLDのETF残高1,551億ドルは機関投資家の構造的需要の厚みを示す。短期モメンタムの弱さを踏まえ現状はslightly_bullishとするが、スタグフレーション懸念の持続と利下げ期待の高まりにより中長期(6m-1y)でbullishへの移行を想定する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.58</div><div class="timeline-summary">テクニカル面では50日移動平均割れ・RSI46という短期的な弱さが明確だが、200日移動平均を11%上回る長期トレンドは維持されている。ファンダメンタルズ面ではCPI3.32%の高止まり・GDP年率0.48%の極低成長・DXY98.80の弱...</div></div><div class="timeline-row" title="金は長期的には強固な上昇トレンドを維持しており（MA200比+14.5%）、弱ドル（DXY 98.05）・高SKEW（141.9）・大規模ETF保有（1,551億ドル）・VIXコンタンゴという複数の構造的Bull要因が揃っている。一方、MA50割れによる短期モメンタムの弱さ、中立圏のRSI（52.12）、高ATR（2.19%）による短期リスク、重要マクロデータ（金利・インフレ）の欠落による評価の不確実性がBear材料となる。Bull要因の方が重みは大きいと判断するが、マクロデータ欠落が確信度を引き下げる。総合的にbullishと判断するが、短期的な調整リスクには留意が必要である。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">bullish / conf 0.55</div><div class="timeline-summary">金は長期的には強固な上昇トレンドを維持しており（MA200比+14.5%）、弱ドル（DXY 98.05）・高SKEW（141.9）・大規模ETF保有（1,551億ドル）・VIXコンタンゴという複数の構造的Bull要因が揃っている。一方、MA...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 2}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 2}, {"time": "2026-05-21", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 2}, {"time": "2026-10-18", "value": 2}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 2}, {"time": "2027-04-21", "value": 2}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 2}, {"time": "2028-04-20", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 2}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

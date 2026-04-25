@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>産業金属 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>産業金属</h1>
+        <div class="subtitle">asset:industrial_metals / slightly_bullish / confidence 0.55</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>産業金属ETF（DBB）の価格は25.17ドルで、50日移動平均（23.94）と200日移動平均（21.68）を共に上回り、技術的な上昇トレンドが継続している。RSI（14日）は64.6で過買い圏（70）には未達、ATRは1.34%と中程度のボラティリティを示す。バリュエーション面ではPER（TTM）が4.47と極めて割安であり、配当利回り2.56%も確保されている。マクロ環境では米GDP前期比年率成長率が0.48%と事実上の停滞水準にあり、景気減速リスクが産業金属需要の下押し圧力となっている。一方でDXYは98.80と100を下回り、相対的なドル安が商品価格にプラスに働いている。VIX3m（21.48）がVIX（19.31）を上回りSKEW（139.59）も高水準で、中期的な市場不確実性が残存する。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 価格が中長期移動平均線を大きく上回り、テクニカル上昇モメンタムが継続 / data: {&#x27;price&#x27;: 25.17, &#x27;ma50&#x27;: 23.94, &#x27;ma200&#x27;: 21.68, &#x27;rsi14&#x27;: 64.61} / evidence: DBB価格はMA50を約5.1%、MA200を約16.1%上回っており、上昇トレンドの持続性を示している。RSIは64.6と過買い圏に入っておらず、追加上昇余地が残っている。</li><li>claim: PERが極めて低く、バリュエーション面での下値余地が限定的 / data: {&#x27;pe_ttm&#x27;: 4.47, &#x27;div_yield&#x27;: 2.56} / evidence: PER（TTM）が4.47という水準はセクター平均を大幅に下回る割安圏であり、配当利回り2.56%も加わることで下値支持要因となる。</li><li>claim: ドル安基調が商品価格の追い風として機能 / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.80と100を下回る水準に低下しており、ドル建て商品である産業金属の価格を押し上げる要因となっている。</li><li>claim: イールドカーブが正常化し信用環境の改善が進行 / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us10y&#x27;: 4.34, &#x27;us2y&#x27;: 3.83} / evidence: 10年−2年スプレッドが+0.53%と正のスロープを維持しており、逆イールドからの正常化は中長期的な景気回復期待および信用コスト低下を示唆する。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: GDP成長率が極めて低く、産業金属需要の悪化リスクが高い / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48} / evidence: 米GDP前期比年率成長率は0.48%と事実上の停滞水準にあり、製造業・インフラ投資の縮小が銅・アルミ等の需要を下押しする可能性が高い。</li><li>claim: インフレが依然として高水準で推移し、FRBの高金利継続リスクが残存 / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比が3.32%とFRB目標（2%）を大きく上回っており、利下げ転換が遅れれば実質金利の高止まりを通じて商品価格の上値を抑制する。</li><li>claim: 失業率の上昇が景気先行きへの懸念を示唆 / data: {&#x27;unrate&#x27;: 4.3} / evidence: 失業率4.3%は歴史的に見れば低水準だが、上昇トレンドにある場合は景気後退入りシグナルとなり得る。製造業雇用の悪化は産業金属需要に直結する。</li><li>claim: SKEW指数の高水準が市場尾部リスクへの警戒を示す / data: {&#x27;skew&#x27;: 139.59, &#x27;vix3m&#x27;: 21.48, &#x27;vix&#x27;: 19.31} / evidence: SKEW（139.59）は市場参加者がオプション市場で大幅下落に対するテールリスクヘッジを積んでいることを示しており、リスクオフ時に産業金属は売られやすい。VIX3mもVIXを上回りフォワード不確実性が高い。</li><li>claim: DBBのETF規模が小さく、機関投資家の関与が限定的 / data: {&#x27;primary_etf_total_assets_usdm&#x27;: 292.1} / evidence: DBBの総資産は292.1百万ドルと規模が小さく、大口資金の流出入による価格インパクトが大きくなりやすい。機関投資家の産業金属への資産配分が限定的であることを示唆する。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>産業金属はテクニカルモメンタムと低バリュエーションで強い上昇トレンドを維持しているが、米GDP成長率0.48%という極めて低い実体経済の数字が需要見通しを大きく不透明にしている。ドル安（DXY 98.80）とイールドカーブ正常化（スプレッド+0.53%）はブル要因だが、CPI 3.32%の高止まりによるFRB利下げ遅延リスクとSKEW 139.59の高水準が上値抑制要因として機能する。総合すると、テクニカル・バリュエーション面での優位性がマクロ逆風をやや上回っており、現時点では「若干強気（slightly_bullish）」と判断する。ただし景気後退リスクが顕在化すれば、産業金属は急速にニュートラル以下に転落する可能性があり、確信度は中程度にとどまる。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米GDP成長率がさらに悪化し景気後退入りすることで産業金属需要が急減する</li><li>CPI高止まりによりFRBが利下げを大幅に先送りし、ドル反発・実質金利上昇で商品価格が圧迫される</li><li>中国の製造業PMIが持続的に低下し、世界最大の産業金属消費国の需要が落ち込む</li><li>SKEW高水準が示す尾部リスクが顕在化し、リスクオフ売りが産業金属にも波及する</li><li>失業率がさらに上昇し、消費・投資の縮小が製造業全体の金属需要を抑制する</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>中国が大規模な財政・金融刺激策を打ち出し、インフラ投資拡大で銅・アルミ需要が急増する</li><li>FRBが利下げを加速させドル安が一段と進行し、ドル建て商品価格が押し上げられる</li><li>グリーンエネルギー転換（EV・再エネ設備）の需要加速により銅を中心とした構造的需要増が顕現化する</li><li>米GDP成長率が持ち直し、製造業PMIの改善が産業金属需要の回復を裏付ける</li><li>RSIが過買い圏未達のまま価格が上昇継続し、モメンタム投資家の追随買いを誘発する</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="産業金属はテクニカルモメンタムと低バリュエーションで強い上昇トレンドを維持しているが、米GDP成長率0.48%という極めて低い実体経済の数字が需要見通しを大きく不透明にしている。ドル安（DXY 98.80）とイールドカーブ正常化（スプレッド+0.53%）はブル要因だが、CPI 3.32%の高止まりによるFRB利下げ遅延リスクとSKEW 139.59の高水準が上値抑制要因として機能する。総合すると、テクニカル・バリュエーション面での優位性がマクロ逆風をやや上回っており、現時点では「若干強気（slightly_bullish）」と判断する。ただし景気後退リスクが顕在化すれば、産業金属は急速にニュートラル以下に転落する可能性があり、確信度は中程度にとどまる。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.55</div><div class="timeline-summary">産業金属はテクニカルモメンタムと低バリュエーションで強い上昇トレンドを維持しているが、米GDP成長率0.48%という極めて低い実体経済の数字が需要見通しを大きく不透明にしている。ドル安（DXY 98.80）とイールドカーブ正常化（スプレッド...</div></div><div class="timeline-row" title="利用可能なデータの重心はBull側に傾いている。価格がMA50・MA200をともに大幅に上回る強いトレンドと、DXY98.05のドル安、PE TTM4.44の低バリュエーションが現在の強気構造を支持する。RSI66.56はモメンタムの継続性を示しながらも即座の過熱シグナルは点灯していない。一方でSKEW141.90の高止まり、VIX期間構造の順鞘（VIX3M 21.24 vs VIX 18.87）、総Put/Call0.95は中期的なダウンサイドリスクへの警戒を示す。最大の問題は、FRED APIエラーにより金融政策・景気・インフレのコア指標が全て欠損していることであり、産業金属需要の根幹であるマクロ環境を評価できない。現状把握できるシグナルはBull優勢だが、データギャップによる構造的不確実性が高く、判断を`slightly_bullish`（+1）に留め、確信度を抑制する。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.46</div><div class="timeline-summary">利用可能なデータの重心はBull側に傾いている。価格がMA50・MA200をともに大幅に上回る強いトレンドと、DXY98.05のドル安、PE TTM4.44の低バリュエーションが現在の強気構造を支持する。RSI66.56はモメンタムの継続性...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

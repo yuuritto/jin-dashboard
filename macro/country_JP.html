@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>日本 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>日本</h1>
+        <div class="subtitle">country:JP / slightly_bullish / confidence 0.55</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>日経平均は59,716円で、MA50(55,772円)を約7.1%、MA200(49,340円)を約21%上回っており、テクニカル面では強い上昇トレンドを維持している。RSI14は64.5と強気ゾーンにあるが、過買い水準(70)への接近が続いている。DXY(ドル指数)は98.8と100を下回る弱ドル環境が続いており、外国人投資家の購買力を支援している。米国GDP前期比年率成長率は0.48%と事実上ゼロ成長に近く、日本の輸出依存経済への波及リスクが潜在している。米国CPI前年比3.32%は依然として目標2%を大幅に上回っており、FRBの利下げ余地を制限している。VIX3ヶ月物(21.5)がスポットVIX(19.3)を上回るコンタンゴ構造と、SKEW指数139.6の高水準が中期的なテールリスクへの警戒を示している。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 強力なテクニカル上昇トレンドが中長期にわたって継続中 / data: {&#x27;price&#x27;: 59716.18, &#x27;ma50&#x27;: 55771.71, &#x27;ma200&#x27;: 49340.1, &#x27;rsi14&#x27;: 64.47} / evidence: 日経平均がMA50およびMA200の双方を大きく上回っており、中長期の上昇モメンタムが確認できる。RSI14も64.5と強気ゾーン内にあり、過買いに転じるまでなお余地がある。</li><li>claim: 弱ドル環境が日本株の外貨換算リターンと外国人買いを支援 / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.8と100を下回る弱ドル環境は、円建て日本株の対ドル換算リターンを押し上げ、外国人投資家の購買意欲を刺激しやすい局面にある。</li><li>claim: 米国利回り曲線が正常化しており、リセッション確度指標が否定されている / data: {&#x27;us10y&#x27;: 4.34, &#x27;us2y&#x27;: 3.83, &#x27;yield_spread_10_2&#x27;: 0.53} / evidence: 10年-2年スプレッドが+0.53%とプラス圏を維持しており、逆イールドによる景気後退シグナルは現時点で発せられていない。</li><li>claim: 株式オプション市場が過度な恐怖を示しておらず、買い地合いが続きやすい / data: {&#x27;put_call_ratio_equity&#x27;: 0.65, &#x27;vix&#x27;: 19.31} / evidence: 株式P/Cレシオが0.65と中立以下の水準にとどまり、投資家が過度なヘッジポジションを積み上げていない。スポットVIX19.3も極端な恐怖水準ではない。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 米国経済成長率が事実上ゼロに近く、日本輸出への波及リスクが高い / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48} / evidence: 米国GDP前期比年率成長率が0.48%と、景気後退の一歩手前水準まで減速している。日本はGDPの約20%を輸出が占める構造であり、米国需要減退は企業業績に直結する。</li><li>claim: 米国インフレ高止まりがFRB緩和を制約し、グローバルリスク選好を抑制 / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64, &#x27;us10y&#x27;: 4.34} / evidence: CPI前年比3.32%は目標2%を大幅に上回っており、フェデラルファンドレート3.64%の高止まりが続く。利下げ期待が後退すると、グローバルなリスクオフ圧力が高まりやすい。</li><li>claim: SKEWインデックスの高水準がテールリスクへの市場の深刻な警戒を示している / data: {&#x27;skew&#x27;: 139.59} / evidence: SKEWが139.6と高水準にあり、参加者がブラックスワン的な大幅下落イベントに備えたOTMプットの購入を積み上げていることを示す。</li><li>claim: VIXタームストラクチャーのコンタンゴが中期的なボラティリティ上昇リスクを織り込んでいる / data: {&#x27;vix&#x27;: 19.31, &#x27;vix3m&#x27;: 21.48, &#x27;vix9d&#x27;: 18.04} / evidence: VIX3ヶ月物(21.5)がスポットVIX(19.3)を約2.2pt上回るコンタンゴ構造は、近い将来にボラティリティが現状より上昇する蓋然性を市場が評価していることを示す。</li><li>claim: ミシガン大消費者信頼感指数の低水準が米国内需の脆弱さを示唆 / data: {&#x27;aaii_bull_pct_as_umcsent&#x27;: 53.3, &#x27;unrate&#x27;: 4.3} / evidence: UMCSENTが53.3と、通常レンジ(50〜110)の最低限近傍に位置しており、米国消費者信頼感が極めて低い状態にある。個人消費が米国GDPの約70%を占めることを考えると、成長率のさらなる悪化リスクを示唆する。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>テクニカル面では日経平均はMA50/MA200を大きく上回り、RSI64.5と強気トレンドが持続している。弱ドル(DXY98.8)と正常な米国利回り曲線(+0.53%)はサポート要因であり、株式P/Cレシオ0.65も過度な悲観ではない。一方で、米国GDP年率0.48%の事実上ゼロ成長と、CPI3.32%高止まりによるFRB緩和制約は中期的な逆風となる。SKEW139.6とVIXコンタンゴ構造はテールリスクへの深刻な警戒を示しており、UMCSENT53.3という低水準の消費者信頼感は米国内需の先行き不安を強調する。総合的には、テクニカルの強さと弱ドルが短期的な支持材料となり「やや強気」と判断するが、米国マクロの悪化リスクと高SKEW環境が中期見通しを曇らせているため、強い上方確信は持ちにくい。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米国GDP成長率がさらに悪化しマイナス成長(リセッション入り)となった場合、日本の輸出関連株への波及が大きい</li><li>日米金利差縮小による急激な円高が輸出企業収益を直撃し、Nikkeiのバリュエーション前提が崩れるシナリオ</li><li>SKEW高水準が示すテールリスクが地政学的ショックや金融市場混乱として現実化し、VIXが30超に急騰する場合</li><li>米国CPIが再加速しFRBが利上げ再開に転じるような状況が生じた場合のグローバルリスクオフ波及</li><li>日銀の想定外の急速な利上げが国内金融コストを押し上げ、株式バリュエーションを圧迫するシナリオ</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>米国CPIが2%台に低下しFRBが明確な利下げサイクルに入った場合のリスクオン加速と円安誘導</li><li>米国GDP成長率が1.5%超に回復し、日本の輸出需要拡大期待が高まるシナリオ</li><li>DXYが95を下回るさらなるドル安が進み、外国人投資家による日本株買いが一段と加速する場合</li><li>日本国内のコーポレートガバナンス改革・自社株買い拡大が継続し、ROE改善によるバリュエーション向上が進む場合</li><li>RSI70超えを伴いながら日経平均が62,000円台のブレイクアウトを達成し、モメンタム投資家の追随買いが入る局面</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面では日経平均はMA50/MA200を大きく上回り、RSI64.5と強気トレンドが持続している。弱ドル(DXY98.8)と正常な米国利回り曲線(+0.53%)はサポート要因であり、株式P/Cレシオ0.65も過度な悲観ではない。一方で、米国GDP年率0.48%の事実上ゼロ成長と、CPI3.32%高止まりによるFRB緩和制約は中期的な逆風となる。SKEW139.6とVIXコンタンゴ構造はテールリスクへの深刻な警戒を示しており、UMCSENT53.3という低水準の消費者信頼感は米国内需の先行き不安を強調する。総合的には、テクニカルの強さと弱ドルが短期的な支持材料となり「やや強気」と判断するが、米国マクロの悪化リスクと高SKEW環境が中期見通しを曇らせているため、強い上方確信は持ちにくい。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.55</div><div class="timeline-summary">テクニカル面では日経平均はMA50/MA200を大きく上回り、RSI64.5と強気トレンドが持続している。弱ドル(DXY98.8)と正常な米国利回り曲線(+0.53%)はサポート要因であり、株式P/Cレシオ0.65も過度な悲観ではない。一方...</div></div><div class="timeline-row" title="テクニカル面では日経平均が200日・50日移動平均を双方上回り、RSIも64台と中長期の上昇トレンドは依然として健在であり、VIXも18.87と極端な恐怖水準にはない。しかしSKEW指数が141.90と極めて高く、オプション市場ではテール・リスクへの警戒が強い。VIX3mが21.24と足元VIXを上回るコンタンゴ構造も先行きの不確実性を示唆する。200日移動平均からの+21%乖離は平均回帰圧力を高め、高ATR（2.19%）環境下での急落リスクを伴う。ドル安（DXY: 98.05）は円高を通じた輸出企業業績への悪影響も懸念される。ファンダメンタルズ・マクロデータが大半欠損しているため判断の信頼性は限定的だが、入手可能な指標を総合すると現状は「やや強気（slightly_bullish）」と評価する。先行きへの確信度は低く、リスク管理を優先すべき局面である。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">slightly_bullish / conf 0.40</div><div class="timeline-summary">テクニカル面では日経平均が200日・50日移動平均を双方上回り、RSIも64台と中長期の上昇トレンドは依然として健在であり、VIXも18.87と極端な恐怖水準にはない。しかしSKEW指数が141.90と極めて高く、オプション市場ではテール・...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-05-21", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2026-10-18", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2027-04-21", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": 1}, {"time": "2028-04-20", "value": 0}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

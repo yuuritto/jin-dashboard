@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>米ドル 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>米ドル</h1>
+        <div class="subtitle">asset:usd / slightly_bearish / confidence 0.48</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>米ドル指数（DXY）は98.80で、MA50（98.78）およびMA200（98.52）をわずかに上回る水準に位置し、テクニカル上は辛うじてトレンド維持。RSI14は49.64と中立圏で方向感を欠く。フェデラルファンズ金利3.64%に対し米10年債利回りは4.34%と逆イールドは解消、10-2スプレッドは+0.53%でカーブは正常化している。一方でGDP前期比年率は0.48%と極めて弱く、失業率は4.3%に上昇、CPI前年比は3.32%と目標水準を依然上回るスタグフレーション的環境が続く。VIX9d（18.04）に対しVIX3m（21.48）が高く、中期的な不確実性が短期より高い状態にある。なお、AAIIサーベイデータは403エラーで取得不能のため、センチメント評価はVIX・プットコール・SKEWに依拠する。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: 高い金利水準がドルの対外キャリー優位を支える / data: {&#x27;fed_funds&#x27;: 3.64, &#x27;us10y&#x27;: 4.34} / evidence: フェデラルファンズ金利3.64%・米10年債4.34%は主要先進国との金利差を維持しており、ドル建て資産への資金流入を促しやすい状況が続く。</li><li>claim: テクニカル上は短中期の移動平均を上回り下値サポートが機能 / data: {&#x27;price&#x27;: 98.8, &#x27;ma50&#x27;: 98.78, &#x27;ma200&#x27;: 98.52} / evidence: DXYはMA50（98.78）・MA200（98.52）双方を上回っており、両均線が緩やかなサポートとして機能している。価格がこれらを割り込んでいない間はトレンド崩壊とは言えない。</li><li>claim: 正常なイールドカーブは市場の景気悲観論後退を示す / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: 10-2年スプレッドが+0.53%と正の領域にあり、深刻な景気後退がすぐに織り込まれている状態ではない。ドル売りの最大動機である急速なFed利下げ期待が必ずしも支配的ではない可能性。</li><li>claim: SKEW高水準がテール保険需要＝ドル安全資産買いを示唆 / data: {&#x27;skew&#x27;: 139.59} / evidence: SKEW指数が139.59と高水準にあり、市場参加者が極端なリスクシナリオに備えた保険購入を行っていることを示す。リスクオフ局面でのドル安全資産需要が潜在的に存在する。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 準ゼロ成長がFedの早期利下げを迫り、金利優位を侵食するリスク / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48, &#x27;fed_funds&#x27;: 3.64} / evidence: GDP前期比年率0.48%は景気後退寸前の水準であり、雇用・消費の悪化が続けばFedは想定以上の利下げを余儀なくされる。利下げはドルの金利差優位を直接圧縮する。</li><li>claim: 失業率の上昇がスタグフレーション懸念を強化し、ドルの信認を損なう / data: {&#x27;unrate&#x27;: 4.3, &#x27;cpi_yoy&#x27;: 3.32} / evidence: 失業率4.3%はFedのデュアルマンデートで雇用悪化サイドを意識させる水準であり、高インフレ（CPI 3.32%）との同時進行はスタグフレーションシナリオへの不安を高め、USD売り圧力となりうる。</li><li>claim: VIXタームストラクチャーが中期リスク上昇を示唆し、ドルのモメンタムを阻害 / data: {&#x27;vix&#x27;: 19.31, &#x27;vix3m&#x27;: 21.48} / evidence: VIX3m（21.48）がVIX（19.31）を大きく上回っており、短期的な落ち着きの裏で中期的な不確実性が高い。リスク再燃局面ではドルが追い風を受ける場合もあるが、資本逃避が不規則なドル変動を生む懸念がある。</li><li>claim: RSIが中立付近で方向感なく、上値追いの勢いが欠如 / data: {&#x27;rsi14&#x27;: 49.64, &#x27;price&#x27;: 98.8, &#x27;ma200&#x27;: 98.52} / evidence: RSI14が49.64と50をわずかに下回る水準にあり、強気・弱気いずれへの転換も示していない。モメンタム不在はブレイクアウト局面での下方リスクが上方リスクより先に顕在化しやすいことを意味する。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>DXYは移動平均線を辛うじて上回るものの、GDP前期比年率0.48%というほぼ停滞に近い成長、失業率4.3%への上昇、およびCPI3.32%の高止まりが重なるスタグフレーション的環境が最大のリスク。Fedが成長悪化を優先して利下げを加速すれば、現在の金利差優位は急速に縮小する。一方でイールドカーブ正常化とSKEW高水準が示すテール保険需要はドルの急落を抑制する緩衝材となりうる。総合すると、率差サポートが残るも成長・雇用の弱さがじわじわと侵食するシナリオを中心に置き、わずかにベアリッシュな評価が妥当と判断する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>CPIが再加速し3.5%超を維持、Fedが利上げ再開または長期据え置きを明示してドル金利優位が強化される</li><li>主要競合国（ECB・BOJ等）の景気悪化が米国より深刻となり、相対的なドル選好が強まる</li><li>地政学的ショックによるリスクオフが急激に強まり、ドルへの安全資産需要が一時的に急増する</li><li>米GDP Q2データが急反発し、スタグフレーション懸念が払拭される</li><li>DXY技術的サポート（MA200付近98.52）が強く機能し、ダウントレンドが否定されるダブルボトム形成</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>米GDP Q2が2期連続0%台もしくはマイナス成長となり、景気後退確定でFed利下げが加速する</li><li>失業率が4.5%以上に上昇し、Fedが緊急的な利下げ姿勢に転換する</li><li>DXYがMA200（98.52）を明確に割り込み、テクニカルな売りシグナルが連鎖する</li><li>Fedが次回FOMCで利下げを実施し、タカ派ガイダンスを後退させる</li><li>CPI鈍化データが続き、インフレ鎮静化と成長低迷が同時進行するディスインフレ局面入りが確認される</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="DXYは移動平均線を辛うじて上回るものの、GDP前期比年率0.48%というほぼ停滞に近い成長、失業率4.3%への上昇、およびCPI3.32%の高止まりが重なるスタグフレーション的環境が最大のリスク。Fedが成長悪化を優先して利下げを加速すれば、現在の金利差優位は急速に縮小する。一方でイールドカーブ正常化とSKEW高水準が示すテール保険需要はドルの急落を抑制する緩衝材となりうる。総合すると、率差サポートが残るも成長・雇用の弱さがじわじわと侵食するシナリオを中心に置き、わずかにベアリッシュな評価が妥当と判断する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bearish / conf 0.48</div><div class="timeline-summary">DXYは移動平均線を辛うじて上回るものの、GDP前期比年率0.48%というほぼ停滞に近い成長、失業率4.3%への上昇、およびCPI3.32%の高止まりが重なるスタグフレーション的環境が最大のリスク。Fedが成長悪化を優先して利下げを加速すれ...</div></div><div class="timeline-row" title="テクニカル面では、DXYが98.05とMA50・MA200を共に下回り、RSI14が38.65と売り圧力の継続を示しており、短期的な下落バイアスが優勢である。RSIが過売り圏（30台）に接近しつつあることと、コンタンゴなVIX構造が安全通貨需要を示唆する点は一定の下支え要因となるが、トレンド転換の根拠としては弱い。主要マクロデータ（金利・CPI・GDP）が全欠損しているため、ファンダメンタルズ面の判断が不能であり、欠損データの不確実性を信頼度に反映させる。総合的にみて現在は「bearish（-2）」と判断するが、欠損データを反映してconfidenceは抑制する。"><div class="timeline-date">2026-04-21</div><div class="timeline-current">bearish / conf 0.50</div><div class="timeline-summary">テクニカル面では、DXYが98.05とMA50・MA200を共に下回り、RSI14が38.65と売り圧力の継続を示しており、短期的な下落バイアスが優勢である。RSIが過売り圏（30台）に接近しつつあることと、コンタンゴなVIX構造が安全通貨...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-21", "value": -2}, {"time": "2026-04-25", "value": -1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": -2}, {"time": "2026-05-21", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-21", "label": "+1ヶ月予想", "target_time": "2026-05-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": -2}, {"time": "2026-10-18", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-21", "label": "+6ヶ月予想", "target_time": "2026-10-18"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": -2}, {"time": "2027-04-21", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-21", "label": "+1年予想", "target_time": "2027-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-21", "value": -2}, {"time": "2028-04-20", "value": 0}], "horizon": "forecast_2y", "issued_at": "2026-04-21", "label": "+2年予想", "target_time": "2028-04-20"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-05-25", "value": -1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2026-10-22", "value": -2}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2027-04-25", "value": -2}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": -1}, {"time": "2028-04-24", "value": -1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>不動産 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>不動産</h1>
+        <div class="subtitle">sector_us:XLRE / slightly_bullish / confidence 0.58</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>XLREは現在43.96ドルで推移し、50日移動平均42.49ドルおよび200日移動平均41.15ドルをともに明確に上回っている。RSI14は63.15と買われ過ぎ手前の強気圏にある。配当利回り3.43%に対して10年国債利回りは4.34%と上回っており、REITの相対的インカム魅力度は低下している。PER(TTM)は33.47倍と高水準であり、金利感応度の高いセクターとして割高感が意識される。GDP前期比年率成長率は0.48%と極めて低く、CPI前年比3.32%の高止まりがFRBの利下げ余地を制限し、高金利環境の長期化リスクを高めている。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: テクニカルモメンタムが強く、短期的な上昇トレンドが継続している / data: {&#x27;price&#x27;: 43.959999, &#x27;ma50&#x27;: 42.48788, &#x27;ma200&#x27;: 41.15155, &#x27;rsi14&#x27;: 63.15376} / evidence: 価格が50日・200日移動平均線の双方を明確に上回り、RSI14も63台と強気圏にある。移動平均線の並びも上昇トレンドを示しており、短期的な売り圧力は限定的だ</li><li>claim: イールドカーブのプラス化が不動産ファイナンスの信用環境改善を示唆する / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us2y&#x27;: 3.83, &#x27;us10y&#x27;: 4.34} / evidence: 10年-2年スプレッドが0.53%とプラス圏を維持しており、逆イールド解消環境は銀行の商業不動産向け貸し出し意欲改善と再融資コスト安定に寄与する</li><li>claim: ドル安基調が海外投資家の米国不動産への資金流入を促進する / data: {&#x27;dxy&#x27;: 98.8} / evidence: DXYが98.80と心理的節目の100を下回っており、ドル建て資産の割安感が強まることで海外からの不動産投資需要が高まりやすい環境にある</li><li>claim: 親市場である米国株全体が強気傾向にあり、リスクオン環境がセクターの追い風となる / data: {&#x27;related_macro_us_score&#x27;: 1, &#x27;related_macro_us_confidence&#x27;: 0.65} / evidence: 関連マクロの米国市場判断がslightly_bullish(score:+1, confidence:0.65)であり、市場全体のリスクオン継続がREITへの資金流入にもポジティブに作用する</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 10年国債利回りが配当利回りを大きく上回り、REITの相対的インカム魅力度が失われている / data: {&#x27;us10y&#x27;: 4.34, &#x27;div_yield&#x27;: 3.43, &#x27;spread_10y_minus_divy&#x27;: -0.91} / evidence: 10年国債利回り4.34%に対してXLREの配当利回りはわずか3.43%であり、-0.91%のネガティブスプレッドが投資家のREIT選好を根本的に低下させる</li><li>claim: GDP成長率がほぼゼロに近く、商業不動産需要の根本的な弱体化を示している / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224} / evidence: GDP前期比年率成長率0.48%は景気後退一歩手前の水準であり、オフィス・小売・倉庫などの需要縮小と空室率上昇リスクをもたらし、賃料収入の安定性を脅かす</li><li>claim: CPI高止まりがFRBの利下げを妨げ、高金利環境の長期化がキャップレート拡大を継続させる / data: {&#x27;cpi_yoy&#x27;: 3.32, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI前年比3.32%はFRBの目標2%を大きく上回っており、フェデラルファンド金利3.64%が長期にわたって維持されれば不動産資産評価の下押し圧力が継続する</li><li>claim: PERが33倍超と高く、金利感応度の高いセクターとして金利低下期待剥落時の調整リスクが大きい / data: {&#x27;pe_ttm&#x27;: 33.47529} / evidence: TTMベースのPERが33.47倍は不動産セクターとして歴史的に高い水準であり、市場が織り込んでいた利下げ期待が後退した場合の株価調整幅が大きくなる</li><li>claim: オプション市場のスキューが高水準であり、インフォームドプレイヤーが下方リスクを強くヘッジしている / data: {&#x27;skew&#x27;: 139.58999} / evidence: SKEW指数が139.59と高水準を維持しており、テールリスクに備えたプット需要が旺盛であることは、株式市場全体の潜在的下落がREITセクターに波及するリスクを示唆する</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>テクニカル面では価格が50日・200日移動平均を上回りRSI63台の強気圏にあり、ドル安（DXY98.80）とイールドカーブのプラス化（10-2スプレッド0.53%）が短期的な支援材料となっている。親市場である米国もslightly_bullishであり、リスクオン環境が継続している。しかし10年国債利回り4.34%がXLREの配当利回り3.43%を0.91%上回るネガティブスプレッドはREITの本質的なインカム魅力低下を示し、GDP年率0.48%という低成長は商業不動産需要の構造的弱体化を示唆する。CPI3.32%の高止まりが利下げ余地を狭め、PER33.47倍の割高感がダウンサイドリスクを増幅し、SKEW139.59のヘッジ需要も警戒サインだ。現時点ではテクニカル主導の短期モメンタムが優勢であるため「やや強気」と判断するが、ファンダメンタルズの逆風が顕在化すれば見通しは速やかに中立以下へ転落するリスクを内包する。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>FRBが利下げを見送り続け10年国債利回りが4.5%を超えてREITのネガティブスプレッドが拡大し株価を一段と圧迫する</li><li>GDP成長率がマイナスに転落しオフィス・商業施設の空室率が急上昇して賃料収入が毀損される</li><li>CPI再加速によるFRBの追加利上げ観測がキャップレート拡大と不動産資産評価の下落を招く</li><li>クレジット市場の引き締まりによる商業用不動産ローンの借り換え困難が増大し流動性リスクが高まる</li><li>SKEW上昇に示唆されるテールイベント（金融システムショックや地政学リスク）の顕現化がリスク資産としてのREITを直撃する</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>FRBが明確な利下げシグナルを発し10年国債利回りが4%を下回ることでREITの相対的インカム魅力が回復する</li><li>CPI鈍化進行（2.5%台接近）が確認され金利低下期待の前倒しが不動産バリュエーションを押し上げる</li><li>GDP成長率の回復（2%超）が商業不動産需要の底打ちと賃料収入の安定を裏付ける</li><li>DXY100割れの定着が外国資本の米国不動産投資需要を継続的に喚起しETF資金流入を加速させる</li><li>主要REITの好決算・FFO成長とガイダンス引き上げがセクター全体の再評価を促す</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面では価格が50日・200日移動平均を上回りRSI63台の強気圏にあり、ドル安（DXY98.80）とイールドカーブのプラス化（10-2スプレッド0.53%）が短期的な支援材料となっている。親市場である米国もslightly_bullishであり、リスクオン環境が継続している。しかし10年国債利回り4.34%がXLREの配当利回り3.43%を0.91%上回るネガティブスプレッドはREITの本質的なインカム魅力低下を示し、GDP年率0.48%という低成長は商業不動産需要の構造的弱体化を示唆する。CPI3.32%の高止まりが利下げ余地を狭め、PER33.47倍の割高感がダウンサイドリスクを増幅し、SKEW139.59のヘッジ需要も警戒サインだ。現時点ではテクニカル主導の短期モメンタムが優勢であるため「やや強気」と判断するが、ファンダメンタルズの逆風が顕在化すれば見通しは速やかに中立以下へ転落するリスクを内包する。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.58</div><div class="timeline-summary">テクニカル面では価格が50日・200日移動平均を上回りRSI63台の強気圏にあり、ドル安（DXY98.80）とイールドカーブのプラス化（10-2スプレッド0.53%）が短期的な支援材料となっている。親市場である米国もslightly_bul...</div></div><div class="timeline-row" title="XLREはテクニカル面でMA50・MA200を共に上回る明確な上昇トレンドを維持しており、DXY弱含みと配当利回り3.43%がブル要因として機能する。親マクロである米国の「やや強気（+1）」判断もセクターへの追い風となる。一方で、RSI14=76.79の深い過買い状態はPER(TTM)33.57倍の高バリュエーションと重なり、短期的な調整リスクを大幅に高めている。最大の制約はREITにとって最も本質的な金利・インフレデータが全欠損していることであり、割引率の変化1つでREITバリュエーションが大きく変動しうる中、現状は盲点が多い。VIXコンタンゴとSKEW高水準も中期リスクを示唆する。総合すると、テクニカルトレンドの強さを評価して「やや強気」とするが、データ欠損と過買い感を踏まえ確信度は低く抑える。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">XLREはテクニカル面でMA50・MA200を共に上回る明確な上昇トレンドを維持しており、DXY弱含みと配当利回り3.43%がブル要因として機能する。親マクロである米国の「やや強気（+1）」判断もセクターへの追い風となる。一方で、RSI14...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-05-22", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-10-19", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2028-04-21", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>素材・化学 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --line: #374151;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 42px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: 26px; line-height: 1.25; }
+    h2 { margin: 0 0 14px; font-size: 19px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .subtitle { margin-top: 8px; color: var(--muted); }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>素材・化学</h1>
+        <div class="subtitle">sector_jp:04 / slightly_bullish / confidence 0.52</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">ダッシュボードへ戻る</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">situation</div><div>素材・化学セクター(1620.T)は直近価格35,350円でMA50(35,334.8円)をわずかに上回り、MA200(31,605.1円)からは+11.8%の位置にある。RSI14は49.8と中立域で、ATR14%は1.94%と中程度のボラティリティ。PER(TTM)は19.9倍、配当利回りは2.31%。米国GDPは前期比年率+0.48%と事実上ゼロ成長、CPIは3.32%と高止まり、DXYは98.8と弱ドル環境にある。親カテゴリの日本株はslightly_bullish(スコア+1、信頼度0.62)と評価されている。</div></div><div class="detail-block"><div class="detail-title">bull_points</div><ul><li>claim: テクニカルの中期トレンドは強く、MA200から大幅な上方乖離を維持している / data: {&#x27;price&#x27;: 35350.0, &#x27;ma200&#x27;: 31605.094384765624, &#x27;rsi14&#x27;: 49.80495896149769} / evidence: 現在価格がMA200を+11.8%上回っており、中期上昇トレンドが継続中。RSI49.8は過買い領域に入っておらず、追加上昇余地がある。</li><li>claim: 弱ドル環境はドル建て資源・素材価格を押し上げ、セクター収益にプラス / data: {&#x27;dxy&#x27;: 98.80000305175781} / evidence: DXY98.8と米ドルが相対的に弱い局面では、コモディティ・原材料はドル建てで価格上昇しやすく、素材・化学セクターの輸出競争力と利益率改善に寄与する。</li><li>claim: 米国利回り曲線の正常化がリセッション懸念を和らげ、産業需要の持続を示唆 / data: {&#x27;yield_spread_10_2&#x27;: 0.53, &#x27;us10y&#x27;: 4.34, &#x27;us2y&#x27;: 3.83} / evidence: 10Y-2Y スプレッドが+0.53%とプラス圏を維持しており、逆イールドによる景気後退シグナルが解消されている。これは中期的な工業・素材需要の底割れリスクを低下させる。</li><li>claim: 株式P/Cレシオが過度な弱気でなく、短期的な売り圧力は限定的 / data: {&#x27;put_call_ratio_equity&#x27;: 0.65, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: 株式P/Cレシオが0.65と中立に近い水準で、投資家は極端なプット積み増しをしておらず、近い将来の大規模なポジション解消リスクが限定的。</li><li>claim: 親カテゴリの日本株がslightly_bullishと評価され、セクター全体の支援材料となる / data: {&#x27;related_macro_score&#x27;: 1, &#x27;related_macro_confidence&#x27;: 0.62} / evidence: 日本(country:JP)のマクロ判断はスコア+1・信頼度0.62であり、日経平均がMA50/MA200を大きく上回るなかで素材・化学セクターもその恩恵を受けやすい。</li></ul></div><div class="detail-block"><div class="detail-title">bear_points</div><ul><li>claim: 米国GDP成長率の事実上ゼロ水準が工業・素材需要の先行き悪化を示す / data: {&#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704} / evidence: GDP前期比年率+0.48%は景気拡大とほぼ呼べない水準であり、製造業や建設向け素材需要の停滞・減速が直接セクター業績を圧迫するリスクがある。素材・化学は最も景気感応度の高いセクターのひとつ。</li><li>claim: CPI高止まりによるFRB利下げ制約が資本コストを高め、設備投資を抑制する / data: {&#x27;cpi_yoy&#x27;: 3.3202055812236786, &#x27;fed_funds&#x27;: 3.64} / evidence: CPI3.32%はFRBの2%目標を大幅に上回り、利下げ余地を制限する。高金利環境の長期化は素材・化学向けの顧客である製造業や建設業の設備投資を抑え、需要減につながる。</li><li>claim: VIXコンタンゴ構造とSKEW高水準がテールリスクへの深刻な市場警戒を示す / data: {&#x27;vix&#x27;: 19.309999465942383, &#x27;vix9d&#x27;: 18.040000915527344, &#x27;vix3m&#x27;: 21.479999542236328, &#x27;skew&#x27;: 139.58999633789062} / evidence: VIX9D(18.04)&lt;VIX(19.31)&lt;VIX3M(21.48)のコンタンゴ構造は将来不確実性の高まりを示し、SKEW139.6はオプション市場が大きな下方テールリスクを織り込んでいることを意味する。</li><li>claim: 景気循環セクターとしてのPER約20倍は、弱成長・高金利環境での割高感を示す / data: {&#x27;pe_ttm&#x27;: 19.895687, &#x27;gdp_qoq_annualized&#x27;: 0.48224811236061704} / evidence: 素材・化学はシクリカルセクターであり、GDP成長率がほぼゼロの局面でPER19.9倍は過去の景気後退局面での典型的な割り込み水準(PER10-14倍台)と比較し高い。金利低下が期待できない環境で割高訂正リスクを内包する。</li><li>claim: ミシガン大消費者信頼感の低水準が最終需要の減退を示唆し、素材需要の川下を圧迫 / data: {&#x27;aaii_bull_pct_as_umcsent&#x27;: 53.3} / evidence: UMCSENTの値53.3は典型レンジ(50-110)の下限付近であり、消費者マインドの著しい悪化を示している。消費財・建材・自動車向け素材需要の減少につながる先行指標として機能する。</li></ul></div><div class="detail-block full"><div class="detail-title">synthesis</div><div>素材・化学セクターはテクニカル面でMA200から+11.8%と健全な中期上昇トレンドを維持し、弱ドル(DXY98.8)と正常な利回り曲線(+0.53%)はコモディティ価格と産業需要の底割れを防ぐ支援材料となっている。一方、米国GDP年率+0.48%という事実上ゼロ成長は景気感応度の高いシクリカルセクターにとって最大の逆風であり、CPI3.32%高止まりによるFRB緩和制約はバリュエーション(PER19.9倍)の圧縮リスクを高める。SKEW139.6とVIXコンタンゴは市場がテールリスクを深刻に警戒していることを示し、UMCSENT53.3の低消費者信頼感は最終需要の川下での停滞を示唆する。親カテゴリの日本株がslightly_bullishである点と弱ドル恩恵を勘案し、テクニカルの強さが短期的な支持材料となる「やや強気」と判断する。ただし、米国景気のスタグフレーション的リスクと高SKEW環境が中期見通しを抑制しているため、信頼度は中程度に留まる。</div></div><div class="detail-block"><div class="detail-title">key_risks</div><ul><li>米国GDPが2四半期連続マイナスに転落しリセッション認定となった場合、素材需要が急減しセクター全体が大幅下落する</li><li>FRBがCPI再上昇を受けて利上げ再開に転じた場合、高金利長期化でシクリカルバリュエーションが大幅圧縮される</li><li>DXYが急騰(105超)に転じた場合、ドル建てコモディティ価格が下落し素材・化学セクターの収益環境が急速に悪化する</li><li>SKEW高水準が示すテールリスクが現実化し(地政学・金融システムイベント)、リスクオフによりシクリカルセクターが集中売りを受ける</li><li>中国の不動産・製造業需要がさらに減速し、グローバルな素材需給バランスが大幅に緩む</li></ul></div><div class="detail-block"><div class="detail-title">key_catalysts</div><ul><li>FRBが予想より早期に利下げサイクルを開始し、製造業・建設向けの設備投資が回復するシナリオ</li><li>米国CPIが急低下し実質購買力が回復、消費財・自動車・建材向け素材需要が反発する</li><li>DXYのさらなる下落(95以下)でコモディティ価格が上昇し、素材セクターの収益期待が上方修正される</li><li>日本国内のインフラ・グリーントランスフォーメーション投資加速により国内素材需要が拡大する</li><li>RSI50前後からのブレイクアウトでテクニカルモメンタムが加速し、機関投資家の買い越しが誘発される</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="素材・化学セクターはテクニカル面でMA200から+11.8%と健全な中期上昇トレンドを維持し、弱ドル(DXY98.8)と正常な利回り曲線(+0.53%)はコモディティ価格と産業需要の底割れを防ぐ支援材料となっている。一方、米国GDP年率+0.48%という事実上ゼロ成長は景気感応度の高いシクリカルセクターにとって最大の逆風であり、CPI3.32%高止まりによるFRB緩和制約はバリュエーション(PER19.9倍)の圧縮リスクを高める。SKEW139.6とVIXコンタンゴは市場がテールリスクを深刻に警戒していることを示し、UMCSENT53.3の低消費者信頼感は最終需要の川下での停滞を示唆する。親カテゴリの日本株がslightly_bullishである点と弱ドル恩恵を勘案し、テクニカルの強さが短期的な支持材料となる「やや強気」と判断する。ただし、米国景気のスタグフレーション的リスクと高SKEW環境が中期見通しを抑制しているため、信頼度は中程度に留まる。"><div class="timeline-date">2026-04-25</div><div class="timeline-current">slightly_bullish / conf 0.52</div><div class="timeline-summary">素材・化学セクターはテクニカル面でMA200から+11.8%と健全な中期上昇トレンドを維持し、弱ドル(DXY98.8)と正常な利回り曲線(+0.53%)はコモディティ価格と産業需要の底割れを防ぐ支援材料となっている。一方、米国GDP年率+0...</div></div><div class="timeline-row" title="素材・化学セクター（1620.T）は価格がMA50・MA200の双方を上回る上昇トレンドにあり、RSI55台という中立域の位置からも過熱感は見られず、テクニカル面では穏やかな強気地合いが続いている。ドル安（DXY98.05）は商品価格への追い風となり、配当利回り2.31%が下値を支える。一方でMA200比+13.87%の乖離は平均回帰圧力を内包し、SKEW141.90とVIX3mコンタンゴ（21.24 vs 18.87）はテールリスクへの市場警戒を示している。PER20.18倍はシクリカルセクターとしてやや割高感があり、景気後退時の脆弱性を高める。主要マクロデータ（金利・GDP・CPI等）が悉く欠損しているため確信度は制限されるが、親マクロ（日本：slightly_bullish、スコア+1）との整合性を踏まえ、総合判断は「やや強気（slightly_bullish）」とする。"><div class="timeline-date">2026-04-22</div><div class="timeline-current">slightly_bullish / conf 0.42</div><div class="timeline-summary">素材・化学セクター（1620.T）は価格がMA50・MA200の双方を上回る上昇トレンドにあり、RSI55台という中立域の位置からも過熱感は見られず、テクニカル面では穏やかな強気地合いが続いている。ドル安（DXY98.05）は商品価格への追...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-04-22", "value": 1}, {"time": "2026-04-25", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-05-22", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-04-22", "label": "+1ヶ月予想", "target_time": "2026-05-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2026-10-19", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-04-22", "label": "+6ヶ月予想", "target_time": "2026-10-19"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2027-04-22", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-04-22", "label": "+1年予想", "target_time": "2027-04-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-22", "value": 1}, {"time": "2028-04-21", "value": 0}], "horizon": "forecast_2y", "issued_at": "2026-04-22", "label": "+2年予想", "target_time": "2028-04-21"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-05-25", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-04-25", "label": "+1ヶ月予想", "target_time": "2026-05-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2026-10-22", "value": -1}], "horizon": "forecast_6m", "issued_at": "2026-04-25", "label": "+6ヶ月予想", "target_time": "2026-10-22"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2027-04-25", "value": 0}], "horizon": "forecast_1y", "issued_at": "2026-04-25", "label": "+1年予想", "target_time": "2027-04-25"}, {"color": "#9ca3af", "data": [{"time": "2026-04-25", "value": 1}, {"time": "2028-04-24", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-04-25", "label": "+2年予想", "target_time": "2028-04-24"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>
