@@ -7,155 +7,323 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0b1120;
-      --panel: #111827;
-      --panel-soft: #1f2937;
-      --line: #374151;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.14);
+      --line-strong: rgba(148, 163, 184, 0.28);
       --text: #e5e7eb;
-      --muted: #9ca3af;
+      --muted: #94a3b8;
       --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --bull: #22c55e;
+      --bear: #f87171;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(1100px 700px at 12% -10%, rgba(56, 189, 248, 0.18) 0%, transparent 55%),
+        radial-gradient(900px 600px at 100% 0%, rgba(167, 139, 250, 0.16) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.55;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 1280px; margin: 0 auto; padding: 32px 20px 48px; }
-    header { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 26px; }
-    h1 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: 0.02em; }
-    h2 { margin: 0 0 18px; font-size: 20px; }
-    h3 { margin: 22px 0 10px; font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.04em; text-transform: none; border-left: 3px solid var(--accent); padding-left: 10px; }
+    main { max-width: 1320px; margin: 0 auto; padding: 40px 24px 56px; }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-end;
+      padding: 36px 32px 28px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(167, 139, 250, 0.14) 50%, rgba(15, 23, 42, 0.6) 100%);
+      border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px 220px at 90% 10%, rgba(255, 255, 255, 0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      font-weight: 700;
+      padding: 4px 10px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 999px;
+      margin-bottom: 14px;
+      background: rgba(56, 189, 248, 0.08);
+    }
+    h1 { margin: 0; font-size: 34px; font-weight: 800; letter-spacing: 0.01em; line-height: 1.18; }
+    .hero-meta { margin-top: 14px; color: var(--muted); font-size: 14px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .hero-meta .dot { opacity: 0.5; }
+    h2 { margin: 0 0 6px; font-size: 18px; font-weight: 700; letter-spacing: 0.02em; }
+    .card-head-meta { color: var(--muted); font-size: 12px; margin-bottom: 16px; letter-spacing: 0.02em; }
+    h3 { margin: 22px 0 10px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    h3 .h3-count { color: var(--muted); font-weight: 500; letter-spacing: 0.04em; text-transform: none; margin-left: 8px; font-size: 12px; }
     a { color: var(--accent); }
-    .updated { color: var(--muted); font-size: 13px; white-space: nowrap; }
-    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px; margin: 18px 0; }
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-    .cell { min-height: 92px; border-radius: 10px; padding: 12px; color: #06121f; border: 1px solid rgba(255,255,255,0.18); transition: transform 120ms ease, box-shadow 120ms ease; }
-    .cell:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
-    .cell.missing { background: #374151; color: #d1d5db; border-color: rgba(255,255,255,0.08); }
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 26px;
+      margin: 18px 0;
+      box-shadow: var(--shadow);
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 18px 0; }
+    .kpi {
+      background: linear-gradient(140deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
+    .kpi-label { font-size: 11px; letter-spacing: 0.16em; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+    .kpi-value { margin-top: 8px; font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -0.01em; }
+    .kpi-value.bullish { color: var(--bull); }
+    .kpi-value.bearish { color: var(--bear); }
+    .kpi-value.neutral { color: #cbd5e1; }
+    .kpi-value.confidence { color: var(--accent); }
+    .kpi-sub { margin-top: 8px; font-size: 12px; color: var(--muted); }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; }
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .legend-chip .swatch { width: 10px; height: 10px; border-radius: 50%; }
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+    .cell {
+      position: relative;
+      min-height: 96px;
+      border-radius: 12px;
+      padding: 14px 12px 12px;
+      color: #06121f;
+      border: 1px solid rgba(255,255,255,0.20);
+      transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+      overflow: hidden;
+    }
+    .cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cell:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -16px rgba(0,0,0,0.6); filter: brightness(1.05); }
+    .cell.missing {
+      background: linear-gradient(140deg, #1f2937, #111827);
+      color: #cbd5e1;
+      border-color: rgba(148, 163, 184, 0.16);
+    }
+    .cell.missing::before { display: none; }
     .cell-link { color: inherit; text-decoration: none; display: block; height: 100%; }
-    .target-name { font-weight: 700; font-size: 14px; line-height: 1.35; }
-    .meta { margin-top: 10px; font-size: 12px; font-weight: 650; opacity: 0.92; }
-    .meta .conf { display: inline-block; margin-left: 6px; opacity: 0.75; font-weight: 600; }
+    .target-name { font-weight: 700; font-size: 14px; line-height: 1.35; padding-right: 38px; position: relative; z-index: 1; }
+    .score-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      min-width: 32px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(8, 12, 24, 0.55);
+      color: #f8fafc;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255,255,255,0.2);
+      z-index: 2;
+    }
+    .score-badge.miss { background: rgba(8, 12, 24, 0.4); color: #cbd5e1; }
+    .meta { margin-top: 10px; font-size: 12px; font-weight: 700; position: relative; z-index: 1; }
+    .meta .conf { display: inline-block; margin-left: 8px; opacity: 0.78; font-weight: 600; }
     .table { width: 100%; border-collapse: collapse; }
-    .table th, .table td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; }
-    .table th { color: var(--muted); font-size: 12px; font-weight: 650; }
-    .table td.delta-up { color: #22c55e; font-weight: 700; }
-    .table td.delta-down { color: #f87171; font-weight: 700; }
-    .placeholder { color: var(--muted); padding: 14px 0; }
-    .status-row { display: grid; grid-template-columns: 140px 70px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .table th, .table td { border-bottom: 1px solid var(--line); padding: 11px 10px; text-align: left; }
+    .table th { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .table td.delta-up { color: var(--bull); font-weight: 800; }
+    .table td.delta-down { color: var(--bear); font-weight: 800; }
+    .placeholder { color: var(--muted); padding: 14px 0; font-size: 14px; }
+    .status-row {
+      display: grid;
+      grid-template-columns: 180px 64px 1fr;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
     .status-row:last-child { border-bottom: none; }
-    .status-name { font-weight: 700; }
-    .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; background: var(--panel-soft); color: var(--text); font-size: 12px; }
-    footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
-    footer a { text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .status-name { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .status-name .swatch { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--panel-soft); color: var(--text); font-size: 12px; font-weight: 700; border: 1px solid var(--line); }
+    .bottom-nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .bottom-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+    .bottom-nav a:hover { background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.4); }
+    @media (max-width: 760px) {
+      main { padding: 24px 16px 40px; }
+      .hero { flex-direction: column; align-items: flex-start; padding: 26px 22px 22px; }
+      h1 { font-size: 26px; }
+      .status-row { grid-template-columns: 1fr; gap: 4px; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <header>
-      <h1>マクロ判断ダッシュボード</h1>
-      <div class="updated">更新: 2026-04-25 19:23 JST</div>
+    <header class="hero">
+      <div class="hero-text">
+        <span class="eyebrow">マクロ判断レイヤー</span>
+        <h1>マクロ判断ダッシュボード</h1>
+        <div class="hero-meta">
+          <span>更新 2026-04-25 19:46 JST</span>
+          <span class="dot">•</span>
+          <span>判断対象 70 件 ／ 判断済み 52 件</span>
+        </div>
+      </div>
     </header>
-    <section class="card"><h2>ヒートマップ</h2>
-<h3>市場全体</h3>
+    <section class="card"><h2>今週の全体感</h2><div class="kpi-grid"><div class="kpi"><div class="kpi-label">強気判断</div><div class="kpi-value bullish">37</div><div class="kpi-sub">やや強気以上の対象</div></div><div class="kpi"><div class="kpi-label">弱気判断</div><div class="kpi-value bearish">10</div><div class="kpi-sub">やや弱気以下の対象</div></div><div class="kpi"><div class="kpi-label">中立</div><div class="kpi-value neutral">5</div><div class="kpi-sub">スコア 0 の対象</div></div><div class="kpi"><div class="kpi-label">平均信頼度</div><div class="kpi-value confidence">42%</div><div class="kpi-sub">判断済み対象の平均</div></div><div class="kpi"><div class="kpi-label">今週の変化点</div><div class="kpi-value">0</div><div class="kpi-sub">前週比 ±2 段階以上</div></div></div></section>
+<section class="card"><h2>判断ラベル</h2><div class="card-head-meta">7 段階の強弱と未判定</div><div class="legend"><span class="legend-chip"><span class="swatch" style="background:#15803d"></span>かなり強気（+3）</span><span class="legend-chip"><span class="swatch" style="background:#22c55e"></span>強気（+2）</span><span class="legend-chip"><span class="swatch" style="background:#86efac"></span>やや強気（+1）</span><span class="legend-chip"><span class="swatch" style="background:#9ca3af"></span>中立（0）</span><span class="legend-chip"><span class="swatch" style="background:#fca5a5"></span>やや弱気（-1）</span><span class="legend-chip"><span class="swatch" style="background:#dc2626"></span>弱気（-2）</span><span class="legend-chip"><span class="swatch" style="background:#b91c1c"></span>かなり弱気（-3）</span><span class="legend-chip"><span class="swatch" style="background:#1f2937;border:1px solid #475569"></span>未判定</span></div></section>
+<section class="card"><h2>ヒートマップ</h2><div class="card-head-meta">70 対象 ／ クリックで詳細ページ</div>
+<h3>市場全体<span class="h3-count">3 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/market_global_risk.html"><div class="cell" style="background:#86efac"><div class="target-name">Global Risk レジーム (on/off)</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
-<a class="cell-link" href="macro/market_global_equity.html"><div class="cell" style="background:#86efac"><div class="target-name">世界株式</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/market_global_bond.html"><div class="cell" style="background:#86efac"><div class="target-name">世界債券</div><div class="meta">やや強気<span class="conf">信頼度 32%</span></div></div></a>
+<a class="cell-link" href="macro/market_global_risk.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">Global Risk レジーム (on/off)</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
+<a class="cell-link" href="macro/market_global_equity.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">世界株式</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/market_global_bond.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">世界債券</div><div class="meta">やや強気<span class="conf">信頼度 32%</span></div></div></a>
 </div>
-<h3>国・地域</h3>
+<h3>国・地域<span class="h3-count">7 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/country_US.html"><div class="cell" style="background:#86efac"><div class="target-name">米国</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
-<a class="cell-link" href="macro/country_JP.html"><div class="cell" style="background:#86efac"><div class="target-name">日本</div><div class="meta">やや強気<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/country_EU.html"><div class="cell" style="background:#86efac"><div class="target-name">欧州</div><div class="meta">やや強気<span class="conf">信頼度 52%</span></div></div></a>
-<a class="cell-link" href="macro/country_UK.html"><div class="cell" style="background:#86efac"><div class="target-name">英国</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
-<a class="cell-link" href="macro/country_CN.html"><div class="cell" style="background:#86efac"><div class="target-name">中国</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/country_IN.html"><div class="cell" style="background:#86efac"><div class="target-name">インド</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/country_EM.html"><div class="cell" style="background:#86efac"><div class="target-name">新興国合計</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/country_US.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">米国</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/country_JP.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">日本</div><div class="meta">やや強気<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/country_EU.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">欧州</div><div class="meta">やや強気<span class="conf">信頼度 52%</span></div></div></a>
+<a class="cell-link" href="macro/country_UK.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">英国</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
+<a class="cell-link" href="macro/country_CN.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">中国</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/country_IN.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">インド</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/country_EM.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">新興国合計</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
 </div>
-<h3>アセットクラス</h3>
+<h3>アセットクラス<span class="h3-count">14 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/asset_us_equity.html"><div class="cell" style="background:#86efac"><div class="target-name">米国株</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
-<a class="cell-link" href="macro/asset_jp_equity.html"><div class="cell" style="background:#86efac"><div class="target-name">日本株</div><div class="meta">やや強気<span class="conf">信頼度 48%</span></div></div></a>
-<a class="cell-link" href="macro/asset_ust_short.html"><div class="cell" style="background:#86efac"><div class="target-name">米国債 (短期)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/asset_ust_long.html"><div class="cell" style="background:#86efac"><div class="target-name">米国債 (長期)</div><div class="meta">やや強気<span class="conf">信頼度 37%</span></div></div></a>
-<a class="cell-link" href="macro/asset_corporate_bond.html"><div class="cell" style="background:#86efac"><div class="target-name">社債 (投資適格+ハイイールド)</div><div class="meta">やや強気<span class="conf">信頼度 38%</span></div></div></a>
-<a class="cell-link" href="macro/asset_gold.html"><div class="cell" style="background:#22c55e"><div class="target-name">金</div><div class="meta">強気<span class="conf">信頼度 55%</span></div></div></a>
-<a class="cell-link" href="macro/asset_crude_oil.html"><div class="cell" style="background:#86efac"><div class="target-name">原油</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/asset_industrial_metals.html"><div class="cell" style="background:#86efac"><div class="target-name">産業金属</div><div class="meta">やや強気<span class="conf">信頼度 46%</span></div></div></a>
-<a class="cell-link" href="macro/asset_agriculture.html"><div class="cell" style="background:#86efac"><div class="target-name">農産物</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
-<a class="cell-link" href="macro/asset_usd.html"><div class="cell" style="background:#dc2626"><div class="target-name">米ドル</div><div class="meta">弱気<span class="conf">信頼度 50%</span></div></div></a>
-<a class="cell-link" href="macro/asset_jpy.html"><div class="cell" style="background:#fca5a5"><div class="target-name">日本円 (対ドル)</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
-<a class="cell-link" href="macro/asset_eur.html"><div class="cell" style="background:#86efac"><div class="target-name">ユーロ (対ドル)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/asset_cny.html"><div class="cell" style="background:#86efac"><div class="target-name">人民元 (対ドル)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/asset_crypto.html"><div class="cell" style="background:#86efac"><div class="target-name">暗号資産</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/asset_us_equity.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">米国株</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
+<a class="cell-link" href="macro/asset_jp_equity.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">日本株</div><div class="meta">やや強気<span class="conf">信頼度 48%</span></div></div></a>
+<a class="cell-link" href="macro/asset_ust_short.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">米国債 (短期)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/asset_ust_long.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">米国債 (長期)</div><div class="meta">やや強気<span class="conf">信頼度 37%</span></div></div></a>
+<a class="cell-link" href="macro/asset_corporate_bond.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">社債 (投資適格+ハイイールド)</div><div class="meta">やや強気<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/asset_gold.html"><div class="cell" style="background:#22c55e; color:#f0fdf4"><div class="score-badge">+2</div><div class="target-name">金</div><div class="meta">強気<span class="conf">信頼度 55%</span></div></div></a>
+<a class="cell-link" href="macro/asset_crude_oil.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">原油</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/asset_industrial_metals.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">産業金属</div><div class="meta">やや強気<span class="conf">信頼度 46%</span></div></div></a>
+<a class="cell-link" href="macro/asset_agriculture.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">農産物</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/asset_usd.html"><div class="cell" style="background:#dc2626; color:#fff5f5"><div class="score-badge">-2</div><div class="target-name">米ドル</div><div class="meta">弱気<span class="conf">信頼度 50%</span></div></div></a>
+<a class="cell-link" href="macro/asset_jpy.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">日本円 (対ドル)</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/asset_eur.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">ユーロ (対ドル)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/asset_cny.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">人民元 (対ドル)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/asset_crypto.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">暗号資産</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
 </div>
-<h3>米国セクター</h3>
+<h3>米国セクター<span class="h3-count">11 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/sector_us_XLK.html"><div class="cell" style="background:#86efac"><div class="target-name">情報技術</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLF.html"><div class="cell" style="background:#86efac"><div class="target-name">金融</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLE.html"><div class="cell" style="background:#fca5a5"><div class="target-name">エネルギー</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLV.html"><div class="cell" style="background:#fca5a5"><div class="target-name">ヘルスケア</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLI.html"><div class="cell" style="background:#86efac"><div class="target-name">資本財</div><div class="meta">やや強気<span class="conf">信頼度 47%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLY.html"><div class="cell" style="background:#86efac"><div class="target-name">一般消費財</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLP.html"><div class="cell" style="background:#9ca3af"><div class="target-name">生活必需品</div><div class="meta">中立<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLU.html"><div class="cell" style="background:#9ca3af"><div class="target-name">公益事業</div><div class="meta">中立<span class="conf">信頼度 38%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLB.html"><div class="cell" style="background:#86efac"><div class="target-name">素材</div><div class="meta">やや強気<span class="conf">信頼度 43%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLRE.html"><div class="cell" style="background:#86efac"><div class="target-name">不動産</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_us_XLC.html"><div class="cell" style="background:#86efac"><div class="target-name">コミュニケーション・サービス</div><div class="meta">やや強気<span class="conf">信頼度 48%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLK.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">情報技術</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLF.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">金融</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLE.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">エネルギー</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLV.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">ヘルスケア</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLI.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">資本財</div><div class="meta">やや強気<span class="conf">信頼度 47%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLY.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">一般消費財</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLP.html"><div class="cell" style="background:#9ca3af; color:#0b1220"><div class="score-badge">0</div><div class="target-name">生活必需品</div><div class="meta">中立<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLU.html"><div class="cell" style="background:#9ca3af; color:#0b1220"><div class="score-badge">0</div><div class="target-name">公益事業</div><div class="meta">中立<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLB.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">素材</div><div class="meta">やや強気<span class="conf">信頼度 43%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLRE.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">不動産</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_us_XLC.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">コミュニケーション・サービス</div><div class="meta">やや強気<span class="conf">信頼度 48%</span></div></div></a>
 </div>
-<h3>日本セクター</h3>
+<h3>日本セクター<span class="h3-count">17 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/sector_jp_01.html"><div class="cell" style="background:#86efac"><div class="target-name">食品</div><div class="meta">やや強気<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_02.html"><div class="cell" style="background:#fca5a5"><div class="target-name">エネルギー資源</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_03.html"><div class="cell" style="background:#86efac"><div class="target-name">建設・資材</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_04.html"><div class="cell" style="background:#86efac"><div class="target-name">素材・化学</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_05.html"><div class="cell" style="background:#fca5a5"><div class="target-name">医薬品</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_06.html"><div class="cell" style="background:#fca5a5"><div class="target-name">自動車・輸送機</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_07.html"><div class="cell" style="background:#86efac"><div class="target-name">鉄鋼・非鉄</div><div class="meta">やや強気<span class="conf">信頼度 37%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_08.html"><div class="cell" style="background:#fca5a5"><div class="target-name">機械</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_09.html"><div class="cell" style="background:#86efac"><div class="target-name">電機・精密</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_10.html"><div class="cell" style="background:#86efac"><div class="target-name">情報通信・サービスその他</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_11.html"><div class="cell" style="background:#fca5a5"><div class="target-name">電力・ガス</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_12.html"><div class="cell" style="background:#fca5a5"><div class="target-name">運輸・物流</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_13.html"><div class="cell" style="background:#9ca3af"><div class="target-name">商社・卸売</div><div class="meta">中立<span class="conf">信頼度 22%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_14.html"><div class="cell" style="background:#9ca3af"><div class="target-name">小売</div><div class="meta">中立<span class="conf">信頼度 40%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_15.html"><div class="cell" style="background:#86efac"><div class="target-name">銀行</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_16.html"><div class="cell" style="background:#86efac"><div class="target-name">金融 (除く銀行)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
-<a class="cell-link" href="macro/sector_jp_17.html"><div class="cell" style="background:#9ca3af"><div class="target-name">不動産</div><div class="meta">中立<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_01.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">食品</div><div class="meta">やや強気<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_02.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">エネルギー資源</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_03.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">建設・資材</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_04.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">素材・化学</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_05.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">医薬品</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_06.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">自動車・輸送機</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_07.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">鉄鋼・非鉄</div><div class="meta">やや強気<span class="conf">信頼度 37%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_08.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">機械</div><div class="meta">やや弱気<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_09.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">電機・精密</div><div class="meta">やや強気<span class="conf">信頼度 50%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_10.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">情報通信・サービスその他</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_11.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">電力・ガス</div><div class="meta">やや弱気<span class="conf">信頼度 38%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_12.html"><div class="cell" style="background:#fca5a5; color:#3a0000"><div class="score-badge">-1</div><div class="target-name">運輸・物流</div><div class="meta">やや弱気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_13.html"><div class="cell" style="background:#9ca3af; color:#0b1220"><div class="score-badge">0</div><div class="target-name">商社・卸売</div><div class="meta">中立<span class="conf">信頼度 22%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_14.html"><div class="cell" style="background:#9ca3af; color:#0b1220"><div class="score-badge">0</div><div class="target-name">小売</div><div class="meta">中立<span class="conf">信頼度 40%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_15.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">銀行</div><div class="meta">やや強気<span class="conf">信頼度 45%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_16.html"><div class="cell" style="background:#86efac; color:#0a2912"><div class="score-badge">+1</div><div class="target-name">金融 (除く銀行)</div><div class="meta">やや強気<span class="conf">信頼度 42%</span></div></div></a>
+<a class="cell-link" href="macro/sector_jp_17.html"><div class="cell" style="background:#9ca3af; color:#0b1220"><div class="score-badge">0</div><div class="target-name">不動産</div><div class="meta">中立<span class="conf">信頼度 38%</span></div></div></a>
 </div>
-<h3>通貨</h3>
+<h3>通貨<span class="h3-count">0 件</span></h3>
 <div class="placeholder">対象なし</div>
-<h3>テーマ</h3>
+<h3>テーマ<span class="h3-count">18 件</span></h3>
 <div class="category-grid">
-<a class="cell-link" href="macro/theme_ai_general.html"><div class="cell missing"><div class="target-name">AI 全般</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_memory.html"><div class="cell missing"><div class="target-name">メモリ (HBM/DRAM/NAND)</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_gpu_ai_accelerator.html"><div class="cell missing"><div class="target-name">GPU・AI アクセラレータ</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_data_center.html"><div class="cell missing"><div class="target-name">データセンター</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_quantum_computing.html"><div class="cell missing"><div class="target-name">量子コンピューティング</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_space.html"><div class="cell missing"><div class="target-name">宇宙</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_robotics.html"><div class="cell missing"><div class="target-name">ロボット</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_cybersecurity.html"><div class="cell missing"><div class="target-name">サイバーセキュリティ</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_decarbonization.html"><div class="cell missing"><div class="target-name">脱炭素</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_renewable_energy.html"><div class="cell missing"><div class="target-name">再生可能エネルギー</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_nuclear.html"><div class="cell missing"><div class="target-name">原発</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_ev.html"><div class="cell missing"><div class="target-name">EV (電気自動車)</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_hydrogen.html"><div class="cell missing"><div class="target-name">水素</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_glp1_obesity.html"><div class="cell missing"><div class="target-name">肥満薬 (GLP-1)</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_gene_cell_therapy.html"><div class="cell missing"><div class="target-name">遺伝子・細胞治療</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_india.html"><div class="cell missing"><div class="target-name">インド (投資フロー)</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_defense.html"><div class="cell missing"><div class="target-name">防衛</div><div class="meta">未判定</div></div></a>
-<a class="cell-link" href="macro/theme_reshoring.html"><div class="cell missing"><div class="target-name">リショアリング (半導体・製造回帰)</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_ai_general.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">AI 全般</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_memory.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">メモリ (HBM/DRAM/NAND)</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_gpu_ai_accelerator.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">GPU・AI アクセラレータ</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_data_center.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">データセンター</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_quantum_computing.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">量子コンピューティング</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_space.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">宇宙</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_robotics.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">ロボット</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_cybersecurity.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">サイバーセキュリティ</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_decarbonization.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">脱炭素</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_renewable_energy.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">再生可能エネルギー</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_nuclear.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">原発</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_ev.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">EV (電気自動車)</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_hydrogen.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">水素</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_glp1_obesity.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">肥満薬 (GLP-1)</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_gene_cell_therapy.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">遺伝子・細胞治療</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_india.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">インド (投資フロー)</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_defense.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">防衛</div><div class="meta">未判定</div></div></a>
+<a class="cell-link" href="macro/theme_reshoring.html"><div class="cell missing"><div class="score-badge miss">―</div><div class="target-name">リショアリング (半導体・製造回帰)</div><div class="meta">未判定</div></div></a>
 </div>
 </section>
 <section class="card"><h2>今週の変化点</h2><div class="placeholder">今週の大きな変化点はありません</div></section>
-<section class="card"><h2>テーマの段階</h2><div class="status-row"><div class="status-name">兆し（新規浮上）</div><div><span class="pill">18</span></div><div>AI 全般、EV (電気自動車)、GPU・AI アクセラレータ、インド (投資フロー)、サイバーセキュリティ、データセンター、メモリ (HBM/DRAM/NAND)、リショアリング (半導体・製造回帰)、ロボット、再生可能エネルギー、原発、宇宙、水素、肥満薬 (GLP-1)、脱炭素、遺伝子・細胞治療、量子コンピューティング、防衛</div></div><div class="status-row"><div class="status-name">勢いあり</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name">本格化</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name">減速</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name">終息</div><div><span class="pill">0</span></div><div>―</div></div></section>
+<section class="card"><h2>テーマの段階</h2><div class="card-head-meta">浮上 → 終息までの遷移</div><div class="status-row"><div class="status-name"><span class="swatch" style="background:#a78bfa"></span>兆し（新規浮上）</div><div><span class="pill">18</span></div><div>AI 全般、EV (電気自動車)、GPU・AI アクセラレータ、インド (投資フロー)、サイバーセキュリティ、データセンター、メモリ (HBM/DRAM/NAND)、リショアリング (半導体・製造回帰)、ロボット、再生可能エネルギー、原発、宇宙、水素、肥満薬 (GLP-1)、脱炭素、遺伝子・細胞治療、量子コンピューティング、防衛</div></div><div class="status-row"><div class="status-name"><span class="swatch" style="background:#38bdf8"></span>勢いあり</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name"><span class="swatch" style="background:#22c55e"></span>本格化</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name"><span class="swatch" style="background:#f59e0b"></span>減速</div><div><span class="pill">0</span></div><div>―</div></div><div class="status-row"><div class="status-name"><span class="swatch" style="background:#64748b"></span>終息</div><div><span class="pill">0</span></div><div>―</div></div></section>
 <section class="card"><h2>判断精度ハイライト</h2><div class="placeholder">精度データは 2026-W21 以降蓄積開始</div></section>
-    <footer><a href="./index.html">パフォーマンスダッシュボードへ →</a></footer>
+    <nav class="bottom-nav">
+      <a href="./index.html">← パフォーマンスダッシュボード</a>
+      <a href="./strategies.html">戦略詳細</a>
+    </nav>
   </main>
 </body>
 </html>
