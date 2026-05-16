@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>メキシコ 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 560px at 10% -8%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(700px 480px at 100% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 36px 24px 48px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 22px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.12) 50%, rgba(15,23,42,0.55) 100%); border: 1px solid rgba(148,163,184,0.18); box-shadow: var(--shadow); }
+    h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 800; letter-spacing: 0.005em; }
+    h2 { margin: 0 0 14px; font-size: 18px; font-weight: 700; }
+    h3 { margin: 16px 0 8px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    a { color: var(--accent); }
+    .back { color: var(--text); font-size: 13px; white-space: nowrap; padding: 8px 14px; border-radius: 10px; background: rgba(15,23,42,0.55); border: 1px solid rgba(148,163,184,0.2); text-decoration: none; transition: background 140ms ease; }
+    .back:hover { background: rgba(56,189,248,0.16); }
+    .subtitle { margin-top: 12px; color: var(--text); font-size: 15px; }
+    .subtitle strong { color: var(--accent); font-weight: 700; }
+    .card { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin: 18px 0; box-shadow: var(--shadow); }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>メキシコ</h1>
+        <div class="subtitle">現在の判断: <strong>やや強気</strong>　／　信頼度 50%</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">← マクロ判断一覧へ</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">現在の状況</div><div>EWWは79.0ドルで推移し、MA50（76.27）およびMA200（70.13）を両方上回っており、中期的な上昇トレンドを維持している。RSI14は54.25と中立域にあり、過熱感はない。バリュエーションはPER TTM 12.93・配当利回り3.15%と相対的に割安な水準にある。米国マクロは前期比年率1.99%成長と緩やかなプラスを維持しているが、CPI前年比は3.95%と依然高止まりしている。DXYは98.88と直近高値から低下しており、新興国資産にとって追い風となっている。VIXは17.26と落ち着いているが、VIX3M（20.85）がスポットを上回り、中期的な不確実性が織り込まれている。</div></div><div class="detail-block"><div class="detail-title">強気の論点</div><ul><li>claim: 価格はMA50・MA200の両方を上回り、中期的な上昇トレンドが確立されている / data: {&#x27;price&#x27;: 79.0, &#x27;ma50&#x27;: 76.26980041503906, &#x27;ma200&#x27;: 70.1335099029541, &#x27;rsi14&#x27;: 54.25432331216838} / evidence: 現値79.0はMA50（76.27）を約3.6%、MA200（70.13）を約12.6%上回っており、テクニカル的に強い位置にある。RSI14が54.25と中立域にあることから過熱による売り圧力も限定的。</li><li>claim: PER低位・配当利回り高水準で相対的バリュエーションが魅力的 / data: {&#x27;pe_ttm&#x27;: 12.933076, &#x27;div_yield&#x27;: 3.15, &#x27;us2y&#x27;: 4.0} / evidence: PER TTMが12.93と先進国株式対比で割安感があり、配当利回り3.15%は米国債利回り（US2Y 4.0%）との差を考慮しても競争力がある。長期投資家にとってエントリーコストが低い水準。</li><li>claim: DXY低下が新興国資産への追い風となっている / data: {&#x27;dxy&#x27;: 98.87999725341797} / evidence: DXYが98.88と100を下回る水準まで低下しており、ドル建て資産からのリパトリが新興国株式へのフロー改善につながりやすい環境にある。メキシコペソ安圧力が緩和されれば輸入インフレも抑制される。</li><li>claim: 米国経済は緩やかなプラス成長を維持しており、対米輸出依存のメキシコ経済の需要基盤が保たれている / data: {&#x27;gdp_qoq_annualized&#x27;: 1.9897217789708987, &#x27;unrate&#x27;: 4.3} / evidence: 米GDP前期比年率1.99%はリセッション水準を上回っており、NAFTA/USMCA圏の最大輸出市場として米国消費が継続することでメキシコ製造業・輸出セクターへの需要が維持される。</li><li>claim: VIXが落ち着いたリスクオン環境は新興国株式への資金流入を後押しする / data: {&#x27;vix&#x27;: 17.260000228881836, &#x27;vix9d&#x27;: 15.140000343322754, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: VIX 17.26・VIX9D 15.14と短期ボラティリティは低位で安定しており、投資家のリスク選好が維持されやすい環境。株式プットコール比率も0.65と過度な防御ポジションを示していない。</li></ul></div><div class="detail-block"><div class="detail-title">弱気の論点</div><ul><li>claim: VIX3MがスポットVIXを大幅に上回り、中期的な市場リスクが高まっている / data: {&#x27;vix&#x27;: 17.260000228881836, &#x27;vix3m&#x27;: 20.850000381469727, &#x27;skew&#x27;: 139.32000732421875} / evidence: VIX3M（20.85）はVIX（17.26）を約3.6ポイント上回っており、投資家が数ヶ月先にかけてボラティリティ上昇を警戒していることを示す。SKEWが139.32と高水準にあり、テール・リスクに対するヘッジ需要が強い。</li><li>claim: 米国CPI高止まりがFedの利下げペースを抑制し、EM資産のバリュエーション圧縮リスクが残る / data: {&#x27;cpi_yoy&#x27;: 3.9470269087042764, &#x27;fed_funds&#x27;: 3.63, &#x27;us10y&#x27;: 4.47} / evidence: CPI前年比3.95%はFed目標2%を大きく上回っており、政策金利3.63%の急速な引き下げは困難。高い米国金利環境が継続すればEWWのディスカウントレートは高止まりし、バリュエーション拡大余地を制限する。</li><li>claim: EWW運用残高が約22億ドルと限定的で、流動性・フロー反転リスクが高い / data: {&#x27;primary_etf_total_assets_usdm&#x27;: 2194.174464} / evidence: EWWの総資産2,194百万ドルはメジャーなEM ETFと比較して小規模であり、機関投資家の大口売りが発生した場合に流動性プレミアムが急拡大するリスクがある。リスクオフ局面での下落幅が増幅されやすい。</li><li>claim: ATR14%が約2%と日次ボラティリティが高く、短期的な価格変動リスクが大きい / data: {&#x27;atr14_pct&#x27;: 2.047933682966051, &#x27;price&#x27;: 79.0} / evidence: ATR14の対価格比率2.05%は、EWWが日次で約1.6ドルの値幅変動を持つことを意味し、レバレッジポジションや損切り執行リスクが高い。短期トレーダーの強制損切りがトレンド反転を加速する可能性がある。</li><li>claim: プットコール比率（全体）0.95はヘッジ需要の高さを示し、機関投資家がダウンサイドを警戒している / data: {&#x27;put_call_ratio_total&#x27;: 0.95, &#x27;skew&#x27;: 139.32000732421875} / evidence: 総合プットコール比率0.95はニュートラル水準（1.0）に近く、市場全体では防御的なポジション構築が進んでいることを示唆する。SKEWの高さと合わせて、機関投資家がテール・リスクを強く警戒しているシグナルとなる。</li></ul></div><div class="detail-block full"><div class="detail-title">総合判断</div><div>テクニカル面ではEWWが両移動平均を上回りRSI中立域を維持する強い構造を示しており、PER低位・配当利回り3%超のバリュエーション魅力と弱いDXYが買い材料として機能している。一方で、VIX3MとSKEWの高さが示す中期的テール・リスク、CPI高止まりによる米国金利の高止まり懸念、EWWの小規模な運用資産による流動性リスク、そして米・メキシコ間の通商政策不確実性（関税リスク）がダウンサイドを制限している。Bull材料がやや優位と判断するが、確信度は中程度にとどまり、`slightly_bullish`が適切と判断する。</div></div><div class="detail-block"><div class="detail-title">主なリスク</div><ul><li>米国によるメキシコへの追加関税発動・USMCA見直しが輸出・製造業セクターを直撃し、EWWの大幅下落を引き起こすリスク</li><li>メキシコペソの急落（USD/MXNの大幅上昇）がドル建てEWWのリターンを毀損するリスク</li><li>米国CPI再加速によるFedの利上げ再開または長期高金利維持が新興国からの資本流出を加速するリスク</li><li>SKEWおよびVIX3M高水準が示すテール・イベント（地政学リスク・金融システムショック）の顕在化</li><li>シェインバウム政権によるエネルギー国有化拡大や資源セクター規制強化など、政策リスクの高まり</li></ul></div><div class="detail-block"><div class="detail-title">主な触媒（カタリスト）</div><ul><li>USMCA枠組みのポジティブな再確認・貿易摩擦緩和によるニアショアリング投資の加速</li><li>Fed利下げ加速によるDXYのさらなる低下とEM資産全般への資金流入</li><li>メキシコ国内インフレ鎮静化と中央銀行の利下げによる内需・消費の回復</li><li>半導体・自動車産業のニアショアリング大型投資案件の具体化によるメキシコGDP成長率の上方修正</li><li>VIXの低位安定継続による投資家リスク選好の改善とEMへのETFフロー増加</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面ではEWWが両移動平均を上回りRSI中立域を維持する強い構造を示しており、PER低位・配当利回り3%超のバリュエーション魅力と弱いDXYが買い材料として機能している。一方で、VIX3MとSKEWの高さが示す中期的テール・リスク、CPI高止まりによる米国金利の高止まり懸念、EWWの小規模な運用資産による流動性リスク、そして米・メキシコ間の通商政策不確実性（関税リスク）がダウンサイドを制限している。Bull材料がやや優位と判断するが、確信度は中程度にとどまり、`slightly_bullish`が適切と判断する。"><div class="timeline-date">2026-05-16</div><div class="timeline-current">やや強気　／　信頼度 50%</div><div class="timeline-summary">テクニカル面ではEWWが両移動平均を上回りRSI中立域を維持する強い構造を示しており、PER低位・配当利回り3%超のバリュエーション魅力と弱いDXYが買い材料として機能している。一方で、VIX3MとSKEWの高さが示す中期的テール・リスク、...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-05-16", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2026-06-15", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-05-16", "label": "+1ヶ月予想", "target_time": "2026-06-15"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2026-11-12", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-05-16", "label": "+6ヶ月予想", "target_time": "2026-11-12"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2027-05-16", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-05-16", "label": "+1年予想", "target_time": "2027-05-16"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2028-05-15", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-05-16", "label": "+2年予想", "target_time": "2028-05-15"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ベトナム 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 560px at 10% -8%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(700px 480px at 100% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 36px 24px 48px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 22px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.12) 50%, rgba(15,23,42,0.55) 100%); border: 1px solid rgba(148,163,184,0.18); box-shadow: var(--shadow); }
+    h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 800; letter-spacing: 0.005em; }
+    h2 { margin: 0 0 14px; font-size: 18px; font-weight: 700; }
+    h3 { margin: 16px 0 8px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    a { color: var(--accent); }
+    .back { color: var(--text); font-size: 13px; white-space: nowrap; padding: 8px 14px; border-radius: 10px; background: rgba(15,23,42,0.55); border: 1px solid rgba(148,163,184,0.2); text-decoration: none; transition: background 140ms ease; }
+    .back:hover { background: rgba(56,189,248,0.16); }
+    .subtitle { margin-top: 12px; color: var(--text); font-size: 15px; }
+    .subtitle strong { color: var(--accent); font-weight: 700; }
+    .card { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin: 18px 0; box-shadow: var(--shadow); }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>ベトナム</h1>
+        <div class="subtitle">現在の判断: <strong>やや強気</strong>　／　信頼度 52%</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">← マクロ判断一覧へ</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">現在の状況</div><div>VNM ETFの価格は19.49ドルで、MA50（18.09）・MA200（18.16）をともに上回り、中長期ともに上昇トレンドが成立している。RSI14は59.48でモメンタムゾーンに位置しつつ過熱域（70）には達していない。米国GDP前期比年率成長率は1.99%と低調であり、輸出依存型のベトナム経済にとって外需環境が脆弱になりつつある。米CPI前年比は3.95%でFF金利（3.63%）と拮抗しており、実質金利はほぼゼロ近辺にある。VIX3M（20.85）がVIX9D（15.14）を大きく上回るコンタンゴ構造で、中期リスクへの市場警戒が読み取れる。VNM ETFの総資産は571.7百万ドルと相対的に小規模であり、流動性プレミアムが存在する。</div></div><div class="detail-block"><div class="detail-title">強気の論点</div><ul><li>claim: 価格が中長期両移動平均を明確に上回り、上昇トレンドが確立している / data: {&#x27;price&#x27;: 19.49, &#x27;ma50&#x27;: 18.09, &#x27;ma200&#x27;: 18.16} / evidence: 現在値19.49はMA50（18.09）を+7.7%、MA200（18.16）を+7.3%上回っており、中長期ともにゴールデンクロス後の上昇局面にある。</li><li>claim: RSIが適切なモメンタムゾーンに位置し、追加上昇余地がある / data: {&#x27;rsi14&#x27;: 59.48} / evidence: RSI14は59.48で強気域（50超）にあるが過熱ライン（70）に達しておらず、近接では売り圧力より買いモメンタムが優勢な状態が持続している。</li><li>claim: DXYの100割れがEM資産へのドル建てリターンを改善 / data: {&#x27;dxy&#x27;: 98.88} / evidence: DXY98.88は100を下回っており、ドル軟化基調はベトナムドンの相対安定とともに外国人投資家のリターン環境を支援する。</li><li>claim: 近接オプション市場では過度なヘッジ需要は見られず、スポット買い優勢 / data: {&#x27;vix9d&#x27;: 15.14, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: VIX9Dが15.14と低水準で、エクイティP/Cレシオも0.65と中立以下であり、直近の買い圧力がヘッジ需要を上回っている。</li><li>claim: PERが新興国成長株として過大評価とはいえない水準にある / data: {&#x27;pe_ttm&#x27;: 17.34} / evidence: PER TTM17.34倍はベトナムの高成長プレミアムを加味すれば過剰評価ではなく、バリュエーション面での売り圧力は限定的。</li></ul></div><div class="detail-block"><div class="detail-title">弱気の論点</div><ul><li>claim: 米国GDP成長率が極めて低調でベトナム輸出セクターに逆風 / data: {&#x27;gdp_qoq_annualized&#x27;: 1.99} / evidence: 米GDP前期比年率1.99%はリセッション直前水準の低成長であり、米国向け輸出依存度が高いベトナムの製造業・電子部品輸出に下押し圧力が加わるリスクがある。</li><li>claim: VIX期間構造がコンタンゴで中期リスクへの市場警戒が高い / data: {&#x27;vix&#x27;: 17.26, &#x27;vix3m&#x27;: 20.85} / evidence: VIX3M（20.85）がVIX（17.26）を約20.8%上回る顕著なコンタンゴ構造は、今後数ヶ月でボラティリティが上昇するとの市場予想を示す。</li><li>claim: SKEW高水準が機関投資家のテールリスクヘッジ需要を示す / data: {&#x27;skew&#x27;: 139.32, &#x27;put_call_ratio_total&#x27;: 0.95} / evidence: SKEW指数139.32は極端な下振れリスクへの保険需要が高い状態を示し、全体P/Cレシオ0.95とともに市場参加者がプット保護を積極的に買っていることを裏付ける。</li><li>claim: インフレ高止まりでFedの利下げ余地が制約され新興国フローが不安定 / data: {&#x27;cpi_yoy&#x27;: 3.95, &#x27;fed_funds&#x27;: 3.63, &#x27;us2y&#x27;: 4.0} / evidence: 米CPI前年比3.95%はFedターゲット2%を大きく上回り、FF金利3.63%との実質金利差がわずかで、インフレ再燃時には利上げ再開→ドル高→EM資金逆流のリスクが残存する。</li><li>claim: 配当利回りが極低で下落局面の下値サポートが乏しい / data: {&#x27;div_yield&#x27;: 0.2} / evidence: 配当利回り0.2%はインカムリターンとしてほぼ無視できる水準であり、リスクオフ局面で長期投資家を引き留める誘因がなく、売り圧力を緩和しにくい。</li></ul></div><div class="detail-block full"><div class="detail-title">総合判断</div><div>テクニカル面ではVNMが両移動平均を7%超上回り、RSIも適切なモメンタムゾーンにあることから、短期・近接では上昇バイアスが優勢。DXYの100割れとPER17倍台のバリュエーションがBull側を補強する。一方、米GDP年率2%割れ水準の低成長とCPI3.95%の高止まりは、輸出主導型のベトナム経済にとって外需悪化と資金コスト上昇の両リスクをもたらす。SKEW139・VIX3Mコンタンゴがテールリスク意識の高さを示し、中期には不確実性が増す。総合的にテクニカルモメンタムの優位性を認めつつ、米マクロ悪化リスクが確度を下げることから「slightly_bullish」と判断する。</div></div><div class="detail-block"><div class="detail-title">主なリスク</div><ul><li>米国景気後退入りによるベトナム輸出需要の急減と外資引き揚げ</li><li>米インフレ再加速によるFed利上げ再開→ドル高→EM資本流出</li><li>SKEW高水準が示す市場テールリスク（地政学・信用イベント）の顕在化</li><li>中国経済の大幅減速がサプライチェーンと輸出市場の両面でベトナムに波及</li><li>ベトナム国内の政策リスク（外資規制強化・通貨管理・政治不安定）</li></ul></div><div class="detail-block"><div class="detail-title">主な触媒（カタリスト）</div><ul><li>Fed利下げ加速によるDXYの一段安とEM資金流入の本格化</li><li>米国GDP成長率の回復がベトナム向け製造・輸出需要を押し上げ</li><li>ベトナムのMSCI新興国指数への格上げ実現による受動的資金流入</li><li>半導体・電子部品の対越直接投資拡大（デカップリング受益継続）</li><li>VNM ETF純資産の顕著な増加による需給改善と流動性向上</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面ではVNMが両移動平均を7%超上回り、RSIも適切なモメンタムゾーンにあることから、短期・近接では上昇バイアスが優勢。DXYの100割れとPER17倍台のバリュエーションがBull側を補強する。一方、米GDP年率2%割れ水準の低成長とCPI3.95%の高止まりは、輸出主導型のベトナム経済にとって外需悪化と資金コスト上昇の両リスクをもたらす。SKEW139・VIX3Mコンタンゴがテールリスク意識の高さを示し、中期には不確実性が増す。総合的にテクニカルモメンタムの優位性を認めつつ、米マクロ悪化リスクが確度を下げることから「slightly_bullish」と判断する。"><div class="timeline-date">2026-05-16</div><div class="timeline-current">やや強気　／　信頼度 52%</div><div class="timeline-summary">テクニカル面ではVNMが両移動平均を7%超上回り、RSIも適切なモメンタムゾーンにあることから、短期・近接では上昇バイアスが優勢。DXYの100割れとPER17倍台のバリュエーションがBull側を補強する。一方、米GDP年率2%割れ水準の低...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-05-16", "value": 1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2026-06-15", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-05-16", "label": "+1ヶ月予想", "target_time": "2026-06-15"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2026-11-12", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-05-16", "label": "+6ヶ月予想", "target_time": "2026-11-12"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2027-05-16", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-05-16", "label": "+1年予想", "target_time": "2027-05-16"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 1}, {"time": "2028-05-15", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-05-16", "label": "+2年予想", "target_time": "2028-05-15"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ブラジル 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 560px at 10% -8%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(700px 480px at 100% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 36px 24px 48px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 22px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.12) 50%, rgba(15,23,42,0.55) 100%); border: 1px solid rgba(148,163,184,0.18); box-shadow: var(--shadow); }
+    h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 800; letter-spacing: 0.005em; }
+    h2 { margin: 0 0 14px; font-size: 18px; font-weight: 700; }
+    h3 { margin: 16px 0 8px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    a { color: var(--accent); }
+    .back { color: var(--text); font-size: 13px; white-space: nowrap; padding: 8px 14px; border-radius: 10px; background: rgba(15,23,42,0.55); border: 1px solid rgba(148,163,184,0.2); text-decoration: none; transition: background 140ms ease; }
+    .back:hover { background: rgba(56,189,248,0.16); }
+    .subtitle { margin-top: 12px; color: var(--text); font-size: 15px; }
+    .subtitle strong { color: var(--accent); font-weight: 700; }
+    .card { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin: 18px 0; box-shadow: var(--shadow); }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>ブラジル</h1>
+        <div class="subtitle">現在の判断: <strong>やや弱気</strong>　／　信頼度 50%</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">← マクロ判断一覧へ</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">現在の状況</div><div>EWZ（ブラジルETF）は2026年5月16日時点で37.13ドルで推移し、50日移動平均（38.54ドル）を約3.7%下回る一方、200日移動平均（33.31ドル）は約11.5%上回っている。RSI14は36.77と下方向の勢いが続き、過売り圏（30）に接近しつつある。バリュエーションはPER（TTM）11.65倍・配当利回り4.16%と新興国として割安水準にある。米国サイドではDXY98.88と弱含みの米ドルがEM資産の追い風となる一方、CPI前年比3.95%のインフレ持続と10年金利4.47%の高水準が資本フローを抑制する。VIX17.26と市場の恐怖感は中程度だが、SKEW139.32と高いテールリスク意識が観測されている。なお、AAII週次サーベイは403エラーにより取得不可であり、投資家センチメントの分析はVIX・プット/コール比率等で代替した。</div></div><div class="detail-block"><div class="detail-title">強気の論点</div><ul><li>claim: PER・配当利回りから見たバリュエーションの明確な割安感 / data: {&#x27;pe_ttm&#x27;: 11.646177, &#x27;div_yield&#x27;: 4.16, &#x27;us10y&#x27;: 4.47} / evidence: EWZのPER（TTM）は11.65倍と新興国株式として低水準であり、配当利回り4.16%は米10年金利（4.47%）に肉薄する高水準。インカム志向の投資家にとって魅力的なリスクプレミアムを提供しており、バリュエーション面での下値支持として機能しやすい。</li><li>claim: 200日移動平均線を大きく上回る長期上昇トレンドの継続 / data: {&#x27;price&#x27;: 37.130001, &#x27;ma200&#x27;: 33.308413, &#x27;ma200_premium_pct&#x27;: 11.5} / evidence: 現在値37.13ドルは200日移動平均33.31ドルを約11.5%上回っており、長期トレンドは上向きを維持している。短期調整局面の中でも構造的な強さが確認でき、長期保有投資家の損益分岐点として下値支持として機能しやすい水準にある。</li><li>claim: 弱い米ドル（DXY）が新興国資産全般の追い風になる / data: {&#x27;dxy&#x27;: 98.87999725} / evidence: DXYは98.88と100を下回る相対的な弱さを示しており、ドル建て負債を抱えるブラジル企業の返済負担軽減と資源輸出収入のレアル換算増加につながる。歴史的にドル安局面は新興国株式のアウトパフォームと連動することが多い。</li><li>claim: RSI過売り圏接近による技術的反発ポテンシャル / data: {&#x27;rsi14&#x27;: 36.77284067, &#x27;atr14_pct&#x27;: 2.2379783} / evidence: RSI14が36.77と過売り閾値（30）に接近しており、売られすぎによる平均回帰的なリバウンドが発生しやすい水準にある。ATR14が2.24%と中程度のボラティリティ環境であり、急反発時の値幅も期待できる。</li></ul></div><div class="detail-block"><div class="detail-title">弱気の論点</div><ul><li>claim: 50日移動平均線割れによる短期モメンタムの悪化 / data: {&#x27;price&#x27;: 37.130001, &#x27;ma50&#x27;: 38.542799} / evidence: 現在値37.13ドルは50日移動平均38.54ドルを約3.7%下回っており、短期トレンドが下方向に転換している。モメンタム系アルゴリズムや移動平均クロス戦略の売り圧力が継続する可能性があり、MA50（38.54ドル）が上値抵抗として機能する状況にある。</li><li>claim: 米インフレ高止まりによる高金利の長期化がEM資金フローを抑制 / data: {&#x27;cpi_yoy&#x27;: 3.9470269, &#x27;fed_funds&#x27;: 3.63, &#x27;us2y&#x27;: 4.0, &#x27;us10y&#x27;: 4.47} / evidence: 米CPIは前年比3.95%とFRBの目標（2%）を大きく超過し、フェデラルファンズ金利は3.63%と高水準を維持している。米2年金利4.0%・10年金利4.47%の水準は新興国との金利差縮小を妨げており、EM資産への資金回帰を遅らせる要因となっている。</li><li>claim: 高SKEWとVIXターム構造逆転が示すテールリスクへの市場の警戒 / data: {&#x27;skew&#x27;: 139.32, &#x27;vix3m&#x27;: 20.85, &#x27;vix&#x27;: 17.26, &#x27;vix3m_minus_vix&#x27;: 3.59} / evidence: SKEWが139.32と高水準にあり、市場参加者がファットテールリスクに対するヘッジを積み上げている。またVIX3M（20.85）がVIX（17.26）を約3.6ポイント上回るコンタンゴ構造は、短期より中期にかけての不確実性増大を示唆しており、EM株式の上値を抑える要因となる。</li><li>claim: プット/コール比率の上昇が示すオプション市場での守備的ポジション / data: {&#x27;put_call_ratio_total&#x27;: 0.95, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: プット/コール比率（総合）は0.95とほぼパリティに近づいており、投資家がオプション市場でのヘッジを意識していることを示す。エクイティ単体の比率（0.65）との乖離はインデックス・ETFレベルでの保護需要が高まっていることを示唆する。</li></ul></div><div class="detail-block full"><div class="detail-title">総合判断</div><div>ブラジル（EWZ）はバリュエーション（PER11.65倍・配当4.16%）と長期テクニカル（MA200上方11.5%）に構造的強みを持つ一方、短期モメンタム（MA50割れ・RSI36.77）の悪化と米国のスティッキーインフレ（CPI3.95%・FFR3.63%）による高金利継続リスクが重しとなっている。弱いドル（DXY98.88）はEM全般の構造的追い風だが、高SKEW（139.32）が示す市場のテールリスク警戒とAAII等の投資家センチメントデータ欠損が分析の不確実性を高める。RSI過売り圏接近による技術的反発の可能性はあるものの、MA50奪還（38.54ドル）を確認するまで強気に傾くには材料不足であり、現時点では「やや弱気」と判断する。中長期では割安バリュエーションと弱ドル環境を背景に緩やかな改善を見込む。</div></div><div class="detail-block"><div class="detail-title">主なリスク</div><ul><li>米CPI再加速による利上げ再開：FFRが4.0%超に引き上げられると新興国からの資本流出が加速し、EWZへの売り圧力が強まる</li><li>ブラジル国内財政悪化・政治リスク顕在化：財政赤字拡大や政治的混乱がブラジルレアル急落を招き、EWZのドル建てパフォーマンスを大きく毀損する</li><li>DXYの急反発（105超え）：ドル高転換は資源輸出国・新興国全般に逆風となり、EM資金流出を加速させブラジルへの配分を減少させる</li><li>SKEWが示すテールイベントの現実化：地政学的ショックや金融システムストレスが顕在化した場合、高SKEW（139.32）が示す市場の警戒が実際の急落局面に転換するリスクがある</li></ul></div><div class="detail-block"><div class="detail-title">主な触媒（カタリスト）</div><ul><li>FRBの利下げ加速・米金利低下：US10Yが4.0%を下回ればEM資産への資金還流が促進され、EWZのバリュエーション面での割安感がさらに際立つ</li><li>ブラジル国内インフレ鎮静と中銀の緩和転換：セリック金利引き下げが実現すれば国内消費・設備投資が回復し、EWZ構成銘柄のEPS改善につながる</li><li>コモディティ価格の上昇（原油・鉄鉱石・大豆）：主要輸出品の価格上昇はブラジルの経常収支を改善し、レアル高・外資流入加速を支援する</li><li>RSI過売り反発とMA50奪還：RSIが30以下まで到達して反転し、38.54ドルのMA50を上抜ければモメンタム系の買いが加速し上昇トレンドの再確認となる</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="ブラジル（EWZ）はバリュエーション（PER11.65倍・配当4.16%）と長期テクニカル（MA200上方11.5%）に構造的強みを持つ一方、短期モメンタム（MA50割れ・RSI36.77）の悪化と米国のスティッキーインフレ（CPI3.95%・FFR3.63%）による高金利継続リスクが重しとなっている。弱いドル（DXY98.88）はEM全般の構造的追い風だが、高SKEW（139.32）が示す市場のテールリスク警戒とAAII等の投資家センチメントデータ欠損が分析の不確実性を高める。RSI過売り圏接近による技術的反発の可能性はあるものの、MA50奪還（38.54ドル）を確認するまで強気に傾くには材料不足であり、現時点では「やや弱気」と判断する。中長期では割安バリュエーションと弱ドル環境を背景に緩やかな改善を見込む。"><div class="timeline-date">2026-05-16</div><div class="timeline-current">やや弱気　／　信頼度 50%</div><div class="timeline-summary">ブラジル（EWZ）はバリュエーション（PER11.65倍・配当4.16%）と長期テクニカル（MA200上方11.5%）に構造的強みを持つ一方、短期モメンタム（MA50割れ・RSI36.77）の悪化と米国のスティッキーインフレ（CPI3.95...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-05-16", "value": -1}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": -1}, {"time": "2026-06-15", "value": 0}], "horizon": "forecast_1m", "issued_at": "2026-05-16", "label": "+1ヶ月予想", "target_time": "2026-06-15"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": -1}, {"time": "2026-11-12", "value": 1}], "horizon": "forecast_6m", "issued_at": "2026-05-16", "label": "+6ヶ月予想", "target_time": "2026-11-12"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": -1}, {"time": "2027-05-16", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-05-16", "label": "+1年予想", "target_time": "2027-05-16"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": -1}, {"time": "2028-05-15", "value": 2}], "horizon": "forecast_2y", "issued_at": "2026-05-16", "label": "+2年予想", "target_time": "2028-05-15"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>

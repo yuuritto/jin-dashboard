@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新興国株 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 560px at 10% -8%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(700px 480px at 100% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 36px 24px 48px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 22px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.12) 50%, rgba(15,23,42,0.55) 100%); border: 1px solid rgba(148,163,184,0.18); box-shadow: var(--shadow); }
+    h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 800; letter-spacing: 0.005em; }
+    h2 { margin: 0 0 14px; font-size: 18px; font-weight: 700; }
+    h3 { margin: 16px 0 8px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    a { color: var(--accent); }
+    .back { color: var(--text); font-size: 13px; white-space: nowrap; padding: 8px 14px; border-radius: 10px; background: rgba(15,23,42,0.55); border: 1px solid rgba(148,163,184,0.2); text-decoration: none; transition: background 140ms ease; }
+    .back:hover { background: rgba(56,189,248,0.16); }
+    .subtitle { margin-top: 12px; color: var(--text); font-size: 15px; }
+    .subtitle strong { color: var(--accent); font-weight: 700; }
+    .card { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin: 18px 0; box-shadow: var(--shadow); }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>新興国株</h1>
+        <div class="subtitle">現在の判断: <strong>強気</strong>　／　信頼度 62%</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">← マクロ判断一覧へ</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div id="score-chart" class="chart"></div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="detail-grid"><div class="detail-block full"><div class="detail-title">現在の状況</div><div>EEM は 2026-05-16 時点で 67.38 ドルで推移しており、MA50（60.79）およびMA200（55.93）を大幅に上回る強い上昇トレンドを形成している。RSI14 は 64.3 と買われ過ぎ水準（70）に接近しているが未到達である。DXY は 98.88 と心理的節目の 100 を下回っており、新興国資産にとって相対的に有利な為替環境にある。米国 GDP 前期比年率成長率は 1.99% と緩やかなプラス成長を維持しているが、CPI は前年比 3.95% と Fed 目標を大幅に上回っている。VIX は 17.26 とリスク選好が概ね維持されており、SKEW は 139.32 と尾部リスクへの警戒も根強い。</div></div><div class="detail-block"><div class="detail-title">強気の論点</div><ul><li>claim: 強いテクニカル・モメンタムが中長期両方のトレンドで確認されている / data: {&#x27;price&#x27;: 67.38, &#x27;ma50&#x27;: 60.79, &#x27;ma200&#x27;: 55.93, &#x27;atr14_pct&#x27;: 1.97} / evidence: EEM の価格はMA50を約10.8%、MA200を約20.5%上回っており、中長期双方の移動平均が完全に上向きで揃っている。ATR14 は 1.97% と適度なボラティリティを維持しており、パニック売りではなく健全な上昇トレンドであることを示唆する。</li><li>claim: ドル安が新興国資産への資本流入を促す構造的追い風となっている / data: {&#x27;dxy&#x27;: 98.88} / evidence: DXY が 98.88 と 100 を下回っており、ドル建て債務を抱える新興国企業の返済負担が軽減されるとともに、外国人投資家にとっての現地通貨建てリターンが向上しやすい環境にある。</li><li>claim: 相対的に割安なバリュエーションが長期投資の吸引力を提供している / data: {&#x27;pe_ttm&#x27;: 17.65, &#x27;div_yield&#x27;: 1.91} / evidence: EEM の PER（TTM）は 17.65 倍と、米国大型株と比較して割安水準にあり、配当利回り 1.91% がインカム需要を引きつけやすい。バリュエーション面では追加上昇余地がある。</li><li>claim: イールドカーブの正常化が景気後退リスクの低下を示している / data: {&#x27;yield_spread_10_2&#x27;: 0.5, &#x27;us10y&#x27;: 4.47, &#x27;us2y&#x27;: 4.0} / evidence: 10年-2年スプレッドが +0.50% とプラス圏に戻っており、逆イールドが解消されている。これは景気後退確率の低下を示唆し、新興国の輸出需要やリスク資産への資金配分にプラスに働く。</li><li>claim: センチメント指標はリスク選好が維持されており過熱感が限定的 / data: {&#x27;vix&#x27;: 17.26, &#x27;vix9d&#x27;: 15.14, &#x27;vix3m&#x27;: 20.85, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: VIX は 17.26 と落ち着いており、VIX9d（15.14）が VIX3m（20.85）を下回るコンタンゴ構造は短期的な市場安定を示す。エクイティのプットコールレシオ 0.65 も極端な弱気偏重ではなく、投資家センチメントは概ね中立からリスク選好に位置している。</li></ul></div><div class="detail-block"><div class="detail-title">弱気の論点</div><ul><li>claim: RSIが過熱域に近接しており短期的な調整リスクが高まっている / data: {&#x27;rsi14&#x27;: 64.3, &#x27;price&#x27;: 67.38, &#x27;ma50&#x27;: 60.79} / evidence: RSI14 が 64.3 と過熱ライン（70）に接近しており、ここからの上昇では技術的な売り圧力が増大しやすい。MA50 比で約 10.8% 上乖離しており、短期的な平均回帰圧力も無視できない。</li><li>claim: インフレ高止まりによりFedの利下げ転換が遅れるリスクがある / data: {&#x27;cpi_yoy&#x27;: 3.95, &#x27;fed_funds&#x27;: 3.63} / evidence: CPI 前年比が 3.95% と Fed の目標水準（2%）を大幅に上回っており、フェデラルファンズ金利（3.63%）との乖離が小さい。インフレ再加速が確認されれば利下げ期待が後退し、新興国からの資金流出とドル高圧力を誘発しうる。</li><li>claim: 米10年金利の高止まりが新興国への資金流入を構造的に抑制している / data: {&#x27;us10y&#x27;: 4.47, &#x27;us2y&#x27;: 4.0, &#x27;fed_funds&#x27;: 3.63} / evidence: US10Y が 4.47% と高水準にあり、リスクフリーリターンとして米国債が魅力的な代替投資先となっている。新興国企業の外貨建て資金調達コストも高止まりしており、成長投資を抑制する可能性がある。</li><li>claim: SKEWの高水準が市場参加者の尾部リスク警戒を示している / data: {&#x27;skew&#x27;: 139.32, &#x27;put_call_ratio_total&#x27;: 0.95, &#x27;put_call_ratio_equity&#x27;: 0.65} / evidence: SKEW インデックスが 139.32 と高水準にあり、市場参加者がアウト・オブ・ザ・マネーのプットに対して追加プレミアムを支払っている。総合プットコールレシオも 0.95 とエクイティ比（0.65）より高く、オプション市場全体では下方リスクへの備えが強い。</li><li>claim: 米国経済の鈍化が世界需要の減速を通じて新興国輸出に影響しうる / data: {&#x27;gdp_qoq_annualized&#x27;: 1.99, &#x27;unrate&#x27;: 4.3} / evidence: 米国 GDP 前期比年率成長率が 1.99% と 2% を下回る水準にあり、失業率も 4.3% と上昇傾向を示している。世界最大の消費市場の需要鈍化は新興国の輸出企業収益に下押し圧力をかけうる。</li></ul></div><div class="detail-block full"><div class="detail-title">総合判断</div><div>テクニカル面では EEM は MA50・MA200 双方を大幅に上回る強い上昇トレンドにあり、DXY の 100 割れはドル安という新興国にとって構造的な追い風を提供している。バリュエーション（PER 17.65）は割安感があり、VIX 低下とイールドカーブ正常化はリスク環境の改善を示す。一方で、RSI が 64.3 と過熱域に接近しており短期調整リスクは否定できない。CPI 3.95% の高止まりと US10Y 4.47% は Fed の利下げ転換を遅らせ新興国からの資金流出を誘発しうるリスク要因であり、SKEW 139.32 が示すテールリスク警戒感も根強い。総合的には、中長期トレンドの強さ・ドル安・割安バリュエーションが短期リスクを上回ると判断し、現状は「bullish（+2）」とする。ただし RSI 過熱感から 1 か月先は「slightly_bullish（+1）」にトーンを落とし、インフレ・金利動向次第で 6 か月先は「neutral」に収束する可能性を想定する。</div></div><div class="detail-block"><div class="detail-title">主なリスク</div><ul><li>DXY が 102 を超えて急反発し、新興国からの資本流出が加速するシナリオ</li><li>米国 CPI が再加速（4.5% 超）し Fed が利下げ見通しを完全に撤回することでリスクオフが深まるシナリオ</li><li>中国経済の急激な悪化（不動産セクター危機の再燃や信用収縮）により新興国全体のセンチメントが崩壊するシナリオ</li><li>SKEW 高値が示すテールリスクが現実化し VIX が 30 超に急騰するシナリオ</li><li>米国失業率のさらなる上昇（5% 超）によりリセッション懸念が台頭しリスク資産全般が売られるシナリオ</li></ul></div><div class="detail-block"><div class="detail-title">主な触媒（カタリスト）</div><ul><li>DXY がさらに低下（95 割れ）し新興国への資本流入が一段と加速するシナリオ</li><li>Fed が利下げサイクルに転じ実質金利が低下することで新興国株式の相対魅力が高まるシナリオ</li><li>中国政府が大規模な財政・金融刺激策を発動し新興国全体の成長期待が上方修正されるシナリオ</li><li>RSI の一時的調整後に再上昇に転じ新規資金の流入が EEM の ETF 残高（28,104 百万ドル）のさらなる増加として確認されるシナリオ</li><li>新興国企業の業績が予想を上回り EEM の PER 縮小と配当成長が長期投資家の需要を引きつけるシナリオ</li></ul></div></div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="timeline-row" title="テクニカル面では EEM は MA50・MA200 双方を大幅に上回る強い上昇トレンドにあり、DXY の 100 割れはドル安という新興国にとって構造的な追い風を提供している。バリュエーション（PER 17.65）は割安感があり、VIX 低下とイールドカーブ正常化はリスク環境の改善を示す。一方で、RSI が 64.3 と過熱域に接近しており短期調整リスクは否定できない。CPI 3.95% の高止まりと US10Y 4.47% は Fed の利下げ転換を遅らせ新興国からの資金流出を誘発しうるリスク要因であり、SKEW 139.32 が示すテールリスク警戒感も根強い。総合的には、中長期トレンドの強さ・ドル安・割安バリュエーションが短期リスクを上回ると判断し、現状は「bullish（+2）」とする。ただし RSI 過熱感から 1 か月先は「slightly_bullish（+1）」にトーンを落とし、インフレ・金利動向次第で 6 か月先は「neutral」に収束する可能性を想定する。"><div class="timeline-date">2026-05-16</div><div class="timeline-current">強気　／　信頼度 62%</div><div class="timeline-summary">テクニカル面では EEM は MA50・MA200 双方を大幅に上回る強い上昇トレンドにあり、DXY の 100 割れはドル安という新興国にとって構造的な追い風を提供している。バリュエーション（PER 17.65）は割安感があり、VIX 低...</div></div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script>
+    const chartPayload = {"actual": [{"time": "2026-05-16", "value": 2}], "forecasts": [{"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 2}, {"time": "2026-06-15", "value": 1}], "horizon": "forecast_1m", "issued_at": "2026-05-16", "label": "+1ヶ月予想", "target_time": "2026-06-15"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 2}, {"time": "2026-11-12", "value": 0}], "horizon": "forecast_6m", "issued_at": "2026-05-16", "label": "+6ヶ月予想", "target_time": "2026-11-12"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 2}, {"time": "2027-05-16", "value": 1}], "horizon": "forecast_1y", "issued_at": "2026-05-16", "label": "+1年予想", "target_time": "2027-05-16"}, {"color": "#9ca3af", "data": [{"time": "2026-05-16", "value": 2}, {"time": "2028-05-15", "value": 1}], "horizon": "forecast_2y", "issued_at": "2026-05-16", "label": "+2年予想", "target_time": "2028-05-15"}]};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>
