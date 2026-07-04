@@ -426,7 +426,7 @@
 <body>
   <div class="header">
     <h1>刃 パフォーマンスダッシュボード</h1>
-    <div class="updated">最終更新: 2026-07-04 05:10 JST <a class="inline-link" href="strategies.html">戦略詳細 →</a> <a class="inline-link" href="macro-dashboard.html">マクロ判断 →</a></div>
+    <div class="updated">最終更新: 2026-07-04 20:31 JST <a class="inline-link" href="strategies.html">戦略詳細 →</a> <a class="inline-link" href="macro-dashboard.html">マクロ判断 →</a></div>
   </div>
 
   <nav class="market-tabs" role="tablist">
@@ -484,7 +484,7 @@
         <div class="system-card">
           <div class="system-label">ヘルスチェック</div>
           <div class="system-value health-ok">OK 30 / WARN 0 / FAIL 0</div>
-          <div class="system-meta">最終チェック: 2026-07-03 09:00 JST</div>
+          <div class="system-meta">最終チェック: 2026-07-04 09:00 JST</div>
         </div>
         <div class="system-card">
           <div class="system-label">LLM精度</div>
@@ -505,7 +505,7 @@
         実効的な寄与度 (Sharpe / 勝率 / ベンチマーク超過) を見る。
       </p>
       <div><div class="ablation-market">
-          <h3 style="margin:8px 0 6px;font-size:14px;">米国 (最新: 2026-06-27 06:31 JST)</h3>
+          <h3 style="margin:8px 0 6px;font-size:14px;">米国 (最新: 2026-07-04 06:31 JST)</h3>
           <table class="ablation-table" style="width:100%;border-collapse:collapse;font-size:12px;">
             <thead>
               <tr style="background:#f3f4f6;">
@@ -553,96 +553,15 @@
             </tr></tbody>
           </table><div style="font-size:11px;color:#9ca3af;margin-top:4px;">† サンプル 20 件未満。 Sharpe / Sortino / α は小標本ノイズのため参考値です。</div>
         </div></div>
-      <div style="font-size:11px;color:#9ca3af;margin:0 0 6px;">棒グラフ = 直近で十分なサンプル (20 trade 以上) がある時点。 米国: 2026-05-09 06:30 JST時点</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div>
-          <h3 style="margin:0 0 6px;font-size:13px;">Sharpe 比較</h3>
-          <div style="position:relative;height:200px;"><canvas id="ablation-sharpe-bar"></canvas></div>
-        </div>
-        <div>
-          <h3 style="margin:0 0 6px;font-size:13px;">α (ベンチマーク超過) 比較</h3>
-          <div style="position:relative;height:200px;"><canvas id="ablation-alpha-bar"></canvas></div>
-        </div>
+      <div style="margin-top:18px;padding:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;color:#7c2d12;font-size:13px;line-height:1.7;">
+        <strong>📊 データ蓄積中 — リスク指標チャートは保留中</strong><br>
+        現在の最大サンプルは <strong>16 trade</strong> です。
+        Sharpe・Sortino・α などのリスク調整済み指標は、 決済トレードが少ないと値が乱高下し
+        (1 件だと 0、 数件だと年率換算が膨らんで Sharpe が異常値になる) 誤読を招くため、
+        各シナリオが <strong>20 trade</strong> たまるまでチャート描画を保留します。
+        トレード件数は上の表で確認できます (集計パイプラインは正常稼働)。
+        蓄積が進むと比較チャートが自動で表示されます。
       </div>
-      <div style="margin-top:18px;">
-        <h3 style="margin:0 0 6px;font-size:13px;">米国 Sharpe 推移 (直近 8 snapshot)</h3>
-        <div style="position:relative;height:200px;"><canvas id="ablation-us-history"></canvas></div>
-      </div>
-      <script>
-        (function() {
-          const sharpeLabels = ["テクニカルのみ", "+Bull/Bear", "+Judge", "+専門家委員会"];
-          const alphaLabels = ["テクニカルのみ", "+Bull/Bear", "+Judge", "+専門家委員会"];
-          const sharpeUS = [2.9248, 4.6646, 4.2632, 4.9684];
-          const alphaUS = [-10.6423, -10.394, -6.4513, -6.3935];
-          const usHistLabels = ["05/09", "05/16", "05/23", "05/30", "06/06", "06/13", "06/20", "06/27"];
-          const usHistDatasets = [{
-              label: 'テクニカルのみ',
-              data: [2.9248, null, null, null, null, null, null, null],
-              borderColor: 'rgba(156, 163, 175, 1)',
-              backgroundColor: 'rgba(156, 163, 175, 0.15)',
-              fill: false,
-              tension: 0.3,
-              pointRadius: 3,
-              spanGaps: true,
-            },{
-              label: '+Bull/Bear',
-              data: [4.6646, null, null, null, null, null, null, null],
-              borderColor: 'rgba(59, 130, 246, 1)',
-              backgroundColor: 'rgba(59, 130, 246, 0.15)',
-              fill: false,
-              tension: 0.3,
-              pointRadius: 3,
-              spanGaps: true,
-            },{
-              label: '+Judge',
-              data: [4.2632, null, null, null, null, null, null, null],
-              borderColor: 'rgba(34, 197, 94, 1)',
-              backgroundColor: 'rgba(34, 197, 94, 0.15)',
-              fill: false,
-              tension: 0.3,
-              pointRadius: 3,
-              spanGaps: true,
-            },{
-              label: '+専門家委員会',
-              data: [4.9684, null, null, null, null, null, null, null],
-              borderColor: 'rgba(168, 85, 247, 1)',
-              backgroundColor: 'rgba(168, 85, 247, 0.15)',
-              fill: false,
-              tension: 0.3,
-              pointRadius: 3,
-              spanGaps: true,
-            },];
-          const barOpts = {
-            responsive: true, maintainAspectRatio: false,
-            plugins: {legend: {labels: {boxWidth: 12, font: {size: 11}}}},
-            scales: {y: {ticks: {font: {size: 10}}}, x: {ticks: {font: {size: 10}}}}
-          };
-          const lineOpts = {
-            responsive: true, maintainAspectRatio: false,
-            plugins: {legend: {labels: {boxWidth: 12, font: {size: 11}}}},
-            scales: {y: {ticks: {font: {size: 10}}}, x: {ticks: {font: {size: 10}}}}
-          };
-          new Chart(document.getElementById('ablation-sharpe-bar'), {
-            type: 'bar',
-            data: {labels: sharpeLabels, datasets: [
-              {label: '米国', data: sharpeUS, backgroundColor: 'rgba(59, 130, 246, 0.6)'},
-            ]},
-            options: barOpts,
-          });
-          new Chart(document.getElementById('ablation-alpha-bar'), {
-            type: 'bar',
-            data: {labels: alphaLabels, datasets: [
-              {label: '米国', data: alphaUS, backgroundColor: 'rgba(59, 130, 246, 0.6)'},
-            ]},
-            options: barOpts,
-          });
-          new Chart(document.getElementById('ablation-us-history'), {
-            type: 'line',
-            data: {labels: usHistLabels, datasets: usHistDatasets},
-            options: lineOpts,
-          });
-        })();
-      </script>
     </div>
     <div class="card">
       <h2>監視銘柄一覧</h2>
