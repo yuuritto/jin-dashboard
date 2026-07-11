@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infectious Disease Outbreak Response 詳細</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050810;
+      --panel: rgba(17, 24, 39, 0.78);
+      --panel-soft: rgba(31, 41, 55, 0.62);
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --shadow: 0 24px 56px -32px rgba(2, 6, 23, 0.95);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 560px at 10% -8%, rgba(56, 189, 248, 0.14) 0%, transparent 55%),
+        radial-gradient(700px 480px at 100% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #050810 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      font-feature-settings: "palt" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 36px 24px 48px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 22px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.12) 50%, rgba(15,23,42,0.55) 100%); border: 1px solid rgba(148,163,184,0.18); box-shadow: var(--shadow); }
+    h1 { margin: 0; font-size: 30px; line-height: 1.2; font-weight: 800; letter-spacing: 0.005em; }
+    h2 { margin: 0 0 14px; font-size: 18px; font-weight: 700; }
+    h3 { margin: 16px 0 8px; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+    a { color: var(--accent); }
+    .back { color: var(--text); font-size: 13px; white-space: nowrap; padding: 8px 14px; border-radius: 10px; background: rgba(15,23,42,0.55); border: 1px solid rgba(148,163,184,0.2); text-decoration: none; transition: background 140ms ease; }
+    .back:hover { background: rgba(56,189,248,0.16); }
+    .subtitle { margin-top: 12px; color: var(--text); font-size: 15px; }
+    .subtitle strong { color: var(--accent); font-weight: 700; }
+    .card { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; margin: 18px 0; box-shadow: var(--shadow); }
+    .chart { height: 420px; }
+    .placeholder { color: var(--muted); padding: 18px 0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .detail-block { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .detail-block.full { grid-column: 1 / -1; }
+    .detail-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 3px 0; }
+    .timeline-row { display: grid; grid-template-columns: 110px 150px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font-size: 13px; }
+    .timeline-current { font-weight: 700; }
+    .timeline-summary { color: #d1d5db; overflow-wrap: anywhere; }
+    @media (max-width: 760px) {
+      header { display: block; }
+      .back { display: inline-block; margin-bottom: 10px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 4px; }
+      .chart { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Infectious Disease Outbreak Response</h1>
+        <div class="subtitle">現在の判断: <strong>判断レコードなし</strong>　／　信頼度 ―</div>
+      </div>
+      <a class="back" href="../macro-dashboard.html">← マクロ判断一覧へ</a>
+    </header>
+    <section class="card">
+      <h2>時系列チャート</h2>
+      <div class="placeholder">判断レコードなし</div>
+    </section>
+    <section class="card">
+      <h2>今週の判断詳細</h2>
+      <div class="placeholder">判断レコードなし</div>
+    </section>
+    <section class="card">
+      <h2>過去判断タイムライン</h2>
+      <div class="placeholder">判断レコードなし</div>
+    </section>
+  </main>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js" integrity="sha384-OK7vELvjHdhUFi31JYioPIcRHTROLdcDa6ZsNWgvgLaKj+9JqhU0Ad8g4wz3CXjA" crossorigin="anonymous"></script>
+  <script>
+    const chartPayload = {"actual": [], "forecasts": []};
+    const chartElement = document.getElementById("score-chart");
+    if (chartElement && window.LightweightCharts) {
+      const chart = LightweightCharts.createChart(chartElement, {
+        layout: { background: { color: "#111827" }, textColor: "#e5e7eb" },
+        grid: { vertLines: { color: "#1f2937" }, horzLines: { color: "#1f2937" } },
+        rightPriceScale: { borderColor: "#374151" },
+        timeScale: { borderColor: "#374151" },
+        height: chartElement.clientHeight,
+      });
+      const fixedScoreScale = () => ({ priceRange: { minValue: -3, maxValue: 3 } });
+      const actual = chart.addLineSeries({
+        color: "#38bdf8",
+        lineWidth: 3,
+        title: "実判断スコア",
+        autoscaleInfoProvider: fixedScoreScale,
+      });
+      actual.setData(chartPayload.actual);
+      chartPayload.forecasts.forEach((item) => {
+        const series = chart.addLineSeries({
+          color: item.color,
+          lineWidth: 2,
+          lineStyle: LightweightCharts.LineStyle.Dashed,
+          title: item.label,
+          autoscaleInfoProvider: fixedScoreScale,
+        });
+        series.setData(item.data);
+      });
+      chart.priceScale("right").applyOptions({ autoScale: false, scaleMargins: { top: 0.1, bottom: 0.1 } });
+      chart.timeScale().fitContent();
+      window.addEventListener("resize", () => {
+        chart.applyOptions({ width: chartElement.clientWidth, height: chartElement.clientHeight });
+      });
+    }
+  </script>
+</body>
+</html>
